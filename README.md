@@ -10,6 +10,6 @@ ArgoCD deployments files
 
 Config files to managing the hardware using ansible
 
-## Bash
+## Scripts
 
-Bash scripts for base setup of hardware
+Scripts for base setup
