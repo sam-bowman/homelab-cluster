@@ -1,17 +1,17 @@
-MASTER:
+K3S_MASTER:
   hosts:
     master_01:
       ansible_host: K3S_CLUSTER_01
 
-NODES:
+K3S_NODES:
   hosts:
     node_01:
       ansible_host: K3S_CLUSTER_02
 
 K3S_CLUSTER:
   children:
-    MASTER:
-    NODES:
+    K3S_MASTER:
+    K3S_NODES:
   vars:
     ansible_user: k3s_cluster_admin
 
