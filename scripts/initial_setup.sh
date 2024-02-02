@@ -4,15 +4,18 @@
 apt update
 apt upgrade -y
 
+#Reboot
+reboot now
+
 #Install git
 apt install git-all -y
 
 #Clone Repo
-cd /opt
+cd
 mkdir repos
-cd /opt/repos
+cd repos
 git clone https://github.com/sam-bowman/homelab-cluster.git
-cd /opt/repos/homelab-cluster
+cd homelab-cluster
 pwd
 ls -l
 
