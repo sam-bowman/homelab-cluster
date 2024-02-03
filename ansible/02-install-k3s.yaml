@@ -1,7 +1,7 @@
 - name: Setup K3S Master 
   hosts: K3S_MASTER
   vars:
-    INSTALL_K3S_EXEC: "server --disable servicelb"
+    INSTALL_K3S_EXEC: "server --disable servicelb --disable coredns"
   tasks:
   - name: Download K3S install script
     become: true
@@ -32,7 +32,7 @@
   hosts: K3S_NODES
   vars:
     K3S_URL: "https://K3SCLUSTER01:6443"
-    K3S_TOKEN: "{{ hostvars['K3SCLUSTER01']['k3s_node_token'] }}"
+    K3S_TOKEN: "{{ hostvars['10.10.20.60']['k3s_node_token'] }}"
   tasks:
   - name: Print k3s token
     debug:
