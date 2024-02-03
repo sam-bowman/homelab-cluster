@@ -1,0 +1,43 @@
+- name: BaseApps
+  hosts: K3S_MASTER
+  environment:
+    K8S_AUTH_KUBECONFIG: "~/.kube/kube-config"
+    KUBECONFIG: "~/.kube/kube-config"
+  tasks:
+  - name: install kubernetes pip module
+    become: true
+    apt:
+      name: python3-kubernetes
+      state: present
+  - name: install kubernetes pip module
+    become: true
+    apt:
+      name: python3-jsonpatch
+      state: present
+  - name: Download metallb manifest to the cluster.
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/metallb/metallb/v0.14.3/config/manifests/metallb-native.yaml
+      dest: ~/metallb.yaml
+      mode: '0664'
+  - name: Apply metallb manifest to the cluster.
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/kube-config
+      state: present
+      src: ~/metallb.yaml
+  - name: Create a argocd namespace
+    kubernetes.core.k8s:
+      name: argocd
+      api_version: v1
+      kind: Namespace
+      state: present
+  - name: Download argocd manifest to the cluster.
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+      dest: ~/argocd.yaml
+      mode: '0664'
+  - name: Apply argocd manifest to the cluster.
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/kube-config
+      state: present
+      src: ~/argocd.yaml
+      namespace: argocd
