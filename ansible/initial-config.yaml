@@ -28,6 +28,7 @@
         state: present
     - name: Configure PIPX Path
       command: pipx ensurepath
+      run_once: true
     - name: Create Repo Directory
       file:
         path: ~/repos
@@ -47,6 +48,6 @@
         line: '\1 {{ item }}'
         backrefs: true
       loop: "{{ cmdline_add }}"
-    # - name: Reboot the cluster
-    #   become: true
-    #   reboot:
+    - name: Reboot the cluster
+      become: true
+      reboot:
