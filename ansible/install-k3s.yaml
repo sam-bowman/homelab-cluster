@@ -1,30 +1,54 @@
 - name: Setup K3S Master 
   hosts: K3S_MASTER
-  var:
+  vars:
     INSTALL_K3S_EXEC: "server --disable servicelb"
   tasks:
-  - name: Download K3S script
-    ansible.builtin.get_url:
+  - name: Download K3S install script
+    become: true
+    get_url:
       url: https://get.k3s.io
+      timeout: 120
       dest: ~/k3s.sh
-      mode: '0775'
+      mode: 0755
   - name: Run K3S Install Script
     become: true
     run_once: true
-    command: 'INSTALL_K3S_EXEC="{{ INSTALL_K3S_EXEC }}" sh k3s.sh'
-  - name: Register k3s node-token
+    command:
+      cmd: ~/k3s.sh
+    environment: 
+      INSTALL_K3S_EXEC: "{{ INSTALL_K3S_EXEC }}"
+  - name: Register k3s node token var
     become: true
     command: cat /var/lib/rancher/k3s/server/node-token
-    register: k3s_node_token
+    register: k3s_node_token_output
+  - name: Print k3s token output
+    debug:
+      msg: "{{ k3s_node_token_output.stdout }}"
+  - name: Set k3s node token fact
+    set_fact:
+      k3s_node_token: "{{ k3s_node_token_output.stdout }}"
+#######################
 - name: Setup K3S Nodes
-  hosts: K3S_MASTER
+  hosts: K3S_NODES
+  vars:
+    K3S_URL: "https://K3SCLUSTER01:6443"
+    K3S_TOKEN: "{{ hostvars['10.10.20.60']['k3s_node_token'] }}"
   tasks:
-  - name: Download K3S script
-    ansible.builtin.get_url:
+  - name: Print k3s token
+    debug:
+      msg: "{{ K3S_TOKEN }}"
+  - name: Download K3S install script
+    become: true
+    get_url:
       url: https://get.k3s.io
+      timeout: 120
       dest: ~/k3s.sh
-      mode: '0775'
+      mode: 0755
   - name: Run K3S Install Script
     become: true
     run_once: true
-    command: 'K3S_URL=https://K3SCLUSTER01:6443 K3S_TOKEN={{ k3s_node_token }} sh k3s.sh'
+    command:
+      cmd: ~/k3s.sh
+    environment:
+      K3S_URL: "{{ K3S_URL }}"
+      K3S_TOKEN: "{{ K3S_TOKEN }}"
