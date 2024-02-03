@@ -1,7 +1,7 @@
 - name: Setup K3S Master 
   hosts: K3S_MASTER
   vars:
-    INSTALL_K3S_EXEC: "server --disable servicelb --disable coredns"
+    INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
   - name: Download K3S install script
     become: true
@@ -10,13 +10,13 @@
       timeout: 120
       dest: ~/k3s.sh
       mode: 0755
-  - name: Run K3S Install Script
+  - name: Run K3S Install Script - Master
     become: true
     run_once: true
     command:
       cmd: ~/k3s.sh
     environment: 
-      INSTALL_K3S_EXEC: "{{ INSTALL_K3S_EXEC }}"
+      INSTALL_K3S_EXEC: "server {{ INSTALL_K3S_EXEC }}"
   - name: Register k3s node token var
     become: true
     command: cat /var/lib/rancher/k3s/server/node-token
@@ -33,6 +33,7 @@
   vars:
     K3S_URL: "https://K3SCLUSTER01:6443"
     K3S_TOKEN: "{{ hostvars['10.10.20.60']['k3s_node_token'] }}"
+    INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
   - name: Print k3s token
     debug:
@@ -44,7 +45,7 @@
       timeout: 120
       dest: ~/k3s.sh
       mode: 0755
-  - name: Run K3S Install Script
+  - name: Run K3S Install Script - Agent
     become: true
     run_once: true
     command:
@@ -52,3 +53,4 @@
     environment:
       K3S_URL: "{{ K3S_URL }}"
       K3S_TOKEN: "{{ K3S_TOKEN }}"
+      
