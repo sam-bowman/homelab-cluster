@@ -1,0 +1,30 @@
+- name: Setup K3S Master 
+  hosts: K3S_MASTER
+  var:
+    INSTALL_K3S_EXEC: "server --disable servicelb"
+  tasks:
+  - name: Download K3S script
+    ansible.builtin.get_url:
+      url: https://get.k3s.io
+      dest: ~/k3s.sh
+      mode: '0775'
+  - name: Run K3S Install Script
+    become: true
+    run_once: true
+    command: 'INSTALL_K3S_EXEC="{{ INSTALL_K3S_EXEC }}" sh k3s.sh'
+  - name: Register k3s node-token
+    become: true
+    command: cat /var/lib/rancher/k3s/server/node-token
+    register: k3s_node_token
+- name: Setup K3S Nodes
+  hosts: K3S_MASTER
+  tasks:
+  - name: Download K3S script
+    ansible.builtin.get_url:
+      url: https://get.k3s.io
+      dest: ~/k3s.sh
+      mode: '0775'
+  - name: Run K3S Install Script
+    become: true
+    run_once: true
+    command: 'K3S_URL=https://K3SCLUSTER01:6443 K3S_TOKEN={{ k3s_node_token }} sh k3s.sh'
