@@ -1,9 +1,8 @@
-- name: My first play
+- name: "99 - PING - K3S_CLUSTER"
   hosts: K3S_CLUSTER
   tasks:
-   - name: Ping my hosts
+   - name: "-- 01. Ping all hosts in the cluster --"
      ansible.builtin.ping:
-
-   - name: Print message
+   - name: "-- 02. Print output of ping --"
      ansible.builtin.debug:
       msg: Hello world
