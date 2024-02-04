@@ -1,51 +1,45 @@
-- name: Setup K3S Master 
+- name: "02 - INSTALL K3S - K3S_MASTER"
   hosts: K3S_MASTER
   vars:
     INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
-  - name: Download K3S install script
+  - name: "-- 01. Download K3S install script --"
     become: true
     get_url:
       url: https://get.k3s.io
       timeout: 120
       dest: ~/k3s.sh
       mode: 0755
-  - name: Run K3S Install Script - Master
+  - name: "-- 02. Install K3S on master node --"
     become: true
     run_once: true
     command:
       cmd: ~/k3s.sh
     environment: 
       INSTALL_K3S_EXEC: "server {{ INSTALL_K3S_EXEC }}"
-  - name: Register k3s node token var
+  - name: "-- 03. Get K3S node token --"
     become: true
     command: cat /var/lib/rancher/k3s/server/node-token
     register: k3s_node_token_output
-  - name: Print k3s token output
-    debug:
-      msg: "{{ k3s_node_token_output.stdout }}"
-  - name: Set k3s node token fact
+  - name: "-- 04. Write K3S node token to fact --"
     set_fact:
       k3s_node_token: "{{ k3s_node_token_output.stdout }}"
 #######################
-- name: Setup K3S Nodes
+- name: "02 - INSTALL K3S - K3S_NODES"
   hosts: K3S_NODES
   vars:
     K3S_URL: "https://K3SCLUSTER01:6443"
     K3S_TOKEN: "{{ hostvars['10.10.20.60']['k3s_node_token'] }}"
     INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
-  - name: Print k3s token
-    debug:
-      msg: "{{ K3S_TOKEN }}"
-  - name: Download K3S install script
+  - name: "-- 01. Download K3S install script --"
     become: true
     get_url:
       url: https://get.k3s.io
       timeout: 120
       dest: ~/k3s.sh
       mode: 0755
-  - name: Run K3S Install Script - Agent
+  - name: "-- 02. Install K3S on worker nodes --"
     become: true
     run_once: true
     command:

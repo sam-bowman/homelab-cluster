@@ -1,32 +1,32 @@
-- name: BaseApps
+- name: "03 - INSTALL BASE APPS TO CLUSTER - K3S_MASTER"
   hosts: K3S_MASTER
   environment:
     K8S_AUTH_KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
     KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
   tasks:
-  - name: install kubernetes pip module
+  - name: "-- 01. Install K8S pip module --"
     become: true
     apt:
       name: python3-kubernetes
       state: present
-  - name: install jsonpatch pip module
+  - name: "-- 02. Install JsonPatch pip module --"
     become: true
     apt:
       name: python3-jsonpatch
       state: present
-  - name: Download metallb manifest to the cluster.
+  - name: "-- 03. Download MetalLB manifest  --"
     become: true
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/metallb/metallb/v0.14.3/config/manifests/metallb-native.yaml
       dest: ~/metallb.yaml
       mode: '0664'
-  - name: Apply metallb manifest to the cluster.
+  - name: "-- 04. Apply MetalLB manifest to cluster --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
       src: ~/metallb.yaml
-  - name: Define metallb ip range - autoassigned
+  - name: "-- 05. Define MetalLB IP Range - Autoassigned IPs --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -42,7 +42,7 @@
           - 10.10.20.101-10.10.20.200
           avoidBuggyIPs: true
           autoAssign: true
-  - name: Define metallb ip range - reserved
+  - name: "-- 06. Define MetalLB IP Range - Reserved IPs --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -58,7 +58,7 @@
           - 10.10.20.201-10.10.20.220
           avoidBuggyIPs: true
           autoAssign: false
-  - name: Enable k8s_external
+  - name: "-- 07. Enable k8s_external on coredns for external resolution --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -94,38 +94,7 @@
                 import /etc/coredns/custom/*.override
             }
             import /etc/coredns/custom/*.server
-  - name: Define metallb l2 advertisement
-    become: true
-    kubernetes.core.k8s:
-      kubeconfig: /etc/rancher/k3s/k3s.yaml
-      state: present
-      definition:
-        apiVersion: metallb.io/v1beta1
-        kind: L2Advertisement
-        metadata:
-          name: metallb-l2ad
-          namespace: metallb-system
-  - name: Create a argocd namespace
-    become: true
-    kubernetes.core.k8s:
-      name: argocd
-      api_version: v1
-      kind: Namespace
-      state: present
-  - name: Download argocd manifest to the cluster.
-    become: true
-    ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-      dest: ~/argocd.yaml
-      mode: '0664'
-  - name: Apply argocd manifest to the cluster.
-    become: true
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/kube-config
-      state: present
-      src: ~/argocd.yaml
-      namespace: argocd
-  - name: Define coredns service for ext resolution UDP
+  - name: "-- 08. Define service for coredns for external resolution - udp --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -148,7 +117,7 @@
             protocol: UDP
           selector:
             k8s-app: kube-dns
-  - name: Define coredns service for ext resolution TCP
+  - name: "-- 09. Define service for coredns for external resolution - tcp --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -171,10 +140,41 @@
             protocol: TCP
           selector:
             k8s-app: kube-dns
-  - name: Patch argocd-server service to make it accessible
+  - name: "-- 10. Define MetalLB L2Advertisement for routing & ARP --"
+    become: true
+    kubernetes.core.k8s:
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
+      state: present
+      definition:
+        apiVersion: metallb.io/v1beta1
+        kind: L2Advertisement
+        metadata:
+          name: metallb-l2ad
+          namespace: metallb-system
+  - name: "-- 11. Create ArgoCD Namespace --"
+    become: true
+    kubernetes.core.k8s:
+      name: argocd
+      api_version: v1
+      kind: Namespace
+      state: present
+  - name: "-- 12. Download ArgoCD Manifest --"
+    become: true
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+      dest: ~/argocd.yaml
+      mode: '0664'
+  - name: "-- 11. Apply the ArgoCD Manifest to the cluster --"
+    become: true
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/kube-config
+      state: present
+      src: ~/argocd.yaml
+      namespace: argocd
+  - name: "-- 12. Patch ArgoCD Server service to use type LoadBalancer --"
     become: true
     command: "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'"
-  - name: bootstrap argocd apps
+  - name: "-- 13. Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/kube-config
@@ -200,11 +200,11 @@
             automated:
               prune: true
               allowEmpty: true
-  - name: Get argocd admin password
+  - name: "-- 14. Get ArgoCD Admin password --"
     become: true
     shell: "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\"{.data.password}\" | base64 -d"
     register: argocd_admin_pass
-  - name: output argocd admin pass
+  - name: "-- 15. Output ArgoCD Admin password to console --"
     debug:
       msg: "{{ argocd_admin_pass.stdout }}"
     
