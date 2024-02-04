@@ -39,13 +39,13 @@
       run_once: true
     - name: "-- 08. Create repos directory --"
       file:
-        path: /home/k3s_cluster_admin/repos
+        path: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/repos"
         state: directory
         mode: '0755'
     - name: "-- 09. Clone homelab-cluster repo --"
       git:
         repo: https://github.com/sam-bowman/homelab-cluster.git
-        dest: /home/k3s_cluster_admin/repos/homelab-cluster
+        dest: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/repos/homelab-cluster"
         clone: yes
         update: yes
     - name: "-- 10. Enable cgroups on cluster --"
