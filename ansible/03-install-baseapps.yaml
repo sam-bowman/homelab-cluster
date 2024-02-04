@@ -196,6 +196,9 @@
             path: argocd
             repoURL: https://github.com/sam-bowman/homelab-cluster
             targetRevision: HEAD
+          syncPolicy:
+            automdated:
+              prune: true
   - name: Get argocd admin password
     become: true
     shell: "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\"{.data.password}\" | base64 -d"
