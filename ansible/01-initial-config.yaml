@@ -53,6 +53,38 @@
         line: '\1 {{ item }}'
         backrefs: true
       loop: "{{ cmdline_add }}"
-    - name: "-- 10. Reboot all cluster nodes --"
+    - name: "-- 10. Mount network share - smb --"
+      become: true
+      ansible.posix.mount:
+        src: 10.10.20.50:/mnt/pool/smb
+        path: /mnt/nas_smb
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+    - name: "-- 11. Mount network share - tftp --"
+      become: true
+      ansible.posix.mount:
+        src: 10.10.20.50:/mnt/pool/tftp
+        path: /mnt/nas_tftp
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+    - name: "-- 12. Mount network share - app_configs --"
+      become: true
+      ansible.posix.mount:
+        src: 10.10.20.50:/mnt/app-pool/apps
+        path: /mnt/nas_app_configs
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+    - name: "-- 13. Mount network share - media --"
+      become: true
+      ansible.posix.mount:
+        src: 10.10.20.50:/mnt/pool/media
+        path: /mnt/nas_media
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+    - name: "-- 14. Reboot all cluster nodes --"
       become: true
       reboot:
