@@ -8,13 +8,13 @@
     get_url:
       url: https://get.k3s.io
       timeout: 120
-      dest: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/k3s.sh"
+      dest: "{{ ansible_env.HOME }}/k3s.sh"
       mode: 0755
   - name: "-- 02. Install K3S on master node --"
     become: true
     run_once: true
     command:
-      cmd: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/k3s.sh"
+      cmd: "{{ ansible_env.HOME }}/k3s.sh"
     environment: 
       INSTALL_K3S_EXEC: "server {{ INSTALL_K3S_EXEC }}"
   - name: "-- 03. Get K3S node token --"
@@ -26,13 +26,13 @@
       k3s_node_token: "{{ k3s_node_token_output.stdout }}"
   - name: "-- 05. Copy K3S KubeConfig to home dir --"
     become: true
-    shell: "cat /etc/rancher/k3s/k3s.yaml > {{ hostvars['10.10.20.60']['admin_home_dir'] }}/.kube/kube-config"
+    shell: "cat /etc/rancher/k3s/k3s.yaml > {{ ansible_env.HOME }}/.kube/kube-config"
   - name: "-- 06. Set perms of KubeConfig file --"
     become: true
-    shell: "chmod 644 {{ hostvars['10.10.20.60']['admin_home_dir'] }}/.kube/kube-config"
+    shell: "chmod 644 {{ ansible_env.HOME }}/.kube/kube-config"
   - name: "-- 07. Set owner of KubeConfig File --"
     become: true
-    shell: "chown {{ ansible_user }}:{{ ansible_user }} {{ hostvars['10.10.20.60']['admin_home_dir'] }}/.kube/kube-config"
+    shell: "chown {{ ansible_user }}:{{ ansible_user }} {{ ansible_env.HOME }}/.kube/kube-config"
 #######################
 - name: "02 - INSTALL K3S - K3S_NODES"
   hosts: K3S_NODES
@@ -46,13 +46,13 @@
     get_url:
       url: https://get.k3s.io
       timeout: 120
-      dest: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/k3s.sh"
+      dest: "{{ ansible_env.HOME }}/k3s.sh"
       mode: 0755
   - name: "-- 02. Install K3S on worker nodes --"
     become: true
     run_once: true
     command:
-      cmd: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/k3s.sh"
+      cmd: "{{ ansible_env.HOME }}/k3s.sh"
     environment:
       K3S_URL: "{{ K3S_URL }}"
       K3S_TOKEN: "{{ K3S_TOKEN }}"

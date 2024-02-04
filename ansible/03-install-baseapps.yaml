@@ -18,14 +18,14 @@
     become: true
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/metallb/metallb/v0.14.3/config/manifests/metallb-native.yaml
-      dest: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/metallb.yaml"
+      dest: "{{ ansible_env.HOME }}/metallb.yaml"
       mode: '0664'
   - name: "-- 04. Apply MetalLB manifest to cluster --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/metallb.yaml"
+      src: "{{ ansible_env.HOME }}/metallb.yaml"
   - name: "-- 05. Define MetalLB IP Range - Autoassigned IPs --"
     become: true
     kubernetes.core.k8s:
@@ -162,14 +162,14 @@
     become: true
     ansible.builtin.get_url:
       url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-      dest: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/argocd.yaml"
+      dest: "{{ ansible_env.HOME }}/argocd.yaml"
       mode: '0664'
   - name: "-- 11. Apply the ArgoCD Manifest to the cluster --"
     become: true
     kubernetes.core.k8s:
-      kubeconfig: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/.kube/kube-config"
+      kubeconfig: "{{ ansible_env.HOME }}/.kube/kube-config"
       state: present
-      src: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/argocd.yaml"
+      src: "{{ ansible_env.HOME }}/argocd.yaml"
       namespace: argocd
   - name: "-- 12. Patch ArgoCD Server service to use type LoadBalancer --"
     become: true
@@ -177,7 +177,7 @@
   - name: "-- 13. Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
     become: true
     kubernetes.core.k8s:
-      kubeconfig: "{{ hostvars['10.10.20.60']['admin_home_dir'] }}/.kube/kube-config"
+      kubeconfig: "{{ ansible_env.HOME }}/.kube/kube-config"
       state: present
       definition:
         apiVersion: argoproj.io/v1alpha1
