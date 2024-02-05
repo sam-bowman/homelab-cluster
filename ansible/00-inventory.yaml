@@ -1,9 +1,9 @@
 K3S_MASTER:
   hosts:
-    10.10.20.60: #K3SCLUSTER01: #
+    K3SCLUSTER01: #10.10.20.60: #
 K3S_NODES:
   hosts:
-    10.10.20.61: #K3SCLUSTER02: #
+    K3SCLUSTER02: #10.10.20.61: #
 K3S_CLUSTER:
   children:
     K3S_MASTER:
