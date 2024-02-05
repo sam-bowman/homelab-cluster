@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: whoami2-certificate
+spec:
+  secretName: whoami2-certificate
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: whoami2.homelab.bowmans.site
+  dnsNames:
+    - whoami2.homelab.bowmans.site
