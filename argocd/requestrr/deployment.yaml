@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: requestrr
+  labels:
+    app: requestrr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: requestrr
+  template:
+    metadata:
+      labels:
+        app: requestrr
+    spec:
+      containers:
+      - image: lscr.io/linuxserver/requestrr:latest
+        name: requestrr
+        ports:
+        - containerPort: 80
