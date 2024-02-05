@@ -7,7 +7,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: whoami
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -18,3 +18,5 @@ spec:
     automated:
       prune: true
       allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
