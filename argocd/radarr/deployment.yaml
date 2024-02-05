@@ -18,4 +18,4 @@ spec:
       - image: lscr.io/linuxserver/radarr:latest
         name: radarr
         ports:
-        - containerPort: 80
+        - containerPort: 7878
