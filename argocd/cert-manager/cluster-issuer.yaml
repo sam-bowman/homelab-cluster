@@ -1,0 +1,32 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cluster-issuer-letsencrypt
+spec:
+  acme:
+
+    # You must replace this email address with your own.
+    # Let's Encrypt will use this to contact you about expiring
+    # certificates, and issues related to your account.
+    email: bowmans9613@gmail.com
+
+    # ACME server URL for Let’s Encrypt’s staging environment.
+    # The staging environment will not issue trusted certificates but is
+    # used to ensure that the verification process is working properly
+    # before moving to production
+    server: https://acme-v02.api.letsencrypt.org/directory
+
+    privateKeySecretRef:
+      # Secret resource used to store the account's private key.
+      name: cluster-issuer-letsencrypt-secret
+
+    # Enable the HTTP-01 challenge provider
+    # you prove ownership of a domain by ensuring that a particular
+    # file is present at the domain
+    solvers:
+    - dns01:
+        cloudflare:
+          email: bowmans9613@gmail.com
+          apiKeySecretRef:
+            name: cloudflare-api-key-secret
+            key: api-key
