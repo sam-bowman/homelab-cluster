@@ -171,9 +171,9 @@
       state: present
       src: "{{ ansible_env.HOME }}/argocd.yaml"
       namespace: argocd
-  - name: "-- 12. Patch ArgoCD Server service to use type LoadBalancer --"
+  - name: "-- 12. Patch ArgoCD Config Map to set insecure mode --"
     become: true
-    command: "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'"
+    command: "kubectl patch configmap argocd-cmd-params-cm -n argocd -p '{\"data\": {\"server.insecure\": \"true\"}}'"
   - name: "-- 13. Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
     become: true
     kubernetes.core.k8s:
