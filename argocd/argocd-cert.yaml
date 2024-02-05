@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: whoami-certificate
+  name: argocd-certificate
 spec:
-  secretName: whoami-certificate
+  secretName: argocd-certificate
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: whoami.homelab.bowmans.site
+  commonName: argocd.homelab.bowmans.site
   dnsNames:
-    - whoami.homelab.bowmans.site
+    - argocd.homelab.bowmans.site
