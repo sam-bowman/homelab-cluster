@@ -32,4 +32,4 @@ spec:
         - name: PGID
           value: 1000
         - name: TZ
-          value: "Europe/London"
+          value: Europe/London
