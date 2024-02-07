@@ -9,6 +9,6 @@ spec:
   capacity:
     storage: 10Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
     path: "/mnt/nas_app_configs/heimdall"
