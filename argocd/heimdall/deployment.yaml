@@ -14,8 +14,15 @@ spec:
       labels:
         app: heimdall
     spec:
+      volumes:
+      - name: heimdall-config
+        persistentVolumeClaim:
+          claimName: heimdall-config-claim
       containers:
       - image: lscr.io/linuxserver/heimdall:latest
         name: heimdall
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/config"
+          name: heimdall-config
