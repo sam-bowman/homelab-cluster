@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/nas_app_configs/heimdall"
+    path: "/mnt/nas_app_configs/k8s/heimdall"
