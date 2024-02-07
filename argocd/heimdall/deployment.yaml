@@ -14,18 +14,11 @@ spec:
       labels:
         app: heimdall
     spec:
-      volumes:
-      - name: heimdall-config
-        persistentVolumeClaim:
-          claimName: heimdall-config-claim
       containers:
       - name: heimdall
         image: lscr.io/linuxserver/heimdall:latest
         ports:
         - containerPort: 80
-        volumeMounts:
-        - mountPath: "/config"
-          name: heimdall-config
         env:
         - name: PUID
           value: "1000"
