@@ -19,10 +19,17 @@ spec:
         persistentVolumeClaim:
           claimName: heimdall-config-claim
       containers:
-      - image: lscr.io/linuxserver/heimdall:latest
-        name: heimdall
+      - name: heimdall
+        image: lscr.io/linuxserver/heimdall:latest
         ports:
         - containerPort: 80
         volumeMounts:
         - mountPath: "/config"
           name: heimdall-config
+        env:
+        - name: PUID
+          value: 1000
+        - name: PGID
+          value: 1000
+        - name: TZ
+          value: "Europe/London"
