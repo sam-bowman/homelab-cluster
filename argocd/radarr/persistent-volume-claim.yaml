@@ -15,10 +15,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: radarr-tv-pvc
+  name: radarr-movies-pvc
 spec:
   storageClassName: "" 
-  volumeName: radarr-tv-pv
+  volumeName: radarr-movies-pv
   accessModes:
     - ReadWriteMany
   volumeMode: Filesystem
