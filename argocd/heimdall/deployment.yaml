@@ -14,6 +14,10 @@ spec:
       labels:
         app: heimdall
     spec:
+      volumes:
+      - name: heimdall-pvc
+        persistentVolumeClaim:
+          claimName: heimdall-pvc
       containers:
       - name: heimdall
         image: lscr.io/linuxserver/heimdall:latest
@@ -26,3 +30,6 @@ spec:
           value: "568"
         - name: TZ
           value: "Europe/London"
+        volumeMounts:
+        - mountPath: /config
+          name: heimdall-pvc
