@@ -25,9 +25,9 @@ spec:
         - containerPort: 80
         env:
         - name: PUID
-          value: "3001"
+          value: "1000"
         - name: PGID
-          value: "3001"
+          value: "1000"
         - name: TZ
           value: "Europe/London"
         volumeMounts:
