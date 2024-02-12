@@ -43,3 +43,6 @@ spec:
           name: sonarr-tv-pvc
         - mountPath: /downloads
           name: sonarr-downloads-pvc
+      dnsConfig:
+        nameservers:
+        - 1.1.1.1
