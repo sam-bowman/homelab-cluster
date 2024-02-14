@@ -13,4 +13,4 @@ spec:
       releaseName: gha-runner-scale-set-controller
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: github-arc
+    namespace: github-arc-helm
