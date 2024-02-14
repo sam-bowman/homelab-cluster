@@ -10,7 +10,8 @@ spec:
     repoURL: ghcr.io
     targetRevision: 0.8.2
     helm:
-    - values.yaml
+      valueFiles:
+      - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: github-arc-helm
