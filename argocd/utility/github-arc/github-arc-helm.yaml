@@ -9,6 +9,8 @@ spec:
     chart: actions/actions-runner-controller-charts/gha-runner-scale-set-controller
     repoURL: ghcr.io
     targetRevision: 0.8.2
+    helm:
+    - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: github-arc-helm
