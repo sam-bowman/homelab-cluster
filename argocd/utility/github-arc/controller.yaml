@@ -19,6 +19,9 @@ spec:
               - name: runner
                 image: ghcr.io/actions/actions-runner:latest
                 command: ["/home/runner/run.sh"]
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: github-arc
 controllerServiceAccount:
   namespace: github-arc
   name:  controller-gha-rs-controller
