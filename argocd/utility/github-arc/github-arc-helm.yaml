@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: actions/actions-runner-controller-charts/gha-runner-scale-set-controller
-    repoURL: oci://ghcr.io
+    repoURL: ghcr.io
     targetRevision: 0.8.2
   destination:
     server: "https://kubernetes.default.svc"
