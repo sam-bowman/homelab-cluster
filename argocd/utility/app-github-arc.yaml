@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: github-runner
+  name: github-arc
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: github-runner
+    namespace: github-arc
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/utility/github-runner
+    path: argocd/utility/github-arc
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
