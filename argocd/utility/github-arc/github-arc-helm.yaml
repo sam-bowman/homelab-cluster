@@ -6,11 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    chart: gha-runner-scale-set-controller
-    repoURL: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    chart: actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    repoURL: oci://ghcr.io
     targetRevision: 0.8.2
-    helm:
-      releaseName: gha-runner-scale-set-controller
   destination:
     server: "https://kubernetes.default.svc"
     namespace: github-arc-helm
