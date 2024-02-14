@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: github-scale-set-helm
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: actions/actions-runner-controller-charts/gha-runner-scale-set
+    repoURL: ghcr.io
+    targetRevision: 0.8.2
+    helm:
+      valueFiles:
+      - values.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: github-arc-helm
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
