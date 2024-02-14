@@ -12,3 +12,9 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: github-arc-helm
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
