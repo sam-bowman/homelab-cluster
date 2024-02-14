@@ -199,6 +199,6 @@ template:
 ## In case the helm chart can't find the right service account, you can explicitly pass in the following value
 ## to help it finish RoleBinding with the right service account.
 ## Note: if your controller is installed to only watch a single namespace, you have to pass these values explicitly.
-controllerServiceAccount:
-  namespace: github-arc-helm
-  name:  github-arc-helm-gha-rs-controller
+# controllerServiceAccount:
+#   namespace: github-arc-helm
+#   name:  github-arc-helm-gha-rs-controller

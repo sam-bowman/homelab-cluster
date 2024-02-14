@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: github-scale-set-helm
+  name: scale-set
   namespace: argocd
 spec:
   project: default
@@ -14,7 +14,7 @@ spec:
       - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: github-arc-helm
+    namespace: github-arc
   syncPolicy:
     automated:
       prune: true
