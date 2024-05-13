@@ -10,9 +10,18 @@ spec:
     namespace: loki
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
+  - repoURL: https://grafana.github.io/helm-charts
+    chart: loki
+    targetRevision: 6.5.2
+    helm:
+      valueFiles:
+      - $values/argocd/monitoring/loki/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/monitoring/loki
-    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
