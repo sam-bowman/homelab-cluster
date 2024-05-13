@@ -39,6 +39,5 @@ dashboardProviders:
 dashboards:
    default:
      node-utilization-metrics:
-       gnetId: 9178
-       revision: 3
+       url: https://grafana.com./api/dashboards/9178/revisions/3/download
        datasource: victoria-metrics
