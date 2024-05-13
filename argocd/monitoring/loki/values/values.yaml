@@ -1,4 +1,4 @@
-mode: SingleBinary
+deploymentMode: SingleBinary
 loki:
   auth_enabled: false
   commonConfig:
