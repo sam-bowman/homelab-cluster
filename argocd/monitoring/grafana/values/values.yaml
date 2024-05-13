@@ -11,3 +11,8 @@ datasources:
             matcherRegex: '"[tT]race(?:.?)[iI][dD]":\s?"(.\w+)"'
             name: TraceID
             url: "$${__value.raw}"
+    - name: Tempo
+      type: tempo
+      url: http://tempo.tempo
+      access: proxy
+      basicAuth: false
