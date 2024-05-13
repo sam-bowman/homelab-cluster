@@ -10,9 +10,18 @@ spec:
     namespace: tempo
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
+  - repoURL: https://grafana.github.io/helm-charts
+    chart: tempo
+    targetRevision: 1.7.3
+    helm:
+      valueFiles:
+      - $values/argocd/monitoring/tempo/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/monitoring/tempo
-    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
