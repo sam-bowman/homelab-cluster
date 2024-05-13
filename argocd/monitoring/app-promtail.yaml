@@ -10,9 +10,18 @@ spec:
     namespace: promtail
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
+  - repoURL: https://grafana.github.io/helm-charts
+    chart: promtail
+    targetRevision: 6.15.5
+    helm:
+      valueFiles:
+      - $values/argocd/monitoring/promtail/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/monitoring/promtail
-    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
