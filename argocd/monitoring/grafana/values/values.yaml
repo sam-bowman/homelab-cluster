@@ -4,7 +4,7 @@ datasources:
     datasources:
     - name: loki
       type: loki
-      url: http://loki-gateway.monitoring:80
+      url: http://loki-gateway.loki:80
       jsonData:
         derivedFields:
           - datasourceUid: Tempo
