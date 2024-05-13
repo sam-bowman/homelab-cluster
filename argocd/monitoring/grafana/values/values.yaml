@@ -1,6 +1,6 @@
 datasources:
   datasources.yaml:
-    apiVersino: 1
+    apiVersion: 1
     datasources:
     - name: loki
       type: loki
@@ -24,6 +24,18 @@ admin:
   existingSecret: "grafana-admin-details"
   userKey: admin-user
   passwordKey: admin-password
+grafana:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: 'default'
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/standard
 dashboards:
   default:
     kubernetes-cluster-ram-and-cpu-utilization:
