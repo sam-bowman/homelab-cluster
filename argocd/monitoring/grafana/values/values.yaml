@@ -1,0 +1,13 @@
+datasources:
+  datasources.yaml:
+    apiVersino: 1
+    datasources:
+    - name: loki
+      type: loki
+      url: http://loki-gateway.monitoring:80
+      jsonData:
+        derivedFields:
+          - datasourceUid: Tempo
+            matcherRegex: '"[tT]race(?:.?)[iI][dD]":\s?"(.\w+)"'
+            name: TraceID
+            url: "$${__value.raw}"
