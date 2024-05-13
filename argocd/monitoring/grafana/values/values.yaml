@@ -30,15 +30,15 @@ dashboardProviders:
     providers:
     - name: 'default'
       orgId: 1
-      folder: 'default'
+      folder: ''
       type: file
-      disableDeletion: true
+      disableDeletion: false
       editable: true
       options:
-        path: /var/lib/grafana/dashboards/standard
+        path: /var/lib/grafana/dashboards/default
 dashboards:
-  default:
-    utilization:
-      gnetId: 16734
-      revision: 2
-      datasource: victoria-metrics
+   default:
+     node-utilization-metrics:
+       gnetId: 9178
+       revision: 3
+       datasource: victoria-metrics
