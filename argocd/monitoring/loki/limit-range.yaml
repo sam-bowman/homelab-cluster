@@ -5,13 +5,13 @@ metadata:
 spec:
   limits:
   - default:
-      cpu: 1000m
+      cpu: "1"
       memory: 2Gi
     defaultRequest:
       cpu: 0m
       memory: 0Mi
     max:
-      cpu: 10000mi
+      cpu: "5"
       memory: 10Gi
     min:
       cpu: 0m
