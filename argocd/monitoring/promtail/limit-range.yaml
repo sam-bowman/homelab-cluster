@@ -11,8 +11,8 @@ spec:
       cpu: 0m
       memory: 0Mi
     max:
-      cpu: 2000m
-      memory: 4Gi
+      cpu: 10000mi
+      memory: 10Gi
     min:
       cpu: 0m
       memory: 0Mi
