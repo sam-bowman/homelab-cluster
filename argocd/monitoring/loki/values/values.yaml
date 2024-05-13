@@ -16,6 +16,8 @@ loki:
       schema: v13
 lokiCanary:
   enabled: false
+test:
+  enabled: false
 singleBinary:
   replicas: 1
 read:
