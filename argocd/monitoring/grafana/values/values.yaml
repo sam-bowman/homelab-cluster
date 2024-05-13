@@ -40,4 +40,5 @@ dashboards:
   default:
     kubernetes-cluster-ram-and-cpu-utilization:
       gnetId: 16734
+      revision: 2
       datasource: victoria-metrics
