@@ -14,10 +14,6 @@ loki:
         period: 24h
       object_store: filesystem # we're storing on filesystem so there's no real persistence here.
       schema: v13
-lokiCanary:
-  enabled: false
-test:
-  enabled: false
 singleBinary:
   replicas: 1
 read:
@@ -27,5 +23,8 @@ backend:
 write:
   replicas: 0
 chunksCache:
-  # -- Specifies whether memcached based chunks-cache should be enabled
+  enabled: false
+lokiCanary:
+  enabled: false
+test:
   enabled: false
