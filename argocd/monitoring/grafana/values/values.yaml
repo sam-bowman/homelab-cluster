@@ -16,3 +16,7 @@ datasources:
       url: http://tempo.tempo:3100
       access: proxy
       basicAuth: false
+admin:
+  existingSecret: "grafana-admin-details"
+  userKey: admin-user
+  passwordKey: admin-password
