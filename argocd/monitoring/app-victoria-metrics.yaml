@@ -10,9 +10,18 @@ spec:
     namespace: victoria-metrics
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
+  - repoURL: https://victoriametrics.github.io/helm-charts/
+    chart: victoria-metrics-k8s-stack
+    targetRevision: 0.22.0
+    helm:
+      valueFiles:
+      - $values/argocd/monitoring/victoria-metrics/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/monitoring/victoria-metrics
-    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
