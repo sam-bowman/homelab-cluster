@@ -13,6 +13,6 @@ datasources:
             url: "$${__value.raw}"
     - name: Tempo
       type: tempo
-      url: http://tempo.tempo
+      url: http://tempo.tempo:3100
       access: proxy
       basicAuth: false
