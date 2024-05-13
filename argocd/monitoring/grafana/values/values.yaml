@@ -38,6 +38,6 @@ dashboardProviders:
         path: /var/lib/grafana/dashboards/default
 dashboards:
    default:
-     node-utilization-metrics:
-       url: https://grafana.com./api/dashboards/9178/revisions/3/download
+     node-exporter-full:
+       url: https://grafana.com./api/dashboards/1860/revisions/36/download
        datasource: victoria-metrics
