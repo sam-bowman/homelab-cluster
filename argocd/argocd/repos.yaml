@@ -43,3 +43,15 @@ stringData:
   url: https://kubeshop.github.io/helm-charts
   name: kubeshop
   type: helm
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-kyverno
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  url: https://kyverno.github.io/kyverno
+  name: kyverno
+  type: helm

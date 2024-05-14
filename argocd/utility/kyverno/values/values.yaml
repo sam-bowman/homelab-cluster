@@ -1,0 +1,23 @@
+admissionController:
+  tracing:
+    enabled: true
+    address: tempo-distributor.tempo
+    port: 4317
+
+backgroundController:
+  tracing:
+    enabled: true
+    address: tempo-distributor.tempo
+    port: 4317
+
+cleanupController:
+  tracing:
+    enabled: true
+    address: tempo-distributor.tempo
+    port: 4317
+
+reportsController:
+  tracing:
+    enabled: true
+    address: tempo-distributor.tempo
+    port: 4317
