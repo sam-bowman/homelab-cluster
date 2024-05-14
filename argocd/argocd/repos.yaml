@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-sam-bowman-homelab-cluster
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+data:
+  url: aHR0cHM6Ly9naXRodWIuY29tL3NhbS1ib3dtYW4vaG9tZWxhYi1jbHVzdGVy
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-grafana
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+data:
+  url: aHR0cHM6Ly9ncmFmYW5hLmdpdGh1Yi5pby9oZWxtLWNoYXJ0cw==
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-victoria-metrics
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+data:
+  url: aHR0cHM6Ly92aWN0b3JpYW1ldHJpY3MuZ2l0aHViLmlvL2hlbG0tY2hhcnRzLw==
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-kubeshop
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+data:
+  url: aHR0cHM6Ly9rdWJlc2hvcC5naXRodWIuaW8vaGVsbS1jaGFydHM=
+type: Opaque
