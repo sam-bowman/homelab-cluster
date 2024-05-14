@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/instance: grafana-alloy
+    app.kubernetes.io/name: grafana-alloy-config
+  name: grafana-alloy-config
+data:
+  config.alloy: |
+    otelcol.receiver.otlp "default" {
+      grpc {
+        endpoint = "0.0.0.0:4317"
+      }
+      http {
+        endpoint = "0.0.0.0:4318"
+      }
+      output {
+        metrics = [otelcol.exporter.prometheus.default.input]
+        logs    = [otelcol.exporter.loki.default.input]
+        traces  = [otelcol.processor.batch.default.input]
+      }
+    }
+    otelcol.processor.batch "default" {
+      output {
+        metrics = [otelcol.exporter.prometheus.default.input]
+        logs    = [otelcol.exporter.loki.default.input]
+        traces  = [otelcol.processor.tail_sampling.default.input]
+      }
+    }
+    otelcol.exporter.otlp "default" {
+      client {
+        endpoint = "tempo-distributor.tempo:4317"
+        tls {
+          insecure = true
+          insecure_skip_verify = true
+        }
+      }
+    }
+    otelcol.exporter.prometheus "default" {
+      forward_to = [prometheus.remote_write.victoriametrics.receiver]
+    }
+    prometheus.remote_write "victoriametrics" {
+      endpoint {
+        url = "http://vmsingle-vmstack.victoria-metrics:8429/api/v1/write"
+      }
+    }
+    otelcol.exporter.loki "default" {
+      forward_to = [loki.write.default.receiver]
+    }
+    loki.write "default" {
+      endpoint {
+          url = "http://loki-gateway.loki/loki/api/v1/push"
+      }
+    }
+    logging {
+      level  = "info"
+      format = "logfmt"
+    }
+    otelcol.processor.tail_sampling "default" {
+      decision_wait               = "10s"
+      num_traces                  = 100
+      expected_new_traces_per_sec = 10
+      policy {
+        name = "ignore_health_checks"
+        type = "string_attribute"
+        string_attribute {
+          key    = "http.target"
+          values = ["/status", "/metrics", "/healthz", "/ping", "/health/startup"]
+          invert_match = true
+        }
+      }
+      policy {
+        name = "ignore_health_check2"
+        type = "string_attribute"
+        string_attribute {
+          key    = "http.url"
+          values = ["/ping", "/metrics"]
+          invert_match = true
+        }
+      }
+      output {
+        traces = [otelcol.exporter.otlp.default.input]
+      }
+    }
