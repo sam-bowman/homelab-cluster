@@ -13,7 +13,7 @@ datasources:
             url: "$${__value.raw}"
     - name: tempo
       type: tempo
-      url: http://tempo.tempo:3100
+      url: http://tempo-gateway.tempo:80
       access: proxy
       basicAuth: false
     - name: victoria-metrics
