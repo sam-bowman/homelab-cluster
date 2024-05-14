@@ -36,4 +36,4 @@ ignoreDifferences:
   - group: kyverno.io
     kind: ClusterPolicy
     jqPathExpressions:
-    - .spec.rules[].skipBackgroundRequests
+    - .spec.rules[] | select(.skipBackgroundRequests == true)
