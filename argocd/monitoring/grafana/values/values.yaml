@@ -18,7 +18,7 @@ datasources:
       basicAuth: false
     - name: victoria-metrics
       type: prometheus
-      url: "http://vmsingle-victoria-metrics-victoria-metrics-k8s-stack.victoria-metrics:8429"
+      url: "http://vmsingle-vmstack.victoria-metrics:8429"
       access: proxy
 admin:
   existingSecret: "grafana-admin-details"
