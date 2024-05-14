@@ -31,3 +31,9 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+    - RespectIgnoreDifferences=true
+ignoreDifferences:
+  - group: kyverno.io
+    kind: ClusterPolicy
+    jqPathExpressions:
+    - .spec.rules[].skipBackgroundRequests
