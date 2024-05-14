@@ -3,4 +3,5 @@ serviceMonitor:
   additionalLabels:
     release: "prometheus"
 config:
-  lokiAddress: http://loki-gateway.loki/loki/api/v1/push
+  clients:
+    - url: http://loki-gateway.loki/loki/api/v1/push
