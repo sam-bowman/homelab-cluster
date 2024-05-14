@@ -27,4 +27,4 @@ chunksCache:
 lokiCanary:
   enabled: false
 test:
-  enabled: false
+  enabled: true
