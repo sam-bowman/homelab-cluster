@@ -21,4 +21,4 @@ spec:
               service:
                 name: hashicorp-vault
                 port:
-                  number: 3200
+                  number: 8200
