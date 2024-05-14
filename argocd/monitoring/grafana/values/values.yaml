@@ -4,22 +4,43 @@ datasources:
     datasources:
     - name: loki
       type: loki
+      uid: loki
       url: http://loki-gateway.loki:80
       jsonData:
         derivedFields:
-          - datasourceUid: Tempo
+          - datasourceUid: tempo
             matcherRegex: '"[tT]race(?:.?)[iI][dD]":\s?"(.\w+)"'
             name: TraceID
             url: "$${__value.raw}"
     - name: tempo
       type: tempo
+      uid: tempo
       url: http://tempo-gateway.tempo:80
       access: proxy
       basicAuth: false
+      jsonData:
+        tracesToLogs:
+          datasourceUid: 'loki'
+          tags: ['job', 'instance', 'pod', 'namespace']
+          mappedTags: [{ key: 'service.name', value: 'ServiceName' }]
+          mapTagNamesEnabled: false
+          filterByTraceID: false
+          filterBySpanID: false
+        tracesToMetrics:
+          datasourceUid: 'victoria-metrics'
+        serviceMap:
+          datasourceUid: 'victoria-metrics'
+        nodeGraph:
+          enabled: true
+        lokiSearch:
+          datasourceUid: 'loki'
     - name: victoria-metrics
       type: prometheus
       url: "http://vmsingle-vmstack.victoria-metrics:8429"
       access: proxy
+      isDefault: true
+      jsonData: 
+        {}
 admin:
   existingSecret: "grafana-admin-details"
   userKey: admin-user
