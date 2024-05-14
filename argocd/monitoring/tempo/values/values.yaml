@@ -31,3 +31,5 @@ traces:
       enabled: true
 global:
   dnsService: "kube-dns"
+  dnsNamespace: "kube-system"
+  clusterDomain: "cluster.local."
