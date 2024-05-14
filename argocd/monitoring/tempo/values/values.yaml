@@ -29,3 +29,5 @@ traces:
       enabled: true
     grpc: 
       enabled: true
+global:
+  dnsService: "kube-dns"
