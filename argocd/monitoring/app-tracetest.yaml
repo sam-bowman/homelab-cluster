@@ -13,7 +13,7 @@ spec:
   sources:
   - repoURL: https://kubeshop.github.io/helm-charts
     chart: tracetest
-    targetRevision: 0.2.45
+    targetRevision: 0.3.19
     helm:
       valueFiles:
       - $values/argocd/monitoring/tracetest/values/values.yaml
