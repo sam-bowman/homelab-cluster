@@ -28,7 +28,7 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  url: https://victoriametrics.github.io/helm-charts/
+  url: https://victoriametrics.github.io/helm-charts
   name: victoriametrics
   type: helm
 ---
@@ -42,4 +42,16 @@ metadata:
 stringData:
   url: https://kubeshop.github.io/helm-charts
   name: kubeshop
+  type: helm
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-ghcr
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  url: ghcr.io
+stringData:
+  name: ghcr.io
   type: helm
