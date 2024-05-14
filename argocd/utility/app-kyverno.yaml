@@ -16,12 +16,12 @@ spec:
     targetRevision: 3.2.2
     helm:
       valueFiles:
-      - $values/argocd/utilities/kyverno/values/values.yaml
+      - $values/argocd/utility/kyverno/values/values.yaml
   - repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
     ref: values
   - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/utilities/kyverno
+    path: argocd/utility/kyverno
     targetRevision: HEAD
   syncPolicy:
     automated:
