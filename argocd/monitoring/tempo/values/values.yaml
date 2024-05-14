@@ -1,16 +1,36 @@
+global:
+  dnsService: "kube-dns"
+  dnsNamespace: "kube-system"
+  clusterDomain: "cluster.local."
 fullnameOverride: tempo
 minio:
   enabled: false
+tempo:
+  structuredConfig:
+    query_frontend:
+      search:
+        max_duration: '0'
 metaMonitoring:
   serviceMonitor:
     enabled: false
   grafanaAgent:
     enabled: false
+    installOperator: false
+persistence:
+  enabled: false
 gateway:
   enabled: true
+ingester:
+  persistence:
+    enabled: false
+    size: 5Gi
+compactor:
+  config: 
+    compaction:
+      block_retention: 336h
 metricsGenerator:
   enabled: true
-  config:
+  config: 
     storage:
       remote_write:
       - url: http://vmsingle-vmstack.victoria-metrics:8429/api/v1/write
@@ -29,7 +49,3 @@ traces:
       enabled: true
     grpc: 
       enabled: true
-global:
-  dnsService: "kube-dns"
-  dnsNamespace: "kube-system"
-  clusterDomain: "cluster.local."
