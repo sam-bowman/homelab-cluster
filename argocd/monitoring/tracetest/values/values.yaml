@@ -1,0 +1,17 @@
+telemetry:
+  dataStores:
+    tempo:
+      type: tempo
+      tempo:
+        endpoint: http://tempo-query-frontend.tempo.svc.cluster.local:3100
+  exporters:
+    collector:
+      exporter:
+        collector:
+          endpoint: grafana-alloy.grafana-alloy:4317
+server:
+  telemetry:
+    dataStore: tempo
+poolingConfig:
+  maxWaitTimeForTrace: 5m
+  retrydelay: 3s
