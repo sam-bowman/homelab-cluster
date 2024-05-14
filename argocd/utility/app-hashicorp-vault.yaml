@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hashicorp-vault
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: hashicorp-vault
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: https://helm.releases.hashicorp.com
+    chart: vault
+    targetRevision: 0.28.0
+    helm:
+      valueFiles:
+      - $values/argocd/utility/hashicorp-vault/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    path: argocd/utility/hashicorp-vault
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    - PruneLast=true
