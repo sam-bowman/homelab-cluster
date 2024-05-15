@@ -2,3 +2,15 @@ defaultVaultConnection:
   enabled: true
   address: "http://hashicorp-vault.hashicorp-vault.svc.cluster.local:8200"
   skipTLSVerify: false
+controller:
+  manager:
+    clientCache:
+      persistenceModel: direct-encrypted
+      storageEncryption:
+        enabled: true
+        mount: k8s
+        keyName: vso-client-cache
+        transitMount: demo-transit
+        kubernetes:
+          role: k8srole
+          serviceAccount: k8srole
