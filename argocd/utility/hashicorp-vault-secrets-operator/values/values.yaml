@@ -9,8 +9,6 @@ controller:
       storageEncryption:
         enabled: true
         mount: k8s
-        keyName: vso-client-cache
-        transitMount: demo-transit
         kubernetes:
           role: k8srole
-          serviceAccount: k8srole
+          serviceAccount: vault-svc-account
