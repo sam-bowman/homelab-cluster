@@ -1,2 +1,31 @@
-csi:
+global:
   enabled: true
+  tlsDisable: true
+injector:
+  enabled: true
+server:
+  readinessProbe:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  livenessProbe:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true"
+    initialDelaySeconds: 60
+  standalone:
+    enabled: false
+  ha:
+    enabled: true
+    replicas: 2
+    config: |
+      ui = true
+      listener "tcp" {
+        tls_disable = 1
+        address     = "0.0.0.0:8200"
+      }
+      storage "consul" {
+        path = "vault"
+        address = "hashicorp-consul-consul-server.hashicorp-consul:8500"
+      }
+ui:
+  enabled: true
+  externalPort: 8200
