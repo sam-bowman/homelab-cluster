@@ -1,5 +1,5 @@
 env:
-- name: GITHUB_TOKEN
+- name: GITHUB_TOKEN_FROM_SECRET
   valueFrom:
     secretKeyRef:
       name: github-client-secret
