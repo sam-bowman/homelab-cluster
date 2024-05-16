@@ -1,7 +1,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: secrets-store-inline
+  name: test-app
 spec:
   containers:
   - image: registry.k8s.io/e2e-test-images/busybox:1.29-4
