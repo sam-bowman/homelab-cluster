@@ -31,9 +31,3 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
-    - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: apps
-      kind: StatefulSet
-      jqPathExpressions:
-      - .spec.volumeClaimTemplates[]
