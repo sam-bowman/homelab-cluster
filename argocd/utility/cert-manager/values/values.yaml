@@ -14,3 +14,4 @@ config:
   kind: ControllerConfiguration
   spec:
     serviceAccountName: cert-manager-sa
+installCRDs: true
