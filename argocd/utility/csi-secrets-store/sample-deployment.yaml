@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: deployment-with-secret
+        app: sample-deployment
     spec:
       serviceAccountName: secrets-store-csi-driver
       containers:
