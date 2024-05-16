@@ -15,9 +15,9 @@ spec:
     path: argocd/base/metallb
     targetRevision: HEAD
   syncPolicy:
-    # automated:
-      # prune: true
-      # allowEmpty: true
+    automated:
+      prune: true
+      allowEmpty: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
