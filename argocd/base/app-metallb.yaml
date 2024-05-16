@@ -12,7 +12,7 @@ spec:
   project: default
   sources:
   - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/core/metallb
+    path: argocd/base/metallb
     targetRevision: HEAD
   # syncPolicy:
     # automated:
