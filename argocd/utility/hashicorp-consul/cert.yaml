@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: hashicorp-consul-certificate
+spec:
+  secretName: hashicorp-consul-certificate
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: consul.homelab.bowmans.site
+  dnsNames:
+    - consul.homelab.bowmans.site
