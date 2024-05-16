@@ -21,4 +21,4 @@ spec:
               service:
                 name: hashicorp-consul-consul-server
                 port:
-                  number: 8300
+                  number: 8500
