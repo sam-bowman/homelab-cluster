@@ -4,3 +4,14 @@ env:
     secretKeyRef:
       name: github-client-secret
       key: client-secret
+additionalVolumeMounts:
+  - name: 'secrets'
+    mountPath: '/mnt/secrets-store'
+    readOnly: true
+additionalVolumes:
+  - name: secrets
+    csi:
+      driver: 'secrets-store.csi.k8s.io'
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: 'github-arc-spc'
