@@ -1,0 +1,10 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-pool-auto
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.10.20.101-10.10.20.200
+  avoidBuggyIPs: true
+  autoAssign: true

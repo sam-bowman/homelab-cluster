@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: base
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: argocd/base
+    repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
