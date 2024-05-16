@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment
+  labels:
+    app: sample-deployment
+spec:
+  selector:
+    matchLabels:
+      app: sample-deployment
+  replicas: 1
+  template:
+    spec:
+      serviceAccountName: secrets-store-csi-driver
+      containers:
+        - name: busybox
+          image: registry.k8s.io/e2e-test-images/busybox:1.29-4
+          imagePullPolicy: IfNotPresent
+          command:
+          - "/bin/sleep"
+          - "10000"
+          volumeMounts:
+            - name: 'secrets'
+              mountPath: '/mnt/secrets-store'
+              readOnly: true
+      volumes:
+        - name: secrets
+          csi:
+            driver: 'secrets-store.csi.k8s.io'
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: 'all-secrets'
