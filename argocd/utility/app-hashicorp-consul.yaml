@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hashicorp-vault
+  name: hashicorp-consul
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: hashicorp-vault
+    namespace: hashicorp-consul
     server: https://kubernetes.default.svc
   project: default
   sources:
@@ -16,12 +16,12 @@ spec:
     targetRevision: 1.4.1
     helm:
       valueFiles:
-      - $values/argocd/utility/hashicorp-vault/values/values.yaml
+      - $values/argocd/utility/hashicorp-consul/values/values.yaml
   - repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
     ref: values
   - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/utility/hashicorp-vault
+    path: argocd/utility/hashicorp-consul
     targetRevision: HEAD
   syncPolicy:
     automated:
