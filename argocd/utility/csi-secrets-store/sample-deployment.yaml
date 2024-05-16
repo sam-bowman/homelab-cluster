@@ -10,6 +10,9 @@ spec:
       app: sample-deployment
   replicas: 1
   template:
+    metadata:
+      labels:
+        app: deployment-with-secret
     spec:
       serviceAccountName: secrets-store-csi-driver
       containers:
