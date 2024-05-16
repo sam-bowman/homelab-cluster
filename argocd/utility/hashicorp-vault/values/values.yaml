@@ -3,6 +3,8 @@ global:
   tlsDisable: true
 injector:
   enabled: true
+csi:
+  enabled: true
 server:
   readinessProbe:
     enabled: true
