@@ -1,0 +1,14 @@
+volumeMounts:
+  - name: 'secrets'
+    mountPath: '/mnt/secrets-store'
+    readOnly: true
+volumes:
+  - name: secrets
+    csi:
+      driver: 'secrets-store.csi.k8s.io'
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: 'cert-manager-spc'
+config:
+  spec:
+    serviceAccountName: cert-manager-sa

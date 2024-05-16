@@ -10,9 +10,18 @@ spec:
     namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
-  source:
+  sources:
+  - repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: 1.14.5
+    helm:
+      valueFiles:
+      - $values/argocd/utility/cert-manager/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/utility/cert-manager
-    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -20,3 +29,5 @@ spec:
       allowEmpty: true
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
+    - PruneLast=true
