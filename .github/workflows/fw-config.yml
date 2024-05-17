@@ -22,15 +22,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      working-directory: ./fw-config
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      working-directory: ./fw-config
 
     - name: Terraform Init
       run: terraform init
-      working-directory: ./fw-config
+      tf_actions_working_dir: ./fw-config
+      env:
+        OPNSENSE_API_KEY: {{ secrets.OPNSENSE_API_KEY }}
+        OPNSENSE_API_SECRET: {{ secrets.OPNSENSE_API_SECRET }}
+        OPNSENSE_URI: {{ secrets.OPNSENSE_URI }}
 
     - name: Terraform Format
       run: terraform fmt -check
