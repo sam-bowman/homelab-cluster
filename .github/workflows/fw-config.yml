@@ -1,4 +1,4 @@
-name: CI
+name: Firewall Configuration
 on:
   push:
     branches: [ "main" ]
