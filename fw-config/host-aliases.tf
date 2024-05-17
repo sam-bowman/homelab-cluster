@@ -1,4 +1,4 @@
-# ARGOCD ALIAS
+# ARGOCD
 resource "opnsense_unbound_host_alias" "ARGOCD" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
@@ -7,7 +7,7 @@ resource "opnsense_unbound_host_alias" "ARGOCD" {
   domain = "bowmans.site"
   description = "ARGOCD"
 }
-# CONSUL ALIAS
+# CONSUL
 resource "opnsense_unbound_host_alias" "CONSUL" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
@@ -16,7 +16,7 @@ resource "opnsense_unbound_host_alias" "CONSUL" {
   domain = "bowmans.site"
   description = "CONSUL"
 }
-# GRAFANA ALIAS
+# GRAFANA
 resource "opnsense_unbound_host_alias" "GRAFANA" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
@@ -25,7 +25,7 @@ resource "opnsense_unbound_host_alias" "GRAFANA" {
   domain = "bowmans.site"
   description = "GRAFANA"
 }
-# HEIMDALL ALIAS
+# HEIMDALL
 resource "opnsense_unbound_host_alias" "HEIMDALL" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
@@ -34,7 +34,7 @@ resource "opnsense_unbound_host_alias" "HEIMDALL" {
   domain = "bowmans.site"
   description = "HEIMDALL"
 }
-# VAULT ALIAS
+# VAULT
 resource "opnsense_unbound_host_alias" "VAULT" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
