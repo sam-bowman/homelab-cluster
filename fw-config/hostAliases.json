@@ -1,0 +1,44 @@
+[
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "argocd.homelab",
+    "domain": "bowmans.site",
+    "description": "ARGOCD"
+  },
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "consul.homelab",
+    "domain": "bowmans.site",
+    "description": "CONSUL"
+  },
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "grafana.homelab",
+    "domain": "bowmans.site",
+    "description": "GRAFANA"
+  },
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "heimdall.homelab",
+    "domain": "bowmans.site",
+    "description": "HEIMDALL"
+  },
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "vault.homelab",
+    "domain": "bowmans.site",
+    "description": "VAULT"
+  },
+  {
+    "enabled": "1",
+    "host": "traefik.homelab.bowmans.site",
+    "hostname": "temp.homelab",
+    "domain": "bowmans.site",
+    "description": "TEMP"
+  }
+]
