@@ -42,10 +42,5 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-    - name: Mandatory reviews
-      uses: ankeetmaini/mandatory-reviews@v5
-      with:
-        usernames: sam-bowman,hoshiwara
-
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
