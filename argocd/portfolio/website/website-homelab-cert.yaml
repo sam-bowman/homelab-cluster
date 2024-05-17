@@ -1,9 +1,9 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: website-certificate
+  name: website-homelab-certificate
 spec:
-  secretName: website-certificate
+  secretName: website-homelab-certificate
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
