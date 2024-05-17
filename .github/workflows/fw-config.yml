@@ -1,18 +1,46 @@
-name: Firewall Configuration
+name: 'TERRAFORM - FIREWALL CONFIGURATION'
+
 on:
   push:
-    branches: [ "main" ]
+    paths:
+    - fw-config/**
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  build:
+  terraform:
+    name: 'Terraform'
     runs-on: [self-hosted, linux, ARM64]
+    environment: production
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    - name: Checkout
+      uses: actions/checkout@v4
+      working-directory: ./fw-config
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      working-directory: ./fw-config
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./fw-config
+
+    - name: Terraform Format
+      run: terraform fmt -check
+      working-directory: ./fw-config
+
+    - name: Terraform Plan
+      run: terraform plan -input=false
+      working-directory: ./fw-config
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+      run: terraform apply -auto-approve -input=false
+      working-directory: ./fw-config
