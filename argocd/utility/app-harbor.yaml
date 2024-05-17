@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: harbor
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: https://helm.goharbor.io
+    chart: harbor
+    targetRevision: 1.14.2
+    helm:
+      valueFiles:
+      - $values/argocd/utility/harbor/values/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    path: argocd/utility/harbor
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    - PruneLast=true
