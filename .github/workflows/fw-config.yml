@@ -28,6 +28,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Install Node.JS
+      uses: actions/setup-node@v4.0.2
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
