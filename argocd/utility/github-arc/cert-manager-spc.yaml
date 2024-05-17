@@ -12,7 +12,7 @@ spec:
         secretPath: "secret/data/github"
         secretKey: "github_token"
   secretObjects:
-  - secretName: github-client-secret
+  - secretName: controller-manager
     type: Opaque
     data:
     - key: github_token
