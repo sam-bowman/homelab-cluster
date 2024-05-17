@@ -9,4 +9,4 @@ additionalVolumes:
       readOnly: true
       volumeAttributes:
         secretProviderClass: 'github-arc-spc'
-githubConfigSecret: pre-defined-secret
+githubConfigSecret: github-client-secret
