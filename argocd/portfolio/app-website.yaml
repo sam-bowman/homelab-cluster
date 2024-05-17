@@ -1,24 +1,20 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: website
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  name: whoami
+  labels:
+    app: whoami
 spec:
-  destination:
-    namespace: website
-    server: https://kubernetes.default.svc
-  project: default
-  sources:
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/portfolio/website
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      allowEmpty: true
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
-    - PruneLast=true
+  selector:
+    matchLabels:
+      app: whoami
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: whoami
+    spec:
+      containers:
+      - name: whoami
+        image: containous/whoami
+        imagePullPolicy: IfNotPresent
