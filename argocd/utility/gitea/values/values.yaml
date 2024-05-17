@@ -2,3 +2,16 @@ dnsConfig:
   options:
   - name: ndots
     value: "1"
+extraContainerVolumeMounts:
+  - name: 'secrets'
+    mountPath: '/mnt/secrets-store'
+    readOnly: true
+extraVolumes:
+  - name: secrets
+    csi:
+      driver: 'secrets-store.csi.k8s.io'
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: 'gitea-spc'
+gitea:
+  existingSecret: admin-user-secret
