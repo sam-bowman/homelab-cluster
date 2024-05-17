@@ -42,13 +42,10 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-    - name: Terraform Apply - Approval
-      uses: trstringer/manual-approval@v1
+    - name: Mandatory reviews
+      uses: ankeetmaini/mandatory-reviews@v5
       with:
-        secret: ${{ github.TOKEN }}
-        approvers: sam-bowman,hoshiwara
-        minimum-approvals: 1
-        exclude-workflow-initiator-as-approver: false
+        usernames: sam-bowman,hoshiwara
 
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
