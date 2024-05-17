@@ -31,3 +31,10 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+    - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      name: gitea-redis-cluster
+      jqPathExpressions:
+      - .spec.volumeClaimTemplates[]
