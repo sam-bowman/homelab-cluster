@@ -1,9 +1,9 @@
 additionalVolumeMounts:
-  - name: 'secrets'
+  - name: 'github-arc-secrets'
     mountPath: '/mnt/secrets-store'
     readOnly: true
 additionalVolumes:
-  - name: secrets
+  - name: 'github-arc-secrets'
     csi:
       driver: 'secrets-store.csi.k8s.io'
       readOnly: true
