@@ -8,9 +8,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 env:
-  OPNSENSE_API_KEY: {{ secrets.OPNSENSE_API_KEY }}
-  OPNSENSE_API_SECRET: {{ secrets.OPNSENSE_API_SECRET }}
-  OPNSENSE_URI: {{ secrets.OPNSENSE_URI }}
+  OPNSENSE_API_KEY: ${{ secrets.OPNSENSE_API_KEY }}
+  OPNSENSE_API_SECRET: ${{ secrets.OPNSENSE_API_SECRET }}
+  OPNSENSE_URI: ${{ secrets.OPNSENSE_URI }}
 
 permissions:
   contents: read
