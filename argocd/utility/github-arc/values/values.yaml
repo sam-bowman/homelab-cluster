@@ -1,9 +1,3 @@
-env:
-- name: GITHUB_TOKEN_FROM_SECRET
-  valueFrom:
-    secretKeyRef:
-      name: github-client-secret
-      key: client-secret
 additionalVolumeMounts:
   - name: 'secrets'
     mountPath: '/mnt/secrets-store'

@@ -8,13 +8,13 @@ spec:
     vaultAddress: 'http://hashicorp-vault.hashicorp-vault:8200'
     roleName: 'main-role'
     objects: |
-      - objectName: "githubclientsecret"
+      - objectName: "github_token"
         secretPath: "secret/data/github"
-        secretKey: "clientsecret"
+        secretKey: "github_token"
   secretObjects:
   - secretName: github-client-secret
     type: Opaque
     data:
-    - key: client-secret
-      objectName: githubclientsecret
+    - key: github_token
+      objectName: github_token
     
