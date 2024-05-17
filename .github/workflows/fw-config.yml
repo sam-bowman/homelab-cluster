@@ -42,7 +42,8 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-    - uses: trstringer/manual-approval@v1
+    - name: Terraform Apply - Approval
+      uses: trstringer/manual-approval@v1
       with:
         secret: ${{ github.TOKEN }}
         approvers: sam-bowman,hoshiwara
