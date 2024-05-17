@@ -19,6 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: fw-config
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -28,7 +29,6 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      tf_actions_working_dir: ./fw-config
       env:
         OPNSENSE_API_KEY: {{ secrets.OPNSENSE_API_KEY }}
         OPNSENSE_API_SECRET: {{ secrets.OPNSENSE_API_SECRET }}
@@ -36,13 +36,10 @@ jobs:
 
     - name: Terraform Format
       run: terraform fmt -check
-      working-directory: ./fw-config
 
     - name: Terraform Plan
       run: terraform plan -input=false
-      working-directory: ./fw-config
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
-      working-directory: ./fw-config
