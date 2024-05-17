@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitea-certificate
+spec:
+  secretName: gitea-certificate
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: gitea.homelab.bowmans.site
+  dnsNames:
+    - gitea.homelab.bowmans.site
