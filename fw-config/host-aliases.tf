@@ -43,3 +43,12 @@ resource "opnsense_unbound_host_alias" "VAULT" {
   domain = "bowmans.site"
   description = "VAULT"
 }
+# TEMP ALIAS
+resource "opnsense_unbound_host_alias" "TEMP" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "temp.homelab"
+  domain = "bowmans.site"
+  description = "TEMP"
+}
