@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+env:
+  OPNSENSE_API_KEY: {{ secrets.OPNSENSE_API_KEY }}
+  OPNSENSE_API_SECRET: {{ secrets.OPNSENSE_API_SECRET }}
+  OPNSENSE_URI: {{ secrets.OPNSENSE_URI }}
 
 permissions:
   contents: read
@@ -29,10 +33,7 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      env:
-        OPNSENSE_API_KEY: {{ secrets.OPNSENSE_API_KEY }}
-        OPNSENSE_API_SECRET: {{ secrets.OPNSENSE_API_SECRET }}
-        OPNSENSE_URI: {{ secrets.OPNSENSE_URI }}
+      
 
     - name: Terraform Format
       run: terraform fmt -check
