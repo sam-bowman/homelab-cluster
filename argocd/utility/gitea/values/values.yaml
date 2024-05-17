@@ -15,3 +15,7 @@ extraVolumes:
         secretProviderClass: 'gitea-spc'
 gitea:
   existingSecret: admin-user-secret
+  config:
+    server:
+      ROOT_URL: "https://gitea.homelab.bowmans.site/"
+      DOMAIN: gitea.homelab.bowmans.site
