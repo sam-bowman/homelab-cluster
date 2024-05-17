@@ -43,3 +43,12 @@ resource "opnsense_unbound_host_alias" "VAULT" {
   domain = "bowmans.site"
   description = "VAULT"
 }
+# GITEA
+resource "opnsense_unbound_host_alias" "GITEA" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "gitea.homelab"
+  domain = "bowmans.site"
+  description = "GITEA"
+}
