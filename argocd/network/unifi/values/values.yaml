@@ -1,0 +1,86 @@
+controllers:
+  main:
+    containers:
+      main:
+        env:
+          TZ: UTC
+          RUNAS_UID0: "false"
+          UNIFI_UID: "999"
+          UNIFI_GID: "999"
+          JVM_INIT_HEAP_SIZE:
+          JVM_MAX_HEAP_SIZE: 1024M
+        image:
+          repository: jacobalberty/unifi
+          tag: "{{ .Chart.AppVersion }}"
+          pullPolicy: IfNotPresent
+defaultPodOptions:
+  podSecurityContext:
+    fsGroup: 999
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        enabled: true
+        port: 8443
+        protocol: HTTPS
+      controller:
+        enabled: true
+        port: 8080
+        protocol: TCP
+      portal-http:
+        enabled: false
+        port: 8880
+        protocol: HTTP
+      portal-https:
+        enabled: false
+        port: 8843
+        protocol: HTTPS
+      speedtest:
+        enabled: true
+        port: 6789
+        protocol: TCP
+      stun:
+        enabled: true
+        port: 3478
+        protocol: UDP
+      syslog:
+        enabled: true
+        port: 5514
+        protocol: UDP
+      discovery:
+        enabled: true
+        port: 10001
+        protocol: UDP
+ingress:
+  main:
+    enabled: false
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  portal:
+    enabled: false
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    ingressClassName:  # "nginx"
+    hosts:
+    - host:
+      paths:
+      - path: /
+        pathType: Prefix
+        service:
+          identifier: main
+          port: portal-https
+persistence:
+  data:
+    enabled: false
+    advancedMounts:
+      main: 
+        main: 
+          - path: /unifi/data/
+mongodb:
+  enabled: false
+  architecture: standalone
+  auth:
+    enabled: false
+  persistence:
+    enabled: false
