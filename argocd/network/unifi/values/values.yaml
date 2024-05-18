@@ -73,6 +73,7 @@ ingress:
 persistence:
   data:
     enabled: true
+    accessMode: ReadWriteOnce
     advancedMounts:
       main: 
         main: 
