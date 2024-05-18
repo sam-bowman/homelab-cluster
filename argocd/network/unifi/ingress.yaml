@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: unifi-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: unifi-ingress-route
 spec:
-  tls:
-  - hosts:
-    - unifi.homelab.bowmans.site
-    secretName: unifi-certificate
-  rules:
-    - host: unifi.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: unifi
-                port:
-                  number: 8443
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`unifi.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: unifi
+        port: 8443
+        scheme: https
+        serversTransport: unifi
