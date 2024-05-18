@@ -13,3 +13,5 @@ spec:
         port: 8443
         scheme: https
         serversTransport: unifi
+  tls:
+    secretName: unifi-certificate
