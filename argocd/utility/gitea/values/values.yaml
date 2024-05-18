@@ -19,3 +19,13 @@ gitea:
     server:
       ROOT_URL: "https://gitea.homelab.bowmans.site/"
       DOMAIN: gitea.homelab.bowmans.site
+postgresql-ha:
+  enabled: false
+postgresql:
+  enabled: true
+redis-cluster:
+  cluster:
+    nodes: 1
+    replicas: 0
+test:
+  enabled: false
