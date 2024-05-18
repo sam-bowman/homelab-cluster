@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: whoami
+  name: portfolio-website
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: whoami
+    namespace: portfolio-website
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/portfolio/whoami
+    path: argocd/portfolio/portfolio-website
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:

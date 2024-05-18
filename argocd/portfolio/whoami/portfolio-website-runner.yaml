@@ -1,0 +1,9 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: runner-portfolio-website
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: sam-bowman/portfolio-website
