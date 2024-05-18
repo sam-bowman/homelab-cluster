@@ -18,9 +18,9 @@ defaultPodOptions:
     fsGroup: 999
 service:
   main:
-    serversTransport:
-      insecureSkipVerify: true
     controller: main
+    annotations:
+      traefik.ingress.kubernetes.io/service.serverstransport: unifi@file
     ports:
       http:
         enabled: true
