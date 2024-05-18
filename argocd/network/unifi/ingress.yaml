@@ -13,7 +13,7 @@ spec:
     secretName: unifi-certificate
   rules:
     - host: unifi.homelab.bowmans.site
-      https:
+      http:
         paths:
           - path: /
             pathType: Prefix
