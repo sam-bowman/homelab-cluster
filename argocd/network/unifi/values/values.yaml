@@ -20,7 +20,7 @@ service:
   main:
     controller: main
     annotations:
-      traefik.ingress.kubernetes.io/service.serverstransport: unifi@file
+      traefik.ingress.kubernetes.io/service.serverstransport: unifi-unifi@kubernetescrd
     ports:
       http:
         enabled: true
