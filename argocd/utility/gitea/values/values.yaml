@@ -13,8 +13,6 @@ postgresql-ha:
 postgresql:
   enabled: true
 redis-cluster:
-  cluster:
-    nodes: 1
-    replicas: 0
+  enabled: false
 test:
   enabled: false
