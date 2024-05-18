@@ -6,11 +6,6 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
-  externalTrafficPolicy: Cluster
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-  - IPv4
-  ipFamilyPolicy: PreferDualStack
   ports:
   - name: web
     nodePort: 32467
@@ -22,10 +17,6 @@ spec:
     port: 443
     protocol: TCP
     targetPort: websecure
-  selector:
-    app.kubernetes.io/instance: traefik-kube-system
-    app.kubernetes.io/name: traefik
-  sessionAffinity: None
   type: LoadBalancer
 status:
   loadBalancer:
