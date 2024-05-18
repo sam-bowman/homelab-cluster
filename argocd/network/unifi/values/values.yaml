@@ -72,7 +72,7 @@ ingress:
           port: portal-https
 persistence:
   data:
-    enabled: false
+    enabled: true
     advancedMounts:
       main: 
         main: 
