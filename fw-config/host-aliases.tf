@@ -52,3 +52,12 @@ resource "opnsense_unbound_host_alias" "GITEA" {
   domain = "bowmans.site"
   description = "GITEA"
 }
+# UNIFI
+resource "opnsense_unbound_host_alias" "UNIFI" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "unifi.homelab"
+  domain = "bowmans.site"
+  description = "UNIFI"
+}
