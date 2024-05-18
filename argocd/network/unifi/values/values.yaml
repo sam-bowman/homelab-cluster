@@ -74,6 +74,8 @@ persistence:
   data:
     enabled: true
     accessMode: ReadWriteOnce
+    size: 4Gi
+    retain: true
     advancedMounts:
       main: 
         main: 
