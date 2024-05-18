@@ -81,9 +81,9 @@ persistence:
         main: 
           - path: /unifi/data/
 mongodb:
-  enabled: true
+  enabled: false
   architecture: standalone
   auth:
     enabled: false
   persistence:
-    enabled: true
+    enabled: false
