@@ -6,4 +6,5 @@ metadata:
 spec:
   valuesContent: |-
     deployment:
+      enabled: true
       replicas: 3
