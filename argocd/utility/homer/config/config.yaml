@@ -54,6 +54,11 @@ services:
         subtitle: "Declarative GitOps CD for Kubernetes"
         tag: "cicd"
         url: "https://argocd.homelab.bowmans.site"
+      - name: "Gitea"
+        logo: "https://about.gitea.com/gitea-text.svg"
+        subtitle: "Private, Fast, Reliable DevOps Platform"
+        tag: "cicd"
+        url: "https://gitea.homelab.bowmans.site/"
   - name: "Media"
     icon: "fas fa-photo-video"
     items:
