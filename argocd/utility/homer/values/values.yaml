@@ -1,6 +1,8 @@
 persistence:
   config:
     enabled: true
+    mountPath: /www/assets
+    retain: true
 configMaps:
   config:
     enabled: true
