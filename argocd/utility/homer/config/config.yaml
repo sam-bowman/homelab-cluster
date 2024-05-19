@@ -36,7 +36,13 @@ colors:
     link: "#3273dc"
     link-hover: "#ffdd57"
 
-links: []
+links:
+  - name: "homelab-cluster"
+    icon: "fab fa-github"
+    url: "https://github.com/sam-bowman/homelab-cluster"
+  - name: "portfolio-website"
+    icon: "fab fa-github"
+    url: "https://github.com/sam-bowman/portfolio-website"
 
 services:
   - name: "CI/CD"
