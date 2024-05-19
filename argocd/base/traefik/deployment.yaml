@@ -8,11 +8,13 @@ metadata:
     app.kubernetes.io/instance: traefik-kube-system
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: traefik
+    helm.sh/chart: traefik-25.0.2_up25.0.0
   name: traefik
   namespace: kube-system
 spec:
   selector:
     matchLabels:
+      app.kubernetes.io/instance: traefik-kube-system
       app.kubernetes.io/name: traefik
   strategy:
     rollingUpdate:
