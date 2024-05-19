@@ -15,9 +15,9 @@ spec:
     path: argocd/base/coredns
     targetRevision: HEAD
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   allowEmpty: true
+    automated:
+      prune: true
+      allowEmpty: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
