@@ -1,0 +1,9 @@
+persistence:
+  config:
+    enabled: true
+configMaps:
+  config:
+    enabled: true
+    data:
+      config.yml: |
+        externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml

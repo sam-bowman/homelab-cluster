@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: heimdall-ingress
+  name: homer-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -9,16 +9,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - heimdall.homelab.bowmans.site
-    secretName: heimdall-certificate
+    - homer.homelab.bowmans.site
+    secretName: homer-certificate
   rules:
-    - host: heimdall.homelab.bowmans.site
+    - host: homer.homelab.bowmans.site
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: heimdall
+                name: homer
                 port:
-                  number: 80
+                  number: 8080

@@ -25,14 +25,14 @@ resource "opnsense_unbound_host_alias" "GRAFANA" {
   domain = "bowmans.site"
   description = "GRAFANA"
 }
-# HEIMDALL
-resource "opnsense_unbound_host_alias" "HEIMDALL" {
+# HOMER
+resource "opnsense_unbound_host_alias" "HOMER" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
-  hostname = "heimdall.homelab"
+  hostname = "homer.homelab"
   domain = "bowmans.site"
-  description = "HEIMDALL"
+  description = "HOMER"
 }
 # VAULT
 resource "opnsense_unbound_host_alias" "VAULT" {
