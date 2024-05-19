@@ -36,14 +36,7 @@ colors:
     link: "#3273dc"
     link-hover: "#ffdd57"
 
-links:
-  - name: "Github"
-    icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
-    target: "_blank"
-  - name: "Wiki"
-    icon: "fas fa-book"
-    url: "https://www.wikipedia.org/"
+links: []
 
 services:
   - name: "CI/CD"
