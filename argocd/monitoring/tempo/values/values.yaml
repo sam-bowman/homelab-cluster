@@ -21,6 +21,7 @@ persistence:
 gateway:
   enabled: true
 ingester:
+  repliaces: 1
   persistence:
     enabled: false
     size: 5Gi
