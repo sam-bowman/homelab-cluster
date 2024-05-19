@@ -37,3 +37,4 @@ spec:
       kind: ClusterPolicy
       jqPathExpressions:
       - .spec.rules[]
+  revisionHistoryLimit: 2

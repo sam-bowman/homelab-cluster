@@ -31,3 +31,4 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+  revisionHistoryLimit: 2

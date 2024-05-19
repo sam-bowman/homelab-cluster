@@ -20,3 +20,4 @@ spec:
       allowEmpty: true
     syncOptions:
     - CreateNamespace=true
+  revisionHistoryLimit: 2

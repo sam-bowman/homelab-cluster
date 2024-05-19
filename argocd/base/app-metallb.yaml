@@ -29,3 +29,4 @@ spec:
       name: bgppeers.metallb.io
       jqPathExpressions:
       - .spec.conversion.webhook.clientConfig.caBundle
+  revisionHistoryLimit: 2

@@ -38,3 +38,4 @@ spec:
       name: gitea-redis-cluster
       jqPathExpressions:
       - .spec.volumeClaimTemplates[]
+  revisionHistoryLimit: 2
