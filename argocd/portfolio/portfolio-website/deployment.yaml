@@ -21,3 +21,4 @@ spec:
           ports:
             - name: web
               containerPort: 5000
+  revisionHistoryLimit: 2
