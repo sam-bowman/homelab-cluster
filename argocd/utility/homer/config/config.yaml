@@ -131,3 +131,11 @@ services:
     subtitle: "wireless network management software solution"
     tag: "homelab"
     url: "https://unifi.homelab.bowmans.site"
+- name: "Portfolio"
+  icon: "fa-solid fa-address-book"
+  items:
+  - name: "Website"
+    logo: "https://avatars.githubusercontent.com/u/64836476?v=4"
+    subtitle: "Portfolio Website"
+    tag: "portfolio"
+    url: "https://website.homelab.bowmans.site"
