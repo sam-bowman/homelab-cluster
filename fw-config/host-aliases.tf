@@ -61,3 +61,12 @@ resource "opnsense_unbound_host_alias" "UNIFI" {
   domain = "bowmans.site"
   description = "UNIFI"
 }
+# WEBSITE
+resource "opnsense_unbound_host_alias" "WEBSITE" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "website.homelab"
+  domain = "bowmans.site"
+  description = "WEBSITE"
+}
