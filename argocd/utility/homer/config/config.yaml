@@ -131,6 +131,11 @@ services:
     subtitle: "wireless network management software solution"
     tag: "homelab"
     url: "https://unifi.homelab.bowmans.site"
+  - name: "OPNSense"
+    logo: "https://user-images.githubusercontent.com/23664304/36225509-be167464-117f-11e8-9bfc-cba7acd889c5.png"
+    subtitle: "a true open source security platform and more"
+    tag: "homelab"
+    url: "https://firewall.bowmans.site"
 - name: "Portfolio"
   icon: "fa-solid fa-address-book"
   items:
