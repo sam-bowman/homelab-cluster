@@ -15,5 +15,5 @@ resource "opnsense_firewall_nat" "WEBSITE" {
   }
 
   log         = true
-  description = "WEBSITE-NAT"
+  description = "WEBSITE NAT"
 }
