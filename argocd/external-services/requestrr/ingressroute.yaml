@@ -10,6 +10,6 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-requestrr
-        port: 6767
+        port: 4545
   tls:
     secretName: ext-cert-requestrr
