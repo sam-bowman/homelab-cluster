@@ -47,6 +47,7 @@ spec:
         - --metrics.prometheus=true
         - --metrics.prometheus.entrypoint=metrics
         - --providers.kubernetescrd
+        - --providers.kubernetescrd.allowExternalNameServices=true
         - --providers.kubernetesingress
         - --providers.kubernetesingress.ingressendpoint.publishedservice=kube-system/traefik
         - --entrypoints.websecure.http.tls=true
