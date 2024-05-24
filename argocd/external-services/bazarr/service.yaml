@@ -7,6 +7,3 @@ spec:
   externalName: truenas.bowmans.site
   ports:
     - port: 6767
-      targetPort: 6767
-      protocol: TCP
-      name: bazarr

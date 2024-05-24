@@ -11,6 +11,5 @@ spec:
       services:
       - name: ext-svc-bazarr
         port: 6767
-        scheme: https
   tls:
     secretName: ext-cert-bazarr
