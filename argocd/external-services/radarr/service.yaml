@@ -6,7 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 80
-      targetPort: 7878
-      protocol: TCP
-      name: radarr
+    - port: 7878

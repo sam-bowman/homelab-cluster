@@ -10,7 +10,6 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-sabnzbd
-        port: 80
-        scheme: https
+        port: 10097
   tls:
     secretName: ext-cert-sabnzbd

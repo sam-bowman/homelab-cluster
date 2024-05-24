@@ -6,7 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 80
-      targetPort: 8989
-      protocol: TCP
-      name: sonarr
+    - port: 8989

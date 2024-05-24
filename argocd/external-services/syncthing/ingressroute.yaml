@@ -10,7 +10,6 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-syncthing
-        port: 80
-        scheme: https
+        port: 8384
   tls:
     secretName: ext-cert-syncthing

@@ -10,7 +10,6 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-plex
-        port: 80
-        scheme: https
+        port: 32400
   tls:
     secretName: ext-cert-plex

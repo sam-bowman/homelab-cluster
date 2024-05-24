@@ -6,7 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 80
-      targetPort: 6767
-      protocol: TCP
-      name: requestrr
+    - port: 6767

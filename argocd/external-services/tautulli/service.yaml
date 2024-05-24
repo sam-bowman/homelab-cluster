@@ -6,7 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 80
-      targetPort: 8181
-      protocol: TCP
-      name: tautulli
+    - port: 8181

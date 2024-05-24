@@ -6,7 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 80
-      targetPort: 32400
-      protocol: TCP
-      name: plex
+    - port: 32400
