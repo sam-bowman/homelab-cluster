@@ -79,7 +79,7 @@ services:
     logo: "https://www.bazarr.media/assets/img/logo.png"
     subtitle: "Subtitles-arr"
     tag: "media"
-    url: "http://10.10.20.50:6767/series"
+    url: "https:/bazarr.bowmans.site/series"
   - name: "Radarr"
     logo: "https://radarr.video/img/logo.png"
     subtitle: "Movies-arr"
