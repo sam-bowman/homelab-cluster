@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-bazarr
-        port: 80
+        port: 6767
         scheme: https
   tls:
     secretName: ext-cert-bazarr
