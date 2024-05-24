@@ -8,3 +8,6 @@ spec:
     deployment:
       enabled: true
       replicas: 3
+    providers:
+      kubernetesCRD:
+        allowExternalNameServices: true
