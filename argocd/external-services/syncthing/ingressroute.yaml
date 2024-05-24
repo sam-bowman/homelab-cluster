@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-syncthing
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`syncthing.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-syncthing
+        port: 80
+        scheme: https
+  tls:
+    secretName: ext-cert-syncthing

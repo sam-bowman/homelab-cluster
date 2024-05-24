@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-plex
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`plex.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-plex
+        port: 80
+        scheme: https
+  tls:
+    secretName: ext-cert-plex

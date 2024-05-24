@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-sabnzbd
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`sabnzbd.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-sabnzbd
+        port: 80
+        scheme: https
+  tls:
+    secretName: ext-cert-sabnzbd

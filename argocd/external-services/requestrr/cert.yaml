@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ext-cert-requestrr
+spec:
+  secretName: ext-cert-requestrr
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: requestrr.bowmans.site
+  dnsNames:
+    - requestrr.bowmans.site

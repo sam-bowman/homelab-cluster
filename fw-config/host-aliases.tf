@@ -70,3 +70,80 @@ resource "opnsense_unbound_host_alias" "WEBSITE" {
   domain = "bowmans.site"
   description = "WEBSITE"
 }
+
+
+
+
+### EXTERNAL SERVICES
+# BAZARR
+resource "opnsense_unbound_host_alias" "BAZARR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "bazarr"
+  domain = "bowmans.site"
+  description = "BAZARR"
+}
+# PLEX
+resource "opnsense_unbound_host_alias" "PLEX" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "plex"
+  domain = "bowmans.site"
+  description = "PLEX"
+}
+# RADARR
+resource "opnsense_unbound_host_alias" "RADARR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "radarr"
+  domain = "bowmans.site"
+  description = "RADARR"
+}
+# REQUESTRR
+resource "opnsense_unbound_host_alias" "REQUESTRR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "requestrr"
+  domain = "bowmans.site"
+  description = "REQUESTRR"
+}
+# SABNZBD
+resource "opnsense_unbound_host_alias" "SABNZBD" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "sabnzbd"
+  domain = "bowmans.site"
+  description = "SABNZBD"
+}
+# SONARR
+resource "opnsense_unbound_host_alias" "SONARR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "sonarr"
+  domain = "bowmans.site"
+  description = "SONARR"
+}
+# SYNCTHING
+resource "opnsense_unbound_host_alias" "SYNCTHING" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "syncthing"
+  domain = "bowmans.site"
+  description = "SYNCTHING"
+}
+# TAUTULLI
+resource "opnsense_unbound_host_alias" "TAUTULLI" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "tautulli"
+  domain = "bowmans.site"
+  description = "TAUTULLI"
+}

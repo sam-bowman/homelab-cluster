@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-radarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`radarr.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-radarr
+        port: 80
+        scheme: https
+  tls:
+    secretName: ext-cert-radarr

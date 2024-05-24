@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-requestrr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`requestrr.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-requestrr
+        port: 80
+        scheme: https
+  tls:
+    secretName: ext-cert-requestrr

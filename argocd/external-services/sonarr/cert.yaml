@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ext-cert-sonarr
+spec:
+  secretName: ext-cert-sonarr
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: sonarr.bowmans.site
+  dnsNames:
+    - sonarr.bowmans.site
