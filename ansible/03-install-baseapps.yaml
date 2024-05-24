@@ -161,7 +161,7 @@
   - name: "-- 12. Download ArgoCD Manifest --"
     become: true
     ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/argocd/install.yaml
       dest: "{{ ansible_env.HOME }}/argocd.yaml"
       mode: '0664'
   - name: "-- 11. Apply the ArgoCD Manifest to the cluster --"
