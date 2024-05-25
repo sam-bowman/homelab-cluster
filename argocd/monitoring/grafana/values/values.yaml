@@ -58,7 +58,7 @@ dashboardProviders:
       options:
         path: /var/lib/grafana/dashboards/default
 dashboards:
-   default:
+  default:
     14584-argocd:
       url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/14584-argocd.json
       token: ''
@@ -71,6 +71,6 @@ dashboards:
     1860-node-exporter-full:
       url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/1860-node-exporter-full.json
       token: ''
-    6417-kubernetes-cluster-prometheus.json:
+    6417-kubernetes-cluster-prometheus:
       url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/6417-kubernetes-cluster-prometheus.json
       token: ''
