@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.universe.tf/address-pool: metallb-pool-reserved
+    metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
+  name: website-ext
+  namespace: website
+spec:
+  allocateLoadBalancerNodePorts: true
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  loadBalancerIP: 10.10.20.203
+  ports:
+    - name: web
+      port: 80
+      targetPort: web
+  selector:
+    app.kubernetes.io/component: main
+    app.kubernetes.io/instance: website
+    app.kubernetes.io/name: website
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.10.20.203

@@ -20,7 +20,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: website
+              name: website-ext
               port:
                 number: 80
   - host: www.bowmans.site
@@ -30,6 +30,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: website
+              name: website-ext
               port:
                 number: 80
