@@ -62,3 +62,6 @@ dashboards:
      node-exporter-full:
        url: https://grafana.com./api/dashboards/1860/revisions/36/download
        datasource: victoria-metrics
+     k3s-cluster-monitoring:
+       url: https://grafana.com/api/dashboards/15282/revisions/1/download
+       datasource: victoria-metrics
