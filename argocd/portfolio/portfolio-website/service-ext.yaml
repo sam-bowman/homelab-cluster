@@ -5,7 +5,7 @@ metadata:
     metallb.universe.tf/address-pool: metallb-pool-reserved
     metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
   name: website-ext
-  namespace: website
+  namespace: portfolio-website
 spec:
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Cluster
