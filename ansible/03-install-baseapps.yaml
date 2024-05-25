@@ -73,7 +73,7 @@
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/namespace.yaml"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/namespace.yaml.initial-config"
 
   - name: "-- Apply the ArgoCD Manifest to the cluster --"
     become: true
@@ -87,7 +87,7 @@
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/config-map.yaml"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/config-map.yaml.patch"
   
   - name: "-- Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
     become: true
