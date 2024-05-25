@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: gitea-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: gitea-ingress-route
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gitea.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: gitea-http
+        port: 3000
   tls:
-  - hosts:
-    - gitea.homelab.bowmans.site
     secretName: gitea-certificate
-  rules:
-    - host: gitea.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gitea-http
-                port:
-                  number: 3000

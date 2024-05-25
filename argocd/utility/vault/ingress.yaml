@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: hashicorp-vault-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: hashicorp-vault-ingress-route
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vault.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: hashicorp-vault
+        port: 8200
   tls:
-  - hosts:
-    - vault.homelab.bowmans.site
     secretName: hashicorp-vault-certificate
-  rules:
-    - host: vault.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hashicorp-vault
-                port:
-                  number: 8200

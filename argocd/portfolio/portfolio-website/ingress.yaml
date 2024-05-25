@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: website-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: website-ingress-route
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`website.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: website
+        port: 80
   tls:
-  - hosts:
-    - website.homelab.bowmans.site
     secretName: website-certificate
-  rules:
-    - host: website.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: website
-                port:
-                  number: 80

@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: homer-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: homer-ingress-route
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`homer.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: homer
+        port: 8080
   tls:
-  - hosts:
-    - homer.homelab.bowmans.site
     secretName: homer-certificate
-  rules:
-    - host: homer.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: homer
-                port:
-                  number: 8080

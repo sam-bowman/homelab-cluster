@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: hashicorp-consul-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: hashicorp-consul-ingress-route
 spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`consul.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: hashicorp-consul-consul-server
+        port: 8500
   tls:
-  - hosts:
-    - consul.homelab.bowmans.site
     secretName: hashicorp-consul-certificate
-  rules:
-    - host: consul.homelab.bowmans.site
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hashicorp-consul-consul-server
-                port:
-                  number: 8500
