@@ -5,55 +5,63 @@
     - cgroup_enable=memory
     - cgroup_memory=1
   tasks:
-    - name: "-- 01. Update & Upgrade nodes --"
+    - name: "-- Update & Upgrade nodes --"
       become: true
       apt:
         upgrade: yes
         update_cache: yes
         cache_valid_time: 86400
-    - name: "-- 02. Install Git-All --"
+
+    - name: "-- Install Git-All --"
       become: true
       apt:
         name: git-all
         state: present
-    - name: "-- 03. Install Python Pip--"
+
+    - name: "-- Install Python Pip--"
       become: true
       apt:
         name: python3-pip
         state: present
-    - name: "-- 04. Install PipX --"
+
+    - name: "-- Install PipX --"
       become: true
       apt:
         name: pipx
         state: present
-    - name: "-- 05. Install DNSUtils --"
+
+    - name: "-- Configure PipX --"
+      command: pipx ensurepath
+      run_once: true
+    - name: "-- Install DNSUtils --"
       become: true
       apt:
         name: dnsutils
         state: present
-    - name: "-- 06. Configure PipX --"
-      command: pipx ensurepath
-      run_once: true
-    - name: "-- 07. Create repos directory --"
+
+    - name: "-- Create repos directory --"
       file:
         path: "{{ ansible_env.HOME }}/repos"
         state: directory
         mode: '0755'
-    - name: "-- 08. Clone homelab-cluster repo --"
+
+    - name: "-- Clone homelab-cluster repo --"
       git:
         repo: https://github.com/sam-bowman/homelab-cluster.git
         dest: "{{ ansible_env.HOME }}/repos/homelab-cluster"
         clone: yes
         update: yes
-    - name: "-- 09. Enable cgroups on cluster --"
+
+    - name: "-- Enable cgroups on cluster --"
       become: true
       lineinfile:
         path: /boot/firmware/cmdline.txt
         regexp: '^(?!.*?{{ item }})(.*)$'
         line: '\1 {{ item }}'
         backrefs: true
+
       loop: "{{ cmdline_add }}"
-    - name: "-- 10. Mount network share - smb --"
+    - name: "-- Mount network share - smb --"
       become: true
       ansible.posix.mount:
         src: truenas:/mnt/pool/smb
@@ -61,7 +69,8 @@
         opts: rw,sync,hard
         state: mounted
         fstype: nfs
-    - name: "-- 11. Mount network share - tftp --"
+
+    - name: "-- Mount network share - tftp --"
       become: true
       ansible.posix.mount:
         src: truenas:/mnt/pool/tftp
@@ -69,7 +78,8 @@
         opts: rw,sync,hard
         state: mounted
         fstype: nfs
-    - name: "-- 12. Mount network share - app_configs --"
+
+    - name: "-- Mount network share - app_configs --"
       become: true
       ansible.posix.mount:
         src: truenas:/mnt/app-pool/apps
@@ -77,7 +87,8 @@
         opts: rw,sync,hard
         state: mounted
         fstype: nfs
-    - name: "-- 13. Mount network share - media --"
+
+    - name: "-- Mount network share - media --"
       become: true
       ansible.posix.mount:
         src: truenas:/mnt/pool/media
@@ -85,6 +96,4 @@
         opts: rw,sync,hard
         state: mounted
         fstype: nfs
-    - name: "-- 14. Reboot all cluster nodes --"
-      become: true
-      reboot:
+        

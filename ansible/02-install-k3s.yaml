@@ -1,39 +1,54 @@
+#######################
+
 - name: "02 - INSTALL K3S - K3S_MASTER"
   hosts: K3S_MASTER
   vars:
     INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
-  - name: "-- 01. Download K3S install script --"
+  - name: "-- Get service facts --"
+    ansible.builtin.service_facts:
+
+  - name: "-- Download K3S install script (if not already installed) --"
     become: true
     get_url:
       url: https://get.k3s.io
       timeout: 120
       dest: "{{ ansible_env.HOME }}/k3s.sh"
       mode: 0755
-  - name: "-- 02. Install K3S on master node --"
+    when: "'k3s' not in services"
+
+  - name: "-- Install K3S on master node (if not already installed) --"
     become: true
     run_once: true
     command:
       cmd: "{{ ansible_env.HOME }}/k3s.sh"
     environment: 
       INSTALL_K3S_EXEC: "server {{ INSTALL_K3S_EXEC }}"
-  - name: "-- 03. Get K3S node token --"
+    when: "'k3s' not in services"
+
+  - name: "-- Get K3S node token --"
     become: true
     command: cat /var/lib/rancher/k3s/server/node-token
     register: k3s_node_token_output
-  - name: "-- 04. Write K3S node token to fact --"
+
+  - name: "-- Write K3S node token to fact --"
     set_fact:
       k3s_node_token: "{{ k3s_node_token_output.stdout }}"
-  - name: "-- 05. Copy K3S KubeConfig to home dir --"
+
+  - name: "-- Copy K3S KubeConfig to home dir --"
     become: true
     shell: "cat /etc/rancher/k3s/k3s.yaml > {{ ansible_env.HOME }}/.kube/kube-config"
-  - name: "-- 06. Set perms of KubeConfig file --"
+
+  - name: "-- Set perms of KubeConfig file --"
     become: true
     shell: "chmod 644 {{ ansible_env.HOME }}/.kube/kube-config"
-  - name: "-- 07. Set owner of KubeConfig File --"
+
+  - name: "-- Set owner of KubeConfig File --"
     become: true
     shell: "chown {{ ansible_user }}:{{ ansible_user }} {{ ansible_env.HOME }}/.kube/kube-config"
+
 #######################
+
 - name: "02 - INSTALL K3S - K3S_NODES"
   hosts: K3S_NODES
   vars:
@@ -41,14 +56,19 @@
     K3S_TOKEN: "{{ hostvars['K3SCLUSTER01']['k3s_node_token'] }}"
     INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
-  - name: "-- 01. Download K3S install script --"
+  - name: "-- Get service facts --"
+  ansible.builtin.service_facts:
+
+  - name: "-- Download K3S install script --"
     become: true
     get_url:
       url: https://get.k3s.io
       timeout: 120
       dest: "{{ ansible_env.HOME }}/k3s.sh"
       mode: 0755
-  - name: "-- 02. Install K3S on worker nodes --"
+    when: "'k3s' not in services"
+
+  - name: "-- Install K3S on worker nodes --"
     become: true
     run_once: true
     command:
@@ -56,4 +76,4 @@
     environment:
       K3S_URL: "{{ K3S_URL }}"
       K3S_TOKEN: "{{ K3S_TOKEN }}"
-      
+    when: "'k3s' not in services"

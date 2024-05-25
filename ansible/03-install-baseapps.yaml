@@ -4,207 +4,116 @@
     K8S_AUTH_KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
     KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
   tasks:
-  - name: "-- 01. Install K8S pip module --"
+  - name: "-- Install K8S pip module --"
     become: true
     apt:
       name: python3-kubernetes
       state: present
-  - name: "-- 02. Install JsonPatch pip module --"
+    
+  - name: "-- Install JsonPatch pip module --"
     become: true
     apt:
       name: python3-jsonpatch
       state: present
-  - name: "-- 03. Download MetalLB manifest  --"
-    become: true
-    ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/metallb/metallb/v0.14.3/config/manifests/metallb-native.yaml
-      dest: "{{ ansible_env.HOME }}/metallb.yaml"
-      mode: '0664'
-  - name: "-- 04. Apply MetalLB manifest to cluster --"
+    
+  - name: "-- Apply MetalLB manifest to cluster --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/metallb.yaml"
-  - name: "-- 05. Define MetalLB IP Range - Autoassigned IPs --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/metallb/manifest.yaml"
+
+  - name: "-- Define MetalLB IP Range - Autoassigned IPs --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: metallb.io/v1beta1
-        kind: IPAddressPool
-        metadata:
-          name: metallb-pool-auto
-          namespace: metallb-system
-        spec:
-          addresses:
-          - 10.10.20.101-10.10.20.200
-          avoidBuggyIPs: true
-          autoAssign: true
-  - name: "-- 06. Define MetalLB IP Range - Reserved IPs --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/metallb/ip-range-autoassigned.yaml"
+
+  - name: "-- Define MetalLB IP Range - Reserved IPs --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: metallb.io/v1beta1
-        kind: IPAddressPool
-        metadata:
-          name: metallb-pool-reserved
-          namespace: metallb-system
-        spec:
-          addresses:
-          - 10.10.20.201-10.10.20.220
-          avoidBuggyIPs: true
-          autoAssign: false
-  - name: "-- 07. Enable k8s_external on coredns for external resolution --"
-    become: true
-    kubernetes.core.k8s:
-      kubeconfig: /etc/rancher/k3s/k3s.yaml
-      state: patched
-      definition:
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: coredns
-          namespace: kube-system
-        data:
-          Corefile: |
-            .:53 {
-                errors
-                health
-                ready
-                kubernetes cluster.local in-addr.arpa ip6.arpa {
-                  pods insecure
-                  fallthrough in-addr.arpa ip6.arpa
-                }
-                k8s_external k8s.bowmans.site
-                hosts /etc/coredns/NodeHosts {
-                  ttl 60
-                  reload 15s
-                  fallthrough
-                }
-                prometheus :9153
-                forward . /etc/resolv.conf
-                cache 30
-                loop
-                reload
-                loadbalance
-                import /etc/coredns/custom/*.override
-            }
-            import /etc/coredns/custom/*.server
-  - name: "-- 08. Define service for coredns for external resolution - udp --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/metallb/ip-range-manualassigned.yaml"
+
+  - name: "-- Define MetalLB L2Advertisement for routing & ARP --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: ext-dns-udp
-          namespace: kube-system
-          annotations:
-            metallb.universe.tf/allow-shared-ip: "DNS"
-            metallb.universe.tf/address-pool: metallb-pool-reserved
-        spec:
-          type: LoadBalancer
-          loadBalancerIP: 10.10.20.201
-          ports:
-          - port: 53
-            targetPort: 53
-            protocol: UDP
-          selector:
-            k8s-app: kube-dns
-  - name: "-- 09. Define service for coredns for external resolution - tcp --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/metallb/l2-advertisement.yaml"
+
+  - name: "-- Copy custom traefik helm-chart-config to k3s configs --"
+    become: true
+    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/helmchartconfig.yaml > /var/lib/rancher/k3s/server/manifests/traefik-helmchartconfig.yaml"
+
+  - name: "-- Modify Traefik helm chart config to run more replicas --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: ext-dns-tcp
-          namespace: kube-system
-          annotations:
-            metallb.universe.tf/allow-shared-ip: "DNS"
-            metallb.universe.tf/address-pool: metallb-pool-reserved
-        spec:
-          type: LoadBalancer
-          loadBalancerIP: 10.10.20.201
-          ports:
-          - port: 53
-            targetPort: 53
-            protocol: TCP
-          selector:
-            k8s-app: kube-dns
-  - name: "-- 10. Define MetalLB L2Advertisement for routing & ARP --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/helmchartconfig.yaml"
+
+  - name: "-- Copy custom coredns manifest to k3s configs --"
+    become: true
+    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/manifest.yaml > /var/lib/rancher/k3s/server/manifests/coredns.yaml"
+
+  - name: "-- Enable k8s_external on coredns for external resolution --"
     become: true
     kubernetes.core.k8s:
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: metallb.io/v1beta1
-        kind: L2Advertisement
-        metadata:
-          name: metallb-l2ad
-          namespace: metallb-system
-  - name: "-- 11. Create ArgoCD Namespace --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/manifest.yaml"
+  
+  - name: "-- Define service for coredns for external resolution - udp --"
     become: true
     kubernetes.core.k8s:
-      name: argocd
-      api_version: v1
-      kind: Namespace
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-  - name: "-- 12. Download ArgoCD Manifest --"
-    become: true
-    ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/argocd/install.yaml
-      dest: "{{ ansible_env.HOME }}/argocd.yaml"
-      mode: '0664'
-  - name: "-- 11. Apply the ArgoCD Manifest to the cluster --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/service-tcp.yaml"
+
+  - name: "-- Define service for coredns for external resolution - tcp --"
     become: true
     kubernetes.core.k8s:
-      kubeconfig: "{{ ansible_env.HOME }}/.kube/kube-config"
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/argocd.yaml"
-      namespace: argocd
-  - name: "-- 12. Patch ArgoCD Config Map to set insecure mode --"
-    become: true
-    command: "kubectl patch configmap argocd-cmd-params-cm -n argocd -p '{\"data\": {\"server.insecure\": \"true\"}}'"
-  - name: "-- 13. Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/service-udp.yaml"
+
+  - name: "-- Create ArgoCD Namespace --"
     become: true
     kubernetes.core.k8s:
-      kubeconfig: "{{ ansible_env.HOME }}/.kube/kube-config"
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      definition:
-        apiVersion: argoproj.io/v1alpha1
-        kind: Application
-        metadata:
-          name: argocd-bootstrap
-          namespace: argocd
-          finalizers:
-          - resources-finalizer.argocd.argoproj.io
-        spec:
-          destination:
-            namespace: argocd
-            server: https://kubernetes.default.svc
-          project: default
-          source:
-            path: argocd
-            repoURL: https://github.com/sam-bowman/homelab-cluster
-            targetRevision: HEAD
-          syncPolicy:
-            automated:
-              prune: true
-              allowEmpty: true
-  - name: "-- 14. Get ArgoCD Admin password --"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/namespace.yaml"
+
+  - name: "-- Apply the ArgoCD Manifest to the cluster --"
+    become: true
+    kubernetes.core.k8s:
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
+      state: present
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/install.yaml"
+
+  - name: "-- Patch ArgoCD Config Map to set insecure mode --"
+    become: true
+    kubernetes.core.k8s:
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
+      state: present
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/config-map.yaml"
+  
+  - name: "-- Bootstrap base ArgoCD app pointing at homelab-cluster repo --"
+    become: true
+    kubernetes.core.k8s:
+      kubeconfig: /etc/rancher/k3s/k3s.yaml
+      state: present
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/argocd/app.yaml"
+
+  - name: "-- Get ArgoCD Admin password --"
     become: true
     shell: "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\"{.data.password}\" | base64 -d"
     register: argocd_admin_pass
-  - name: "-- 15. Output ArgoCD Admin password to console --"
+
+  - name: "-- Output ArgoCD Admin password to console --"
     debug:
       msg: "{{ argocd_admin_pass.stdout }}"
     
