@@ -32,7 +32,3 @@ spec:
     app.kubernetes.io/name: traefik
   sessionAffinity: None
   type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-    - ip: 10.10.20.101
