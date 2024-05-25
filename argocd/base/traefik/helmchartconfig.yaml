@@ -10,4 +10,5 @@ spec:
       replicas: 3
     providers:
       kubernetesCRD:
+        allowCrossNamespace: true
         allowExternalNameServices: true
