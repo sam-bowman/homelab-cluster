@@ -45,6 +45,10 @@ admin:
   existingSecret: "grafana-admin-details"
   userKey: admin-user
   passwordKey: admin-password
+downloadDashboardsImage:
+  registry:   docker.io
+  repository: highcanfly/net-tools
+  tag: latest
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
