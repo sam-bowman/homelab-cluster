@@ -1,3 +1,37 @@
+extraVolumeMounts:
+  - name: 'secrets'
+    mountPath: '/mnt/secrets-store'
+    readOnly: true
+extraVolumes:
+  - name: secrets
+    csi:
+      driver: 'secrets-store.csi.k8s.io'
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: 'gafana-spc'
+env:
+  - name: GHOAUTHCLIENTID
+    valueFrom:
+      secretKeyRef:
+        name: github_oauth_client_id
+        key: github_oauth_client_id
+  - name: GHOAUTHCLIENTSECRET
+    valueFrom:
+      secretKeyRef:
+        name: github_oauth_client_secret
+        key: github_oauth_client_secret
+grafana.ini:
+  server:
+    root_url: "https://grafana.homelab.bowmans.site"
+  auth.github:
+    enabled: true
+    allow_sign_up: false
+    scopes: user:email,read:org
+    auth_url: https://github.com/login/oauth/authorize
+    token_url: https://github.com/login/oauth/access_token
+    api_url: https://api.github.com/user
+    client_id: "${GHOAUTHCLIENTID}"
+    client_secret: "${GHOAUTHCLIENTSECRET}"
 datasources:
   datasources.yaml:
     apiVersion: 1
