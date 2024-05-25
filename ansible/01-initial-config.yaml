@@ -39,6 +39,18 @@
         name: dnsutils
         state: present
 
+  - name: "-- Install K8S pip module --"
+    become: true
+    apt:
+      name: python3-kubernetes
+      state: present
+    
+  - name: "-- Install JsonPatch pip module --"
+    become: true
+    apt:
+      name: python3-jsonpatch
+      state: present
+      
     - name: "-- Create repos directory --"
       file:
         path: "{{ ansible_env.HOME }}/repos"

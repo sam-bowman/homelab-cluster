@@ -4,18 +4,6 @@
     K8S_AUTH_KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
     KUBECONFIG: "/etc/rancher/k3s/k3s.yaml"
   tasks:
-  - name: "-- Install K8S pip module --"
-    become: true
-    apt:
-      name: python3-kubernetes
-      state: present
-    
-  - name: "-- Install JsonPatch pip module --"
-    become: true
-    apt:
-      name: python3-jsonpatch
-      state: present
-    
   - name: "-- Apply MetalLB manifest to cluster --"
     become: true
     kubernetes.core.k8s:
