@@ -29,7 +29,6 @@ grafana.ini:
       - "sam-bowman-org"
     allow_assign_grafana_admin: true
     role_attribute_path: "contains(groups[*], '@sam-bowman-org/main') && 'GrafanaAdmin' || 'Viewer'"
-    allowed_organizations: "1"
     allowed_domains: "bowmans.site homelab.bowmans.site grafana.homelab.bowmans.site"
 revisionHistoryLimit: 2
 datasources:
