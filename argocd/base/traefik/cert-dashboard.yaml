@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-certificate
+spec:
+  secretName: traefik-certificate
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: traefik.homelab.bowmans.site
+  dnsNames:
+    - traefik.homelab.bowmans.site

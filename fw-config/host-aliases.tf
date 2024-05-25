@@ -70,6 +70,15 @@ resource "opnsense_unbound_host_alias" "WEBSITE" {
   domain = "bowmans.site"
   description = "WEBSITE"
 }
+# TRAEFIK-DASHBOARD
+resource "opnsense_unbound_host_alias" "TRAEFIK" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "traefik.homelab"
+  domain = "bowmans.site"
+  description = "TRAEFIK"
+}
 
 
 
