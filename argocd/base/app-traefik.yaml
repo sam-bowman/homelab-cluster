@@ -26,8 +26,6 @@ spec:
   ignoreDifferences:
     - group: apps
       kind: Service
-      name: traefik
-      namespace: kube-system
       jqPathExpressions:
-      - .status.loadBalancer.ingress[].ipMode
+      - .status
   revisionHistoryLimit: 2
