@@ -1,14 +1,14 @@
-# extraVolumeMounts:
-#   - name: 'secrets'
-#     mountPath: '/mnt/secrets-store'
-#     readOnly: true
-# extraVolumes:
-#   - name: secrets
-#     csi:
-#       driver: 'secrets-store.csi.k8s.io'
-#       readOnly: true
-#       volumeAttributes:
-#         secretProviderClass: 'gafana-spc'
+extraVolumeMounts:
+  - name: 'secrets'
+    mountPath: '/mnt/secrets-store'
+    readOnly: true
+extraVolumes:
+  - name: secrets
+    csi:
+      driver: 'secrets-store.csi.k8s.io'
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: 'gafana-spc'
 # env:
 #   - name: GHOAUTHCLIENTID
 #     valueFrom:
