@@ -10,7 +10,7 @@ extraVolumes:
     volumeAttributes:
       secretProviderClass: 'gafana-spc'
 envFromSecrets:
-- name: grafana-admin-details
+- name: github-oauth
 grafana.ini:
   server:
     root_url: "https://grafana.homelab.bowmans.site"
