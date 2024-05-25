@@ -34,7 +34,7 @@ datasources:
           enabled: true
         lokiSearch:
           datasourceUid: 'loki'
-    - name: victoria-metrics
+    - name: prometheus
       type: prometheus
       url: "http://vmsingle-vmstack.victoria-metrics:8429"
       access: proxy
@@ -59,9 +59,18 @@ dashboardProviders:
         path: /var/lib/grafana/dashboards/default
 dashboards:
    default:
-     node-exporter-full:
-       url: https://grafana.com./api/dashboards/1860/revisions/36/download
-       datasource: victoria-metrics
-     k3s-cluster-monitoring:
-       url: https://grafana.com/api/dashboards/15282/revisions/1/download
-       datasource: victoria-metrics
+    14584-argocd:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/14584-argocd.json
+      token: ''
+    14981-coredns:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/14981-coredns.json
+      token: ''
+    18283-kubernetes-dashboard:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/18283-kubernetes-dashboard.json
+      token: ''
+    1860-node-exporter-full:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/1860-node-exporter-full.json
+      token: ''
+    6417-kubernetes-cluster-prometheus.json:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/6417-kubernetes-cluster-prometheus.json
+      token: ''
