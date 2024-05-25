@@ -23,6 +23,7 @@ envFromSecrets:
 #     api_url: https://api.github.com/user
 #     client_id: "${GHOAUTHCLIENTID}"
 #     client_secret: "${GHOAUTHCLIENTSECRET}"
+revisionHistoryLimit: 2
 datasources:
   datasources.yaml:
     apiVersion: 1
