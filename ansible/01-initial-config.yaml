@@ -32,7 +32,6 @@
 
     - name: "-- Configure PipX --"
       command: pipx ensurepath
-      run_once: true
     
     - name: "-- Install DNSUtils --"
       become: true

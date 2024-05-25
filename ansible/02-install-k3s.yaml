@@ -19,7 +19,6 @@
 
   - name: "-- Install K3S on master node (if not already installed) --"
     become: true
-    run_once: true
     command:
       cmd: "{{ ansible_env.HOME }}/k3s.sh"
     environment: 
@@ -57,7 +56,7 @@
     INSTALL_K3S_EXEC: "--disable servicelb"
   tasks:
   - name: "-- Get service facts --"
-  ansible.builtin.service_facts:
+    ansible.builtin.service_facts:
 
   - name: "-- Download K3S install script --"
     become: true
@@ -70,7 +69,6 @@
 
   - name: "-- Install K3S on worker nodes --"
     become: true
-    run_once: true
     command:
       cmd: "{{ ansible_env.HOME }}/k3s.sh"
     environment:
