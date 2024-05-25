@@ -65,7 +65,7 @@
       timeout: 120
       dest: "{{ ansible_env.HOME }}/k3s.sh"
       mode: 0755
-    when: "'k3s' not in services"
+    when: "'k3s-agent' not in services"
 
   - name: "-- Install K3S on worker nodes --"
     become: true
@@ -74,4 +74,4 @@
     environment:
       K3S_URL: "{{ K3S_URL }}"
       K3S_TOKEN: "{{ K3S_TOKEN }}"
-    when: "'k3s' not in services"
+    when: "'k3s-agent' not in services"
