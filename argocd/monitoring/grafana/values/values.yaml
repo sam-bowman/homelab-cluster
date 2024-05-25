@@ -27,6 +27,8 @@ grafana.ini:
       - 10178744
     allowed_organizations:
       - "sam-bowman-org"
+    allow_assign_grafana_admin: true
+    role_attribute_path: "contains(groups[*], '@sam-bowman-org/main') && 'Admin' || 'Viewer'"
 revisionHistoryLimit: 2
 datasources:
   datasources.yaml:
