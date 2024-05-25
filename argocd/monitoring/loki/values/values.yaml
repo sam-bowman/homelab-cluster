@@ -25,6 +25,6 @@ write:
 chunksCache:
   enabled: false
 lokiCanary:
-  enabled: true
+  enabled: false
 test:
-  enabled: true
+  enabled: false
