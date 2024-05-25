@@ -144,3 +144,11 @@ services:
     subtitle: "Portfolio Website"
     tag: "portfolio"
     url: "https://website.homelab.bowmans.site"
+- name: "Monitoring"
+  icon: "fa-solid fa-magnifying-glass"
+  items:
+  - name: "Grafana"
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Grafana_logo.svg/1200px-Grafana_logo.svg.png"
+    subtitle: "multi-platform open source analytics and interactive visualization web application"
+    tag: "monitoring"
+    url: "https://grafana.homelab.bowmans.site"
