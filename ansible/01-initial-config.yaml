@@ -33,6 +33,7 @@
     - name: "-- Configure PipX --"
       command: pipx ensurepath
       run_once: true
+    
     - name: "-- Install DNSUtils --"
       become: true
       apt:
@@ -59,8 +60,8 @@
         regexp: '^(?!.*?{{ item }})(.*)$'
         line: '\1 {{ item }}'
         backrefs: true
-
       loop: "{{ cmdline_add }}"
+
     - name: "-- Mount network share - smb --"
       become: true
       ansible.posix.mount:
