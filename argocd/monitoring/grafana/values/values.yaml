@@ -1,25 +1,25 @@
-extraVolumeMounts:
-  - name: 'secrets'
-    mountPath: '/mnt/secrets-store'
-    readOnly: true
-extraVolumes:
-  - name: secrets
-    csi:
-      driver: 'secrets-store.csi.k8s.io'
-      readOnly: true
-      volumeAttributes:
-        secretProviderClass: 'gafana-spc'
-env:
-  - name: GHOAUTHCLIENTID
-    valueFrom:
-      secretKeyRef:
-        name: github_oauth_client_id
-        key: github_oauth_client_id
-  - name: GHOAUTHCLIENTSECRET
-    valueFrom:
-      secretKeyRef:
-        name: github_oauth_client_secret
-        key: github_oauth_client_secret
+# extraVolumeMounts:
+#   - name: 'secrets'
+#     mountPath: '/mnt/secrets-store'
+#     readOnly: true
+# extraVolumes:
+#   - name: secrets
+#     csi:
+#       driver: 'secrets-store.csi.k8s.io'
+#       readOnly: true
+#       volumeAttributes:
+#         secretProviderClass: 'gafana-spc'
+# env:
+#   - name: GHOAUTHCLIENTID
+#     valueFrom:
+#       secretKeyRef:
+#         name: github_oauth_client_id
+#         key: github_oauth_client_id
+#   - name: GHOAUTHCLIENTSECRET
+#     valueFrom:
+#       secretKeyRef:
+#         name: github_oauth_client_secret
+#         key: github_oauth_client_secret
 # grafana.ini:
 #   server:
 #     root_url: "https://grafana.homelab.bowmans.site"
