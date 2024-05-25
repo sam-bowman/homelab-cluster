@@ -19,9 +19,7 @@ spec:
       port: 80
       targetPort: web
   selector:
-    app.kubernetes.io/component: main
-    app.kubernetes.io/instance: website
-    app.kubernetes.io/name: website
+    app: website
   type: LoadBalancer
 status:
   loadBalancer:
