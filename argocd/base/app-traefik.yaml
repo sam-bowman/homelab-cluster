@@ -22,4 +22,11 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+    - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: apps
+      kind: service
+      name: traefik
+      jqPathExpressions:
+      - .status.loadBalancer.ingress[].ipMode
   revisionHistoryLimit: 2
