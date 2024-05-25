@@ -16,13 +16,17 @@ grafana.ini:
     root_url: "https://grafana.homelab.bowmans.site"
   auth.github:
     enabled: true
-    allow_sign_up: false
+    allow_sign_up: true
     scopes: user:email,read:org
     auth_url: https://github.com/login/oauth/authorize
     token_url: https://github.com/login/oauth/access_token
     api_url: https://api.github.com/user
     client_id: "${client_id}"
     client_secret: "${client_secret}"
+    team_ids:
+      - 10178744
+    allowed_organizations:
+      - "sam-bowman-org"
 revisionHistoryLimit: 2
 datasources:
   datasources.yaml:
