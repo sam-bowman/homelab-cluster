@@ -11,5 +11,7 @@ spec:
       services:
       - name: homer
         port: 8080
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: homer-certificate

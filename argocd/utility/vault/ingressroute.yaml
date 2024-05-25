@@ -11,5 +11,7 @@ spec:
       services:
       - name: hashicorp-vault
         port: 8200
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: hashicorp-vault-certificate

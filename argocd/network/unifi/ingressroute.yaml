@@ -13,5 +13,7 @@ spec:
         port: 8443
         scheme: https
         serversTransport: unifi
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: unifi-certificate

@@ -11,5 +11,7 @@ spec:
       services:
       - name: ext-svc-tautulli
         port: 8181
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: ext-cert-tautulli

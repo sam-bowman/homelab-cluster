@@ -11,5 +11,7 @@ spec:
       services:
       - name: ext-svc-radarr
         port: 7878
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: ext-cert-radarr

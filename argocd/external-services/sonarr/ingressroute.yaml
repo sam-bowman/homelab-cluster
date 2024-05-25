@@ -11,5 +11,7 @@ spec:
       services:
       - name: ext-svc-sonarr
         port: 8989
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: ext-cert-sonarr

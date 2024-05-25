@@ -11,5 +11,7 @@ spec:
       services:
       - name: ext-svc-syncthing
         port: 8384
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: ext-cert-syncthing

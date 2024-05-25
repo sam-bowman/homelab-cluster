@@ -11,5 +11,7 @@ spec:
       services:
       - name: grafana
         port: 80
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: grafana-certificate

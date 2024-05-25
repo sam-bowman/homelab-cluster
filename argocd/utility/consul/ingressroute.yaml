@@ -11,5 +11,7 @@ spec:
       services:
       - name: hashicorp-consul-consul-server
         port: 8500
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: hashicorp-consul-certificate
