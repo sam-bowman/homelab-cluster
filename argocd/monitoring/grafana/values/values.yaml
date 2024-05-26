@@ -124,3 +124,6 @@ dashboards:
     20929-kubernetes-networking-pod-flows-workload:
       url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/20929-kubernetes-networking-pod-flows-workload.json
       token: ''
+    17586-pi-k3s-simple-dashboard:
+      url: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/monitoring/grafana/dashboards/17586-pi-k3s-simple-dashboard.json
+      token: ''
