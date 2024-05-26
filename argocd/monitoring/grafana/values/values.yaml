@@ -27,7 +27,7 @@ grafana.ini:
       - 10178744
     allowed_organizations:
       - "sam-bowman-org"
-    allowed_domains: "bowmans.site homelab.bowmans.site grafana.homelab.bowmans.site"
+    allowed_domains: "bowmans.site homelab.bowmans.site grafana.homelab.bowmans.site gmail.com"
     allow_assign_grafana_admin: true
     role_attribute_path: "'GrafanaAdmin'"
 revisionHistoryLimit: 2
