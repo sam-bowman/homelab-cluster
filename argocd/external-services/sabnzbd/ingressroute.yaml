@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-sabnzbd
-        port: 10097
+        port: 30055
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:
