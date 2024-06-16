@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-tautulli
-        port: 8181
+        port: 30047
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:
