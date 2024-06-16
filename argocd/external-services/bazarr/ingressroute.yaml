@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-bazarr
-        port: 6767
+        port: 30046
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:

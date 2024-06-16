@@ -6,4 +6,4 @@ spec:
   type: ExternalName
   externalName: truenas.bowmans.site
   ports:
-    - port: 7878
+    - port: 30025

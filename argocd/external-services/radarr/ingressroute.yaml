@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-radarr
-        port: 7878
+        port: 30025
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:

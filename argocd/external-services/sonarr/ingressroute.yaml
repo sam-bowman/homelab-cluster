@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-sonarr
-        port: 8989
+        port: 30027
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:
