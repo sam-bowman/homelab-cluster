@@ -138,6 +138,15 @@ resource "opnsense_unbound_host_alias" "SONARR" {
   domain = "bowmans.site"
   description = "SONARR"
 }
+# OVERSEERR
+resource "opnsense_unbound_host_alias" "OVERSEERR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "overseerr"
+  domain = "bowmans.site"
+  description = "OVERSEERR"
+}
 # SYNCTHING
 resource "opnsense_unbound_host_alias" "SYNCTHING" {
   override = opnsense_unbound_host_override.TRAEFIK.id
