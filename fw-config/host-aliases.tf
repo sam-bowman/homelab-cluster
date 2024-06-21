@@ -147,6 +147,15 @@ resource "opnsense_unbound_host_alias" "OVERSEERR" {
   domain = "bowmans.site"
   description = "OVERSEERR"
 }
+# TITLECARDMAKERGUI
+resource "opnsense_unbound_host_alias" "TITLECARDMAKERGUI" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "titlecardmaker"
+  domain = "bowmans.site"
+  description = "TITLECARDMAKERGUI"
+}
 # SYNCTHING
 resource "opnsense_unbound_host_alias" "SYNCTHING" {
   override = opnsense_unbound_host_override.TRAEFIK.id

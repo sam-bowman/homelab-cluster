@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ext-cert-titlecardmakergui
+spec:
+  secretName: ext-cert-titlecardmakergui
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: titlecardmaker.bowmans.site
+  dnsNames:
+    - titlecardmaker.bowmans.site
