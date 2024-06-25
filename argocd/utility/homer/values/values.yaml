@@ -3,7 +3,7 @@ persistence:
     enabled: true
     mountPath: /www/assets
     retain: true
-  myMount:
+  test:
     enabled: true
     type: emptyDir
 configMaps:
