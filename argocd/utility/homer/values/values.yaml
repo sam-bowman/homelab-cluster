@@ -11,4 +11,4 @@ configMaps:
         externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml
 envFrom:
 - secretRef: 
-    name: APP_API_KEYS
+    name: app-api-keys
