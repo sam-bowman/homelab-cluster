@@ -3,11 +3,6 @@ persistence:
     enabled: true
     mountPath: /www/assets
     retain: true
-  shared:
-    enabled: true
-    type: secret
-    name: app-api-keys
-    mountPath: '/mnt/secrets-store'
 configMaps:
   config:
     enabled: true
@@ -17,3 +12,14 @@ configMaps:
 envFrom:
 - secretRef: 
     name: app-api-keys
+extraVolumeMounts:
+- name: 'secrets'
+  mountPath: '/mnt/secrets-store'
+  readOnly: true
+extraVolumes:
+- name: secrets
+  csi:
+    driver: 'secrets-store.csi.k8s.io'
+    readOnly: true
+    volumeAttributes:
+      secretProviderClass: 'homer-spc'
