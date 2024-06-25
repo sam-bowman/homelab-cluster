@@ -1,11 +1,11 @@
 persistence:
-  globalMounts:
-    - path: /test
-      readOnly: false
   config:
     enabled: true
     mountPath: /www/assets
     retain: true
+  myMount:
+    enabled: true
+    type: emptyDir
 configMaps:
   config:
     enabled: true
