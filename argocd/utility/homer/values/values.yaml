@@ -10,15 +10,5 @@ configMaps:
       config.yml: |
         externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml
 envFrom:
-- secretRef: APP_API_KEYS
-    name: BAZARR_API_KEY
-- secretRef: APP_API_KEYS
-    name: OVERSEERR_API_KEY
-- secretRef: APP_API_KEYS
-    name: RADARR_API_KEY
-- secretRef: APP_API_KEYS
-    name: SABNZBD_API_KEY
-- secretRef: APP_API_KEYS
-    name: SONARR_API_KEY
-- secretRef: APP_API_KEYS
-    name: TAUTULLI_API_KEY
+- secretRef: 
+    name: APP_API_KEYS
