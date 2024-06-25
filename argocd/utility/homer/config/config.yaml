@@ -71,6 +71,8 @@ services:
     tag: "media"
     url: "https://app.plex.tv"
   - name: "Tautulli"
+    type: "Tautulli"
+    apikey: ${TAUTULLI_API_KEY}
     logo: "https://tautulli.com/images/logo-circle.png"
     subtitle: "Plex Metrics"
     tag: "media"
@@ -81,11 +83,15 @@ services:
     tag: "media"
     url: "https://bazarr.bowmans.site/series"
   - name: "Radarr"
+    type: "Radarr"
+    apikey: ${RADARR_API_KEY}
     logo: "https://radarr.video/img/logo.png"
     subtitle: "Movies-arr"
     tag: "media"
     url: "https://radarr.bowmans.site"
   - name: "Sonarr"
+    type: "Sonarr"
+    apikey: ${SONARR_API_KEY}
     logo: "https://sonarr.tv/img/logo.png"
     subtitle: "Shows-arr"
     tag: "media"
@@ -106,6 +112,8 @@ services:
     tag: "media"
     url: "https://titlecardmaker.bowmans.site"
   - name: "SabNZBd"
+    type: "SABnzbd"
+    apikey: ${SABNZBD_API_KEY}
     logo: "https://static-00.iconduck.com/assets.00/sabnzbd-text-icon-256x256-k89vgimn.png"
     subtitle: "Free and easy binary newsreader"
     tag: "media"
