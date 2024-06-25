@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`tdarr.bowmans.site`)
+    - match: Host(`tdarr.homelab.bowmans.site`)
       kind: Rule
       services:
       - name: ext-svc-tdarr
