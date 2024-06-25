@@ -3,9 +3,16 @@ persistence:
     enabled: true
     mountPath: /www/assets
     retain: true
-  test:
+  secrets:
     enabled: true
-    type: emptyDir
+    type: custom
+    path: /mnt/secrets
+    volumeSpec:
+      csi:
+        driver: 'secrets-store.csi.k8s.io'
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: 'homer-spc'
 configMaps:
   config:
     enabled: true
