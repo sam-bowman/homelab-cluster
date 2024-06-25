@@ -9,17 +9,3 @@ configMaps:
     data:
       config.yml: |
         externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml
-envFrom:
-- secretRef: 
-    name: app-api-keys
-extraVolumeMounts:
-- name: 'secrets'
-  mountPath: '/mnt/secrets-store'
-  readOnly: true
-extraVolumes:
-- name: secrets
-  csi:
-    driver: 'secrets-store.csi.k8s.io'
-    readOnly: true
-    volumeAttributes:
-      secretProviderClass: 'homer-spc'
