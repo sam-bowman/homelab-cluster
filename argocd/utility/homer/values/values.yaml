@@ -3,6 +3,11 @@ persistence:
     enabled: true
     mountPath: /www/assets
     retain: true
+  shared:
+    enabled: true
+    type: secret
+    name: app-api-keys
+    mountPath: '/mnt/secrets-store'
 configMaps:
   config:
     enabled: true
