@@ -9,3 +9,6 @@ configMaps:
     data:
       config.yml: |
         externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml
+globalMounts:
+  - path: /test
+    readOnly: false
