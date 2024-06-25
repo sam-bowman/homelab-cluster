@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ext-ingress-route-tdarr
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`tdarr.bowmans.site`)
+      kind: Rule
+      services:
+      - name: ext-svc-tdarr
+        port: 30028
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: ext-cert-tdarr

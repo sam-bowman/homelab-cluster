@@ -79,6 +79,15 @@ resource "opnsense_unbound_host_alias" "TRAEFIK" {
   domain = "bowmans.site"
   description = "TRAEFIK"
 }
+# TDARR
+resource "opnsense_unbound_host_alias" "TDARR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "tdarr.homelab"
+  domain = "bowmans.site"
+  description = "TDARR"
+}
 
 
 

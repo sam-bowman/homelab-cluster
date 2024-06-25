@@ -111,6 +111,11 @@ services:
     subtitle: "TitleCard-arr"
     tag: "media"
     url: "https://titlecardmaker.bowmans.site"
+  - name: "TDarr"
+    logo: "https://docs.tdarr.io/img/favicon.ico"
+    subtitle: "Transcode-arr"
+    tag: "media"
+    url: "https://tdarr.bowmans.site"
   - name: "SabNZBd"
     type: "SABnzbd"
     apikey: ${SABNZBD_API_KEY}
