@@ -115,7 +115,7 @@ services:
     logo: "https://docs.tdarr.io/img/favicon.ico"
     subtitle: "Transcode-arr"
     tag: "media"
-    url: "https://tdarr.bowmans.site"
+    url: "https://tdarr.homelab.bowmans.site"
   - name: "SabNZBd"
     type: "SABnzbd"
     apikey: ${SABNZBD_API_KEY}
