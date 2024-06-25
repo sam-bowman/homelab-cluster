@@ -13,7 +13,7 @@ spec:
   sources:
   - repoURL: https://charts.gabe565.com
     chart: homer
-    targetRevision: 0.9.1
+    targetRevision: 0.10.0
     helm:
       valueFiles:
       - $values/argocd/utility/homer/values/values.yaml
