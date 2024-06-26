@@ -61,19 +61,6 @@ links:
   url: "https://github.com/sam-bowman/portfolio-website"
 
 services:
-- name: "CI/CD"
-  icon: "fab fa-dev"
-  items:
-  - name: "ArgoCD"
-    logo: "https://argo-cd.readthedocs.io/en/stable/assets/logo.png"
-    subtitle: "Declarative GitOps CD for Kubernetes"
-    tag: "cicd"
-    url: "https://argocd.homelab.bowmans.site"
-  - name: "Gitea"
-    logo: "https://pipedream.com/s.v0/app_m5gh6y/logo/orig"
-    subtitle: "Private, Fast, Reliable DevOps Platform"
-    tag: "cicd"
-    url: "https://gitea.homelab.bowmans.site/"
 - name: "Media"
   icon: "fas fa-photo-video"
   items:
@@ -146,6 +133,19 @@ services:
     tag: "media"
     url: "https://tdarr.bowmans.site"
     checkInterval: 5000
+- name: "CI/CD"
+  icon: "fab fa-dev"
+  items:
+  - name: "ArgoCD"
+    logo: "https://argo-cd.readthedocs.io/en/stable/assets/logo.png"
+    subtitle: "Declarative GitOps CD for Kubernetes"
+    tag: "cicd"
+    url: "https://argocd.homelab.bowmans.site"
+  - name: "Gitea"
+    logo: "https://pipedream.com/s.v0/app_m5gh6y/logo/orig"
+    subtitle: "Private, Fast, Reliable DevOps Platform"
+    tag: "cicd"
+    url: "https://gitea.homelab.bowmans.site/"
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
