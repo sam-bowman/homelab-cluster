@@ -79,15 +79,6 @@ resource "opnsense_unbound_host_alias" "TRAEFIK" {
   domain = "bowmans.site"
   description = "TRAEFIK"
 }
-# TDARR
-resource "opnsense_unbound_host_alias" "TDARR" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "tdarr.homelab"
-  domain = "bowmans.site"
-  description = "TDARR"
-}
 
 
 
@@ -182,4 +173,13 @@ resource "opnsense_unbound_host_alias" "TAUTULLI" {
   hostname = "tautulli"
   domain = "bowmans.site"
   description = "TAUTULLI"
+}
+# TDARR
+resource "opnsense_unbound_host_alias" "TDARR" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "tdarr"
+  domain = "bowmans.site"
+  description = "TDARR"
 }

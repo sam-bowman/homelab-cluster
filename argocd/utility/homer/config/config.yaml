@@ -131,7 +131,7 @@ services:
     logo: "https://docs.tdarr.io/img/favicon.ico"
     subtitle: "Transcode-arr"
     tag: "media"
-    url: "https://tdarr.homelab.bowmans.site"
+    url: "https://tdarr.bowmans.site"
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
