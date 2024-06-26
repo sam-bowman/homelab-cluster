@@ -5,7 +5,7 @@ logo: "https://avatars.githubusercontent.com/u/64836476?v=4"
 header: true
 footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>'
 
-columns: "3"
+columns: "6"
 
 defaults:
   layout: columns
@@ -27,7 +27,7 @@ colors:
     link: "#3273dc"
     link-hover: "#363636"
   dark:
-    highlight-primary: "#23304d"
+    highlight-primary: "#000000"
     highlight-secondary: "#242b37"
     highlight-hover: "#5a95f5"
     background: "#131313"
@@ -70,18 +70,22 @@ services:
     subtitle: "Plex Media Server"
     tag: "media"
     url: "https://app.plex.tv"
-  - name: "Tautulli"
-    type: "Tautulli"
-    apikey: ${TAUTULLI_API_KEY}
-    logo: "https://tautulli.com/images/logo-circle.png"
-    subtitle: "Plex Metrics"
+- name: "Media-Apps"
+  icon: "fas fa-photo-video"
+  items:
+  - name: "Requestrr"
+    logo: "https://camo.githubusercontent.com/d6191dceb99f9f66f3cc1ee4fce3f8ee6e78c8fc5f1f4e679503f706a98e7de0/68747470733a2f2f692e696d6775722e636f6d2f30557a4c5976772e706e67"
+    subtitle: "Discord-arr"
     tag: "media"
-    url: "https://tautulli.bowmans.site"
-  - name: "Bazarr"
-    logo: "https://www.bazarr.media/assets/img/logo.png"
-    subtitle: "Subtitles-arr"
+    url: "https://requestrr.bowmans.site"
+  - name: "Overseerr"
+    logo: "https://overseerr.dev/_next/image?url=%2Fos_logo_filled.svg&w=48&q=75"
+    subtitle: "Manag-arr"
     tag: "media"
-    url: "https://bazarr.bowmans.site/series"
+    url: "https://overseerr.bowmans.site"
+- name: "Media-Downloads"
+  icon: "fas fa-photo-video"
+  items:
   - name: "Radarr"
     type: "Radarr"
     apikey: ${RADARR_API_KEY}
@@ -96,16 +100,28 @@ services:
     subtitle: "Shows-arr"
     tag: "media"
     url: "https://sonarr.bowmans.site"
-  - name: "Requestrr"
-    logo: "https://camo.githubusercontent.com/d6191dceb99f9f66f3cc1ee4fce3f8ee6e78c8fc5f1f4e679503f706a98e7de0/68747470733a2f2f692e696d6775722e636f6d2f30557a4c5976772e706e67"
-    subtitle: "Discord-arr"
+  - name: "SabNZBd"
+    type: "SABnzbd"
+    apikey: ${SABNZBD_API_KEY}
+    logo: "https://static-00.iconduck.com/assets.00/sabnzbd-text-icon-256x256-k89vgimn.png"
+    subtitle: "Free and easy binary newsreader"
     tag: "media"
-    url: "https://requestrr.bowmans.site"
-  - name: "Overseerr"
-    logo: "https://overseerr.dev/_next/image?url=%2Fos_logo_filled.svg&w=48&q=75"
-    subtitle: "Manag-arr"
+    url: "https://sabnzbd.bowmans.site"
+- name: "Media-Utility"
+  icon: "fas fa-photo-video"
+  items:
+  - name: "Tautulli"
+    type: "Tautulli"
+    apikey: ${TAUTULLI_API_KEY}
+    logo: "https://tautulli.com/images/logo-circle.png"
+    subtitle: "Plex Metrics"
     tag: "media"
-    url: "https://overseerr.bowmans.site"
+    url: "https://tautulli.bowmans.site"
+  - name: "Bazarr"
+    logo: "https://www.bazarr.media/assets/img/logo.png"
+    subtitle: "Subtitles-arr"
+    tag: "media"
+    url: "https://bazarr.bowmans.site/series"
   - name: "TitleCardMaker"
     logo: "https://user-images.githubusercontent.com/17693271/164274472-c8fa7302-9b38-4fae-94ca-2e683e58d722.png"
     subtitle: "TitleCard-arr"
@@ -116,13 +132,6 @@ services:
     subtitle: "Transcode-arr"
     tag: "media"
     url: "https://tdarr.homelab.bowmans.site"
-  - name: "SabNZBd"
-    type: "SABnzbd"
-    apikey: ${SABNZBD_API_KEY}
-    logo: "https://static-00.iconduck.com/assets.00/sabnzbd-text-icon-256x256-k89vgimn.png"
-    subtitle: "Free and easy binary newsreader"
-    tag: "media"
-    url: "https://sabnzbd.bowmans.site"
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
