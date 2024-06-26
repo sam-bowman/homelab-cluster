@@ -127,11 +127,13 @@ services:
     subtitle: "TitleCard-arr"
     tag: "media"
     url: "https://titlecardmaker.bowmans.site"
-  - name: "TDarr"
+  - name: "Tdarr"
+    type: "Tdarr"
     logo: "https://docs.tdarr.io/img/favicon.ico"
     subtitle: "Transcode-arr"
     tag: "media"
     url: "https://tdarr.bowmans.site"
+    checkInterval: 5000
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
