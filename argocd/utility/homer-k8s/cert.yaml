@@ -1,9 +1,9 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: homer-certificate
+  name: homer-k8s-certificate
 spec:
-  secretName: homer-certificate
+  secretName: homer-k8s-certificate
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt

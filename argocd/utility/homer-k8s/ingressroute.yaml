@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: homer-ingress-route
+  name: homer-k8s-ingress-route
 spec:
   entryPoints:
     - websecure
@@ -9,9 +9,9 @@ spec:
     - match: Host(`homer.homelab.bowmans.site`)
       kind: Rule
       services:
-      - name: homer
+      - name: homer-k8s
         port: 8080
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:
-    secretName: homer-certificate
+    secretName: homer-k8s-certificate
