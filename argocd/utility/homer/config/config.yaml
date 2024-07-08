@@ -102,6 +102,11 @@ services:
     subtitle: "Free and easy binary newsreader"
     tag: "media"
     url: "https://sabnzbd.bowmans.site"
+  - name: "AirDC++"
+    logo: "http://airdcpp.net/assets/AirDCPlusPlus.png"
+    subtitle: "File Sharing"
+    tag: "media"
+    url: "https://airdcpp.bowmans.site"
 - name: "Media-Utility"
   icon: "fas fa-photo-video"
   items:

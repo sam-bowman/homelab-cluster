@@ -183,3 +183,12 @@ resource "opnsense_unbound_host_alias" "TDARR" {
   domain = "bowmans.site"
   description = "TDARR"
 }
+# AIRDCPP
+resource "opnsense_unbound_host_alias" "AIRDCPP" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "airdcpp"
+  domain = "bowmans.site"
+  description = "AIRDCPP"
+}
