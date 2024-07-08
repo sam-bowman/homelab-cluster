@@ -1,0 +1,18 @@
+persistence:
+  config:
+    enabled: true
+    mountPath: /www/assets
+    retain: true
+  secrets:
+    enabled: true
+    type: custom
+    path: /mnt/secrets
+    volumeSpec:
+      csi:
+        driver: 'secrets-store.csi.k8s.io'
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: 'homer-spc'
+envFrom:
+  - secretRef:
+      name: app-api-keys
