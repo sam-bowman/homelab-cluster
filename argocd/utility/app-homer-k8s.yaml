@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - repoURL: https://charts.gabe565.com
+  - repoURL: https://bananaops.github.io/homer-k8s/
     chart: homer-k8s
     targetRevision: 0.1.11
     helm:
