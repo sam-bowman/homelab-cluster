@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard-ingress-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`dashboard.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: kubernetes-dashboard-web
+        port: 8001
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: kubernetes-dashboard-certificate
