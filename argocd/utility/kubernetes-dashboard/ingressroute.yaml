@@ -19,8 +19,7 @@ spec:
       kind: Rule
       services:
       - name: kubernetes-dashboard-kong-proxy
-        port: kong-proxy-tls
-        scheme: https
+        port: 80
         serversTransport: kubernetes-dashboard-transport
       middlewares:
       - name: kube-system-private-ips-allow@kubernetescrd
