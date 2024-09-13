@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: kubernetes-dashboard-web
-        port: 8001
+        port: 8000
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:
