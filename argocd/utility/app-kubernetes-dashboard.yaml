@@ -37,5 +37,6 @@ spec:
       kind: Deployment
       name: kubernetes-dashboard-api
       jqPathExpressions:
-      - .spec.template.spec.containers[].env[].valueFrom.resourceFieldRef.divisor
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
   revisionHistoryLimit: 2
