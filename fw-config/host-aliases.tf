@@ -34,6 +34,15 @@ resource "opnsense_unbound_host_alias" "HOMER" {
   domain = "bowmans.site"
   description = "HOMER"
 }
+# KUBERNETES DASHBOARD
+resource "opnsense_unbound_host_alias" "KUBERNETES_DASHBOARD" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "dashboard.homelab"
+  domain = "bowmans.site"
+  description = "KUBERNETES DASHBOARD"
+}
 # VAULT
 resource "opnsense_unbound_host_alias" "VAULT" {
   override = opnsense_unbound_host_override.TRAEFIK.id
