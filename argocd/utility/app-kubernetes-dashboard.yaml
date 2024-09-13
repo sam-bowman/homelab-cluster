@@ -39,4 +39,22 @@ spec:
       jqPathExpressions:
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
+    - group: apps/v1
+      kind: Deployment
+      name: kubernetes-dashboard-auth
+      jqPathExpressions:
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
+    - group: apps/v1
+      kind: Deployment
+      name: kubernetes-dashboard-metrics-scraper
+      jqPathExpressions:
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
+    - group: apps/v1
+      kind: Deployment
+      name: kubernetes-dashboard-web
+      jqPathExpressions:
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
+      - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
   revisionHistoryLimit: 2
