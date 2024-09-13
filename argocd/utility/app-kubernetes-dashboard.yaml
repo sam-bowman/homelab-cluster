@@ -31,4 +31,11 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+    - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: apps/v1
+      kind: Deployment
+      name: kubernetes-dashboard-api
+      jqPathExpressions:
+      - .spec.template.spec.containers[].env[].valueFrom.resourceFieldRef.divisor
   revisionHistoryLimit: 2
