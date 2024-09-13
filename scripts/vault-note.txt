@@ -1,0 +1,6 @@
+Potentially bad practice, but it's useful to make a backup script for 
+unsealing the hashicorp vaults with its unseal tokens. The vaults seal on 
+reboot and must be unsealed within a couple of minutes of the pod starting,
+otherwise it'll restart the pod and you'll have to do it again. Once a vault
+is sealed, there's no way to get the tokens again, so you should make a backup
+of them somewhere secure just in case you accidently seal the vault. 
