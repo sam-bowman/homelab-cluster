@@ -19,7 +19,7 @@ spec:
       kind: Rule
       services:
       - name: kubernetes-dashboard-kong-proxy
-        port: kong-proxy
+        port: kong-proxy-tls
         scheme: https
         serversTransport: kubernetes-dashboard-transport
       middlewares:
