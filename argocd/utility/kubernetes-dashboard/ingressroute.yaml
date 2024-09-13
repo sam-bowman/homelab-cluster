@@ -10,7 +10,7 @@ spec:
       kind: Rule
       services:
       - name: kubernetes-dashboard-kong-proxy
-        port: kong-proxy-tls
+        port: kong-proxy
       middlewares:
       - name: kube-system-private-ips-allow@kubernetescrd
   tls:
