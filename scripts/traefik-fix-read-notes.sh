@@ -18,6 +18,8 @@
 #
 # Edit the helmchartconfig the restart the traefik deployment to have it use
 # these new values.
+# kubectl get helmchartconfig -n kube-system traefik -o yaml 
+# kubectl get pods -n kube-system | grep traefik
 
 kubectl edit helmchartconfig -n kube-system traefik
 kubectl rollout restart deploy traefik -n kube-system
