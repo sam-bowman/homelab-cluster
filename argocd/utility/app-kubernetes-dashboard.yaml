@@ -33,31 +33,31 @@ spec:
     - PruneLast=true
     - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: apps/v1
+    - group: apps
       kind: Deployment
       name: kubernetes-dashboard-api
       jqPathExpressions:
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
-    - group: apps/v1
+    - group: apps
       kind: Deployment
       name: kubernetes-dashboard-auth
       jqPathExpressions:
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
-    - group: apps/v1
+    - group: apps
       kind: Deployment
       name: kubernetes-dashboard-metrics-scraper
       jqPathExpressions:
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
-    - group: apps/v1
+    - group: apps
       kind: Deployment
       name: kubernetes-dashboard-web
       jqPathExpressions:
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
       - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[] | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
-    - group: v1
+    - group: core
       kind: Secret
       name: kubernetes-dashboard-web
       jqPathExpressions:

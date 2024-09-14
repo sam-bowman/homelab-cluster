@@ -21,8 +21,10 @@ spec:
     - PruneLast=true
     - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: apps
+    - group: core
       kind: Service
+      name: traefik
       jqPathExpressions:
-      - .status
+      - .metadata.labels."app.kubernetes.io/instance"
+      - .metadata.labels."helm.sh/chart"
   revisionHistoryLimit: 2

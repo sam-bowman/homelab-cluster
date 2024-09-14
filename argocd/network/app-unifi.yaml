@@ -31,4 +31,11 @@ spec:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
+    - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: core
+      kind: Service
+      name: unifi-ext
+      jqPathExpressions:
+      - .status.loadBalancer.ingress[] | select(.ip == "10.10.20.202").ipMode
   revisionHistoryLimit: 2
