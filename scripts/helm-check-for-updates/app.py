@@ -5,12 +5,26 @@ import yaml
 import subprocess
 from pathlib import Path
 
+def kind_application(file):
+    print(f'DEBUG:      Checking file {file} to see if it is kind: Application')
+    with open(file, 'r') as f:
+        try:
+            contents = yaml.safe_load(f)
+        except:
+            print(f'WARNING:    File {file} contains multiple yaml streams, skipping.')
+            return False
+    if contents != None:
+        if 'kind' in contents:
+            if contents['kind'] == 'Application':
+                return True
+    return False
+
 def get_files_to_check(base_dir):
     app_files = []
     all_yamls = list(Path(base_dir).rglob("*.[yY][aA][mM][lL]"))
     for file in all_yamls:
-        if "app" in str(file):
-            app_files.append(file)
+        if kind_application(str(file)):
+            app_files.append(str(file))
     return(app_files)
 
 def get_app_configuration(file):
@@ -21,7 +35,7 @@ def get_app_sources(app_config):
     try:
         return app_config['spec']['sources']
     except:
-        print('No app sources found.')
+        print('INFO:       No app sources found.')
         return None
 
 def get_helm_chart_source(app_sources):
@@ -30,7 +44,7 @@ def get_helm_chart_source(app_sources):
         if 'chart' in source:
             return source, source_index
         source_index += 1
-    print(f'No helm chart source found.')
+    print(f'INFO:       No helm chart source found.')
     return None, None
 
 def add_helm_repo(chart, repo_url):
@@ -55,12 +69,12 @@ def get_relevant_repo(repo_search, chart):
         
 def update_available(current_version, chart_version):
     if current_version != chart_version:
-        print(f'New version of \'{chart}\' available')
-        print(f'    Current Version:    {current_version}')
-        print(f'    New Version:        {chart_ver}')
+        print(f'INFO:       New version of \'{chart}\' available')
+        print(f'INFO:           Current Version:    {current_version}')
+        print(f'INFO:           New Version:        {chart_ver}')
         return True
     else:
-        print(f'Chart \'{chart}\' is already up to date!')
+        print(f'INFO:       Chart \'{chart}\' is already up to date!')
         return False
 
 def apply_change(app_config, source_index, file):
@@ -69,30 +83,30 @@ def apply_change(app_config, source_index, file):
         app_config['spec']['sources'][source_index]['targetRevision'] = chart_ver
         with open(file, 'w') as w:
             yaml.dump(app_config, w)
-        print(f'Helm chart targetRevision updated for {app_config["spec"]["sources"][source_index]["chart"]} \n\n')
+        print(f'INFO:       Helm chart targetRevision updated for {app_config["spec"]["sources"][source_index]["chart"]} \n\n')
     else:
-        print(f'Not applying change \n\n')
+        print(f'INFO:       Not applying change \n\n')
 
 if __name__ == "__main__":
-    print('Getting list of yaml files with \'app\' in the name (should be application definition files) \n\n')
+    print('DEBUG:      Getting list of yaml files with \'app\' in the name (should be application definition files) \n\n')
     files_to_check = get_files_to_check('../argocd/')
 
     for file in files_to_check:
 
-        print(f'\n\nGetting app configuration for file {str(file)}')
-        app_config = get_app_configuration(str(file))
+        print(f'\n\nDEBUG:      Getting app configuration for file {file}')
+        app_config = get_app_configuration(file)
 
         app_name = app_config['metadata']['name']
-        print(f'Getting app sources for {app_name} in file {str(file)}')
+        print(f'DEBUG:      Getting app sources for {app_name} in file {file}')
         app_sources = get_app_sources(app_config)
         if app_sources == None:
-            print(f'Skipping {app_name} in file {str(file)}')
+            print(f'Skipping {app_name} in file {file}')
             continue
 
-        print(f'Checking for helm chart configuration for app {app_name} in file {str(file)}')
+        print(f'DEBUG:      Checking for helm chart configuration for app {app_name} in file {file}')
         helm_chart_source, source_index = get_helm_chart_source(app_sources)
         if helm_chart_source == None:
-            print(f'Skipping {app_name} in file {str(file)}')
+            print(f'Skipping {app_name} in file {file}')
             continue
 
         chart = helm_chart_source['chart']
@@ -104,4 +118,4 @@ if __name__ == "__main__":
         chart_name, chart_ver, app_ver, chart_desc = get_relevant_repo(repo_search, chart)
 
         if update_available(current_version, chart_ver):
-            apply_change(app_config, source_index, str(file))
+            apply_change(app_config, source_index, file)
