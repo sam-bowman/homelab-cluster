@@ -4,6 +4,7 @@
 import yaml
 import subprocess
 
+# Find a way to pull this info automatically. All app definitions have app in the name, use that to find?
 files_to_check = [
     "../argocd/utility/app-cert-manager.yaml",
     "../argocd/utility/app-csi-secrets-store.yaml",
@@ -12,7 +13,13 @@ files_to_check = [
     "../argocd/utility/app-vault.yaml",
     "../argocd/utility/app-homer.yaml",
     "../argocd/utility/app-kubernetes-dashboard.yaml",
-    "../argocd/network/app-unifi.yaml"
+    "../argocd/network/app-unifi.yaml",
+    "../argocd/monitoring/app-grafana-alloy.yaml",
+    "../argocd/monitoring/app-grafana.yaml",
+    "../argocd/monitoring/app-loki.yaml",
+    "../argocd/monitoring/app-promtail.yaml",
+    "../argocd/monitoring/app-tempo.yaml",
+    "../argocd/monitoring/app-victoria-metrics.yaml"
 ]
 
 if __name__ == "__main__":

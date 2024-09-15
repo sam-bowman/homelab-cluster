@@ -1,34 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tempo
-  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  name: tempo
+  namespace: argocd
 spec:
   destination:
     namespace: tempo
     server: https://kubernetes.default.svc
   project: default
+  revisionHistoryLimit: 2
   sources:
-  - repoURL: https://grafana.github.io/helm-charts
-    chart: tempo-distributed
-    targetRevision: 1.9.9
+  - chart: tempo-distributed
     helm:
       valueFiles:
       - $values/argocd/monitoring/tempo/values/values.yaml
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 1.18.0
+  - ref: values
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
-    ref: values
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/monitoring/tempo
+  - path: argocd/monitoring/tempo
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
       allowEmpty: true
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
-  revisionHistoryLimit: 2

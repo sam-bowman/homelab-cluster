@@ -1,34 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki
-  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  name: loki
+  namespace: argocd
 spec:
   destination:
     namespace: loki
     server: https://kubernetes.default.svc
   project: default
+  revisionHistoryLimit: 2
   sources:
-  - repoURL: https://grafana.github.io/helm-charts
-    chart: loki
-    targetRevision: 6.5.2
+  - chart: loki
     helm:
       valueFiles:
       - $values/argocd/monitoring/loki/values/values.yaml
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.12.0
+  - ref: values
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
-    ref: values
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/monitoring/loki
+  - path: argocd/monitoring/loki
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
       allowEmpty: true
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
-  revisionHistoryLimit: 2

@@ -1,34 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: promtail
-  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  name: promtail
+  namespace: argocd
 spec:
   destination:
     namespace: promtail
     server: https://kubernetes.default.svc
   project: default
+  revisionHistoryLimit: 2
   sources:
-  - repoURL: https://grafana.github.io/helm-charts
-    chart: promtail
-    targetRevision: 6.15.5
+  - chart: promtail
     helm:
       valueFiles:
       - $values/argocd/monitoring/promtail/values/values.yaml
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.16.5
+  - ref: values
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
-    ref: values
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/monitoring/promtail
+  - path: argocd/monitoring/promtail
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
       allowEmpty: true
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
-  revisionHistoryLimit: 2
