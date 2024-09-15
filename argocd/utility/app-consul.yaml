@@ -1,40 +1,40 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hashicorp-consul
-  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  name: hashicorp-consul
+  namespace: argocd
 spec:
   destination:
     namespace: hashicorp-consul
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: apps
+    jqPathExpressions:
+    - .spec.volumeClaimTemplates[]
+    kind: StatefulSet
   project: default
+  revisionHistoryLimit: 2
   sources:
-  - repoURL: https://helm.releases.hashicorp.com
-    chart: consul
-    targetRevision: 1.4.1
+  - chart: consul
     helm:
       valueFiles:
       - $values/argocd/utility/consul/values/values.yaml
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    repoURL: https://helm.releases.hashicorp.com
+    targetRevision: 1.5.3
+  - ref: values
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
-    ref: values
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/utility/consul
+  - path: argocd/utility/consul
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
       allowEmpty: true
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
     - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: apps
-      kind: StatefulSet
-      jqPathExpressions:
-      - .spec.volumeClaimTemplates[]
-  revisionHistoryLimit: 2

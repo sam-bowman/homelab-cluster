@@ -1,41 +1,41 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: unifi
-  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
+  name: unifi
+  namespace: argocd
 spec:
   destination:
     namespace: unifi
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: core
+    jqPathExpressions:
+    - .status.loadBalancer.ingress[] | select(.ip == "10.10.20.202").ipMode
+    kind: Service
+    name: unifi-ext
   project: default
+  revisionHistoryLimit: 2
   sources:
-  - repoURL: https://charts.egeback.se
-    chart: unifi
-    targetRevision: 1.1.3
+  - chart: unifi
     helm:
       valueFiles:
       - $values/argocd/network/unifi/values/values.yaml
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    repoURL: https://charts.egeback.se
+    targetRevision: 1.1.6
+  - ref: values
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
-    ref: values
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/network/unifi
+  - path: argocd/network/unifi
+    repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:
     automated:
-      prune: true
       allowEmpty: true
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
     - PruneLast=true
     - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: core
-      kind: Service
-      name: unifi-ext
-      jqPathExpressions:
-      - .status.loadBalancer.ingress[] | select(.ip == "10.10.20.202").ipMode
-  revisionHistoryLimit: 2
