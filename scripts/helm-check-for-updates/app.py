@@ -70,6 +70,7 @@ def apply_change(app_config, source_index, file):
         app_config['spec']['sources'][source_index]['targetRevision'] = chart_ver
         with open(file, 'w') as w:
             yaml.dump(app_config, w)
+        print(f'Helm chart targetRevision updated for {app_config["spec"]["sources"][source_index]["chart"]} \n\n')
     else:
         print(f'Not applying change \n\n')
 
@@ -86,8 +87,6 @@ if __name__ == "__main__":
 
         add_helm_repo(chart, repo_url)
         repo_search = search_helm_repo(chart)
-        print(repo_search)
-        print(f'\n\n')
         chart_name, chart_ver, app_ver, chart_desc = get_relevant_repo(repo_search, chart)
 
         if update_available(current_version, chart_ver):
