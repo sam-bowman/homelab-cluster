@@ -10,7 +10,7 @@ spec:
     namespace: unifi
     server: https://kubernetes.default.svc
   ignoreDifferences:
-  - group: core
+  - group: ""
     jqPathExpressions:
     - .status.loadBalancer.ingress[] | select(.ip == "10.10.20.202").ipMode
     kind: Service

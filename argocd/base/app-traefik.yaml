@@ -21,7 +21,7 @@ spec:
     - PruneLast=true
     - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: core
+    - group: ""
       kind: Service
       name: traefik
       jqPathExpressions:

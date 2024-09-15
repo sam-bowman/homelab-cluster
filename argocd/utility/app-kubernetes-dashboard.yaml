@@ -42,7 +42,7 @@ spec:
       | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
     kind: Deployment
     name: kubernetes-dashboard-web
-  - group: core
+  - group: ""
     jqPathExpressions:
     - .data."private.key"
     kind: Secret
