@@ -13,7 +13,8 @@ def kind_application(resource_definition_file):
         try:
             contents = yaml.safe_load(f)
         except yaml.composer.ComposerError:
-            print(f'WARNING:    File {resource_definition_file} contains multiple yaml streams, skipping.')
+            print(f'WARNING:    File {resource_definition_file} contains \
+multiple yaml streams, skipping.')
             return False
     if contents is not None:
         if 'kind' in contents:
@@ -29,7 +30,7 @@ def get_files_to_check(base_dir):
     for yaml_file in all_yamls:
         if kind_application(str(yaml_file)):
             app_files.append(str(yaml_file))
-    return(app_files)
+    return app_files
 
 
 def get_app_configuration(app_config_file):
@@ -72,8 +73,8 @@ def search_helm_repo(chart):
     """Run the 'helm search repo' command for the specified chart"""
     return subprocess.run(
             ['helm','search','repo',chart,'--max-col-width','1000'],
-            stdout = subprocess.PIPE, 
-            stderr = subprocess.PIPE, 
+            stdout = subprocess.PIPE,
+            stderr = subprocess.PIPE,
             universal_newlines = True,
             check = True).stdout
 
