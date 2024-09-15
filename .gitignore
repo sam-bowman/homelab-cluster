@@ -6,3 +6,4 @@ fw-config/.terraform/providers/registry.terraform.io/browningluke/opnsense/0.10.
 fw-config/.terraform/providers/registry.terraform.io/browningluke/opnsense/0.10.1/windows_386/terraform-provider-opnsense_v0.10.1.exe
 fw-config/.terraform/providers/registry.terraform.io/browningluke/opnsense/0.10.1/windows_386/README.md
 fw-config/.terraform/terraform.tfstate
+scripts/helm_check_for_updates/__pycache__/
