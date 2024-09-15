@@ -3,31 +3,26 @@
 
 import yaml
 import subprocess
+from pathlib import Path
 
-# Find a way to pull this info automatically. All app definitions have app in the name, use that to find?
-files_to_check = [
-    "../argocd/utility/app-cert-manager.yaml",
-    "../argocd/utility/app-csi-secrets-store.yaml",
-    "../argocd/utility/app-github-arc.yaml",
-    "../argocd/utility/app-consul.yaml",
-    "../argocd/utility/app-vault.yaml",
-    "../argocd/utility/app-homer.yaml",
-    "../argocd/utility/app-kubernetes-dashboard.yaml",
-    "../argocd/network/app-unifi.yaml",
-    "../argocd/monitoring/app-grafana-alloy.yaml",
-    "../argocd/monitoring/app-grafana.yaml",
-    "../argocd/monitoring/app-loki.yaml",
-    "../argocd/monitoring/app-promtail.yaml",
-    "../argocd/monitoring/app-tempo.yaml",
-    "../argocd/monitoring/app-victoria-metrics.yaml"
-]
+def get_files_to_check(base_dir):
+    app_files = []
+    all_yamls = list(Path(base_dir).rglob("*.[yY][aA][mM][lL]"))
+    for file in all_yamls:
+        if "app" in str(file):
+            app_files.append(file)
+    return(app_files)
 
 def get_app_configuration(file):
     with open(file, 'r') as f:
         return yaml.safe_load(f)
 
 def get_app_sources(app_config):
-    return app_config['spec']['sources']
+    try:
+        return app_config['spec']['sources']
+    except:
+        print('No app sources found.')
+        return None
 
 def get_helm_chart_source(app_sources):
     source_index = 0
@@ -35,6 +30,8 @@ def get_helm_chart_source(app_sources):
         if 'chart' in source:
             return source, source_index
         source_index += 1
+    print(f'No helm chart source found.')
+    return None, None
 
 def add_helm_repo(chart, repo_url):
     return subprocess.run(['helm','repo','add',chart,repo_url], 
@@ -62,7 +59,9 @@ def update_available(current_version, chart_version):
         print(f'    Current Version:    {current_version}')
         print(f'    New Version:        {chart_ver}')
         return True
-    return False
+    else:
+        print(f'Chart \'{chart}\' is already up to date!')
+        return False
 
 def apply_change(app_config, source_index, file):
     apply_change = input(f'Apply new version to \'{file}\' ? [y/n]').lower()
@@ -75,11 +74,26 @@ def apply_change(app_config, source_index, file):
         print(f'Not applying change \n\n')
 
 if __name__ == "__main__":
+    print('Getting list of yaml files with \'app\' in the name (should be application definition files) \n\n')
+    files_to_check = get_files_to_check('../argocd/')
+
     for file in files_to_check:
 
-        app_config = get_app_configuration(file)
+        print(f'\n\nGetting app configuration for file {str(file)}')
+        app_config = get_app_configuration(str(file))
+
+        app_name = app_config['metadata']['name']
+        print(f'Getting app sources for {app_name} in file {str(file)}')
         app_sources = get_app_sources(app_config)
+        if app_sources == None:
+            print(f'Skipping {app_name} in file {str(file)}')
+            continue
+
+        print(f'Checking for helm chart configuration for app {app_name} in file {str(file)}')
         helm_chart_source, source_index = get_helm_chart_source(app_sources)
+        if helm_chart_source == None:
+            print(f'Skipping {app_name} in file {str(file)}')
+            continue
 
         chart = helm_chart_source['chart']
         repo_url = helm_chart_source['repoURL']
@@ -90,4 +104,4 @@ if __name__ == "__main__":
         chart_name, chart_ver, app_ver, chart_desc = get_relevant_repo(repo_search, chart)
 
         if update_available(current_version, chart_ver):
-            apply_change(app_config, source_index, file)
+            apply_change(app_config, source_index, str(file))
