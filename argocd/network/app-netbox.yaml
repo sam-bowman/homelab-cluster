@@ -18,7 +18,7 @@ spec:
       - $values/argocd/network/netbox/values/values.yaml
     repoURL: ghcr.io/netbox-community
     path: netbox-chart
-    targetRevision: netbox-5.0.0-beta.94
+    targetRevision: '5.0.0-beta.94'
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
