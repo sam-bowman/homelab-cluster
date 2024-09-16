@@ -22,3 +22,5 @@ configMaps:
 envFrom:
   - secretRef:
       name: app-api-keys
+controller:
+  revisionHistoryLimit: 0
