@@ -42,11 +42,10 @@ colors:
     link-hover: "#ffdd57"
 
 message:
-  url: https://api.chucknorris.io/jokes/random
-  mapping:
-    content: 'value'
-  refreshInterval: 10000
-  style: "is-debug"
+  style: "is-danger"
+  title: "Google"
+  icon: "fa fa-exclamation-triangle"
+  content: '<form action="https://www.google.com/search" target="_blank" method="get"><input style="height: 30px; border-radius: 5px; font-family: Raleway,sans-serif; font-weight: bold; padding-left: 15px; border: none; width: 100%;" name="q" type="text"><input type="submit" style="display: none;" value="Search"></form>'
 
 links:
 - name: "homelab-cluster"
