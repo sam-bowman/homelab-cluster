@@ -88,6 +88,15 @@ resource "opnsense_unbound_host_alias" "TRAEFIK" {
   domain = "bowmans.site"
   description = "TRAEFIK"
 }
+# NETBOX
+resource "opnsense_unbound_host_alias" "NETBOX" {
+  override = opnsense_unbound_host_override.NETBOX.id
+
+  enabled = true
+  hostname = "netbox.homelab"
+  domain = "bowmans.site"
+  description = "NETBOX"
+}
 
 
 

@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: netbox-ingress-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`netbox.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: netbox
+        port: 443
+      middlewares:
+      - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: netbox-certificate
