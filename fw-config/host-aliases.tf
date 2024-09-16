@@ -90,7 +90,7 @@ resource "opnsense_unbound_host_alias" "TRAEFIK" {
 }
 # NETBOX
 resource "opnsense_unbound_host_alias" "NETBOX" {
-  override = opnsense_unbound_host_override.NETBOX.id
+  override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "netbox.homelab"
