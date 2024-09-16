@@ -10,6 +10,7 @@ spec:
     namespace: netbox
     server: https://kubernetes.default.svc
   revisionHistoryLimit: 2
+  project: default
   sources:
   - chart: netbox
     helm:
