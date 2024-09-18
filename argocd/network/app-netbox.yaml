@@ -9,6 +9,49 @@ spec:
   destination:
     namespace: netbox
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: apps
+    jqPathExpressions:
+    - .spec.template.metadata.annotations."checksum/secret"
+    kind: Deployment
+    name: netbox
+  - group: apps
+    jqPathExpressions:
+    - .spec.template.metadata.annotations."checksum/secret"
+    kind: Deployment
+    name: netbox-worker
+  - group: apps
+    jqPathExpressions:
+    - .spec.template.metadata.annotations."checksum/secret"
+    kind: StatefulSet
+    name: netbox-redis-master
+  - group: apps
+    jqPathExpressions:
+    - .spec.template.metadata.annotations."checksum/secret"
+    kind: StatefulSet
+    name: netbox-redis-replicas
+  - group: ""
+    jqPathExpressions:
+    - .data."secret_key"
+    kind: Secret
+    name: netbox-config
+  - group: ""
+    jqPathExpressions:
+    - .data."password"
+    - .data."postgres-password"
+    kind: Secret
+    name: netbox-postgresql
+  - group: ""
+    jqPathExpressions:
+    - .data."redis-password"
+    kind: Secret
+    name: netbox-redis
+  - group: ""
+    jqPathExpressions:
+    - .data."api-token"
+    - .data."password"
+    kind: Secret
+    name: netbox-superuser
   revisionHistoryLimit: 2
   project: default
   sources:
