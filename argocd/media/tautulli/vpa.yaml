@@ -1,0 +1,31 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: tautulli-k8s-vpa-memory
+spec:
+  targetRef:
+    name: tautulli-k8s
+    kind: Deployment
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "*"
+      controlledResources:
+      - memory
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: tautulli-k8s-vpa-cpu
+spec:
+  targetRef:
+    name: tautulli-k8s
+    kind: Deployment
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "*"
+      controlledResources:
+      - cpu
