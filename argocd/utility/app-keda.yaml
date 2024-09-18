@@ -16,7 +16,7 @@ spec:
     helm:
       valueFiles:
       - $values/argocd/utility/keda/values/values.yaml
-    repoURL: https://charts.fairwinds.com/stable
+    repoURL: https://kedacore.github.io/charts
     targetRevision: 2.15.1
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
