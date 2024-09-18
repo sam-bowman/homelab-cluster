@@ -1,7 +1,7 @@
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  name: homer-vpa
+  name: homer-vpa-memory
 spec:
   targetRef:
     name: homer
@@ -13,3 +13,19 @@ spec:
     - containerName: "*"
       controlledResources:
       - memory
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: homer-vpa-cpu
+spec:
+  targetRef:
+    name: homer
+    kind: Deployment
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "*"
+      controlledResources:
+      - cpu
