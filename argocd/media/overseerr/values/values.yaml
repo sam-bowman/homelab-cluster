@@ -5,3 +5,5 @@ resources:
   limits:
     cpu: 50m
     memory: 50Mi
+podOptions:
+  nodeSelector: {}
