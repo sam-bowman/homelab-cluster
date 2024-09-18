@@ -9,8 +9,8 @@ spec:
     - match: Host(`tautulli.homelab.bowmans.site`)
       kind: Rule
       services:
-      - name: ext-svc-tautulli
-        port: 30047
+      - name: tautulli-k8s
+        port: 8181
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:

@@ -9,8 +9,8 @@ spec:
     - match: Host(`overseerr.homelab.bowmans.site`)
       kind: Rule
       services:
-      - name: ext-svc-overseerr
-        port: 30023
+      - name: overseerr-k8s
+        port: 5055
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
   tls:

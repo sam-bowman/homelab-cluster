@@ -9,7 +9,7 @@ spec:
     - match: Host(`requestrr.homelab.bowmans.site`)
       kind: Rule
       services:
-      - name: ext-svc-requestrr
+      - name: requestrr-k8s
         port: 4545
       middlewares:
         - name: kube-system-private-ips-allow@kubernetescrd
