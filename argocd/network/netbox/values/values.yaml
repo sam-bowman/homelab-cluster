@@ -16,3 +16,10 @@ readinessProbe:
   timeoutSeconds: 1
   failureThreshold: 50
   successThreshold: 1
+startupProbe:
+  enabled: true
+  initialDelaySeconds: 50
+  periodSeconds: 100
+  timeoutSeconds: 1
+  failureThreshold: 50
+  successThreshold: 1
