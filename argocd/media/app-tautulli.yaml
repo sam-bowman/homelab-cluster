@@ -3,7 +3,7 @@ kind: Application
 metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  name: tautulli
+  name: tautulli-k8s
   namespace: argocd
 spec:
   destination:
