@@ -24,3 +24,8 @@ envFrom:
       name: app-api-keys
 controller:
   revisionHistoryLimit: 0
+resources:
+  limits:
+    cpu: 100
+  requests:
+    cpu: 50
