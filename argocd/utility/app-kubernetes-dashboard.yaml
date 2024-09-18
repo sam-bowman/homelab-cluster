@@ -16,6 +16,7 @@ spec:
       | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
     - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[]
       | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
+    - .spec.template.metadata.annotations."checksum/config"
     kind: Deployment
     name: kubernetes-dashboard-api
   - group: apps
@@ -24,6 +25,7 @@ spec:
       | select(.name == "GOMAXPROCS").valueFrom.resourceFieldRef.divisor
     - .spec.template.spec.containers[] | select(.name == "kubernetes-dashboard-api").env[]
       | select(.name == "GOMEMLIMIT").valueFrom.resourceFieldRef.divisor
+    - .spec.template.metadata.annotations."checksum/config"
     kind: Deployment
     name: kubernetes-dashboard-auth
   - group: apps
@@ -46,7 +48,7 @@ spec:
     jqPathExpressions:
     - .data."private.key"
     kind: Secret
-    name: kubernetes-dashboard-web
+    name: kubernetes-dashboard-csrf
   project: default
   revisionHistoryLimit: 2
   sources:
