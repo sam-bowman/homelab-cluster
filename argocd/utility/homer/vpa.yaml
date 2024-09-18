@@ -13,7 +13,3 @@ spec:
     - containerName: "*"
       controlledResources:
       - memory
-    - containerName: "*"
-      mode: "Off"
-      controlledResources:
-      - cpu
