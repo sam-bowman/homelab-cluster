@@ -1,7 +1,0 @@
-serviceMonitor:
-  enabled: false
-  additionalLabels:
-    release: "prometheus"
-config:
-  clients:
-    - url: http://loki-gateway.loki/loki/api/v1/push
