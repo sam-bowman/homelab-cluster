@@ -2,3 +2,17 @@
 # extraEnvs:
 #   - name: DB_WAIT_DEBUG
 #     value: '1'
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 50
+  periodSeconds: 100
+  timeoutSeconds: 1
+  failureThreshold: 50
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 0
+  periodSeconds: 100
+  timeoutSeconds: 1
+  failureThreshold: 50
+  successThreshold: 1
