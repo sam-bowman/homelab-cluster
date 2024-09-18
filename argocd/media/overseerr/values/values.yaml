@@ -6,4 +6,5 @@ resources:
     cpu: 50m
     memory: 50Mi
 podOptions:
-  nodeSelector: {}
+  nodeSelector:
+    kubernetes.io/arch: arm64
