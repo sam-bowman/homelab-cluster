@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: keda
-    server: https://kedacore.github.io/charts
+    server: https://kubernetes.default.svc
   project: default
   revisionHistoryLimit: 2
   sources:
@@ -16,7 +16,7 @@ spec:
     helm:
       valueFiles:
       - $values/argocd/utility/keda/values/values.yaml
-    repoURL: https://helm.releases.hashicorp.com
+    repoURL: https://charts.fairwinds.com/stable
     targetRevision: 2.15.1
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
