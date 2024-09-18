@@ -3,29 +3,16 @@ persistence:
     enabled: true
     mountPath: /www/assets
     retain: true
-  secrets:
-    enabled: true
-    type: custom
-    path: /mnt/secrets
-    volumeSpec:
-      csi:
-        driver: 'secrets-store.csi.k8s.io'
-        readOnly: true
-        volumeAttributes:
-          secretProviderClass: 'homer-spc'
 configMaps:
   config:
     enabled: true
     data:
       config.yml: |
         externalConfig: https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/config.yaml
-envFrom:
-  - secretRef:
-      name: app-api-keys
 controller:
   revisionHistoryLimit: 0
 resources:
   limits:
-    cpu: 100m
+    cpu: 30m
   requests:
-    cpu: 50m
+    cpu: 20m
