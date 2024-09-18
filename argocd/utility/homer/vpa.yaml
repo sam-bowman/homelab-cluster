@@ -7,10 +7,9 @@ spec:
     name: homer
     kind: Deployment
   updatePolicy:
-    updateMode: "Off"
+    updateMode: "Auto"
   resourcePolicy:
     containerPolicies:
     - containerName: "*"
-      mode: "Auto"
       controlledResources:
       - memory
