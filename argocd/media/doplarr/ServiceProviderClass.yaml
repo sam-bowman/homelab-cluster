@@ -1,0 +1,20 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
+kind: SecretProviderClass
+metadata:
+  name: doplarr-spc
+spec:
+  provider: vault
+  parameters:
+    vaultAddress: 'http://hashicorp-vault.hashicorp-vault:8200'
+    roleName: 'main-role'
+    objects: |
+      - objectName: "discord_token"
+        secretPath: "secret/data/discord"
+        secretKey: "discord_token"
+  secretObjects:
+  - secretName: discord-token
+    type: Opaque
+    data:
+    - key: discord_token
+      objectName: discord_token
+    

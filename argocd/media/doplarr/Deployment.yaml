@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doplarr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doplarr
+  template:
+    metadata:
+      labels:
+        app: doplarr
+    spec:
+      containers:
+      - name: doplarr
+        image: lscr.io/linuxserver/doplarr:latest
+        env:
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: TZ
+          value: 'Europe/London'
+        - name: OVERSEERR__URL
+          value: 'https://overseerr.homelab.bowmans.site'
+        - name: OVERSEERR__DEFAULT_ID
+          value: '12'
+        - name: DISCORD__TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: discord-token
+              key: discord_token
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+        - name: config
+          mountPath: "/config"
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "doplarr-spc"
+      - name: config
+        persistentVolumeClaim:
+          claimName: doplarr-pvc
