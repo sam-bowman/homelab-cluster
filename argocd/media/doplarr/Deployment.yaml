@@ -41,6 +41,7 @@ spec:
           readOnly: true
         - name: config
           mountPath: "/config"
+          readOnly: false
         resources:
           limits:
             cpu: 250m
