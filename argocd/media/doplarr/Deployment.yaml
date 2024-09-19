@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: doplarr-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: doplarr
@@ -23,7 +22,7 @@ spec:
         - name: TZ
           value: 'Europe/London'
         - name: OVERSEERR__URL
-          value: 'https://overseerr.homelab.bowmans.site'
+          value: 'https://overseerr.bowmans.site:443'
         - name: OVERSEERR__DEFAULT_ID
           value: '12'
         - name: DISCORD__TOKEN
@@ -31,6 +30,11 @@ spec:
             secretKeyRef:
               name: discord-token
               key: discord_token
+        - name: OVERSEERR__API
+          valueFrom:
+            secretKeyRef:
+              name: overseerr-api-key
+              key: overseerr_api_key
         volumeMounts:
         - name: secrets-store-inline
           mountPath: "/mnt/secrets-store"
