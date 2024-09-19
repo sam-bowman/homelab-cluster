@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: doplarr-keda
+spec:
+  scaleTargetRef:
+    name: doplarr-deployment
+    kind: Deployment
+  minReplicaCount: 1
+  maxReplicaCount: 3
+  triggers:
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: "80"
