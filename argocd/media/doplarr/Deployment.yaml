@@ -39,11 +39,9 @@ spec:
           mountPath: "/config"
         resources:
           limits:
-            memory: 150Mi
-            cpu: 150m
+            cpu: 250m
           requests:
-            memory: 75Mi
-            cpu: 100m
+            cpu: 200m
       volumes:
       - name: secrets-store-inline
         csi:
