@@ -6,3 +6,9 @@ spec:
   storageClassName: ""
   claimRef:
     name: doplarr-pvc
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
