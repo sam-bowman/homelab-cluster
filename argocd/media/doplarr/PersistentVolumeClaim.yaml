@@ -9,4 +9,3 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: doplarr-sc
-  reclaimPolicy: Retain
