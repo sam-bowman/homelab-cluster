@@ -12,3 +12,4 @@ spec:
   - ReadWriteOnce
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-path
