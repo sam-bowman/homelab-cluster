@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn-ingress-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`longhorn.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: longhorn-frontend
+        port: 80
+      middlewares:
+        - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: longhorn-certificate

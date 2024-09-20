@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn-certificate
+spec:
+  secretName: longhorn-certificate
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer-letsencrypt
+  commonName: longhorn.homelab.bowmans.site
+  dnsNames:
+    - longhorn.homelab.bowmans.site
