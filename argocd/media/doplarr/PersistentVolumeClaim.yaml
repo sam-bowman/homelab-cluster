@@ -8,6 +8,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  provider: driver.longhorn.io
   storageClassName: longhorn
   volumeMode: Filesystem
