@@ -140,6 +140,11 @@ services:
     subtitle: "Manage secrets and protect sensitive data with Vault"
     tag: "utility"
     url: "https://vault.homelab.bowmans.site/"
+  - name: "Longhorn"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/longhorn-logo.png"
+    subtitle: "Cloud native distributed block storage for Kubernetes"
+    tag: "utility"
+    url: "https://longhorn.homelab.bowmans.site/"
 - name: "Homelab"
   icon: "fa-solid fa-server"
   items:

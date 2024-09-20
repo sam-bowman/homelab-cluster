@@ -97,6 +97,15 @@ resource "opnsense_unbound_host_alias" "NETBOX" {
   domain = "bowmans.site"
   description = "NETBOX"
 }
+# LONGHORN
+resource "opnsense_unbound_host_alias" "LONGHORN" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "longhorn.homelab"
+  domain = "bowmans.site"
+  description = "LONGHORN"
+}
 
 
 
