@@ -4,9 +4,10 @@ metadata:
   name: doplarr-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-path
+  provider: driver.longhorn.io
+  storageClassName: longhorn
   volumeMode: Filesystem
