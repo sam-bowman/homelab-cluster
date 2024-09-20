@@ -75,13 +75,8 @@ ingress:
 persistence:
   data:
     enabled: true
-    accessMode: ReadWriteOnce
-    size: 4Gi
+    existingClaim: unifi-pvc
     retain: true
-    advancedMounts:
-      main: 
-        main: 
-          - path: /unifi/data/
 mongodb:
   enabled: false
   architecture: standalone
