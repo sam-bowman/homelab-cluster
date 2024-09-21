@@ -41,12 +41,12 @@
 
   - name: "-- Enable service iscsid --"
     ansible.builtin.systemd_service:
-      name: httpd
+      name: iscsid
       enabled: true
 
   - name: "-- Start service iscsid --"
     ansible.builtin.systemd_service:
-      name: httpd
+      name: iscsid
       state: started
   
   - name: "-- Install DNSUtils --"
