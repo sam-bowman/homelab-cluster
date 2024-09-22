@@ -15,10 +15,10 @@ spec:
       - name: doplarr
         image: lscr.io/linuxserver/doplarr:latest
         env:
-        - name: PUID
-          value: '1000'
-        - name: PGID
-          value: '1000'
+        # - name: PUID
+        #   value: '1000'
+        # - name: PGID
+        #   value: '1000'
         - name: LOG_LEVEL
           value: ':trace'
         - name: TZ
