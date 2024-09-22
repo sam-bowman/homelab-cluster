@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: overseerr-k8s-keda
+spec:
+  scaleTargetRef:
+    name: overseerr-k8s-deployment
+    kind: Deployment
+  minReplicaCount: 1
+  maxReplicaCount: 1
+  triggers:
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: "80"

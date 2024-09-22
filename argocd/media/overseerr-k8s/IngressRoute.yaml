@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: overseerr-k8s-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`overseerr.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: overseerr-k8s-service
+        port: 5055
+      middlewares:
+      - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: overseerr-k8s-certificate

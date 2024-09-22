@@ -88,6 +88,15 @@ resource "opnsense_unbound_host_alias" "REQUESTRR-K8S" {
   domain = "bowmans.site"
   description = "REQUESTRR-K8S"
 }
+# OVERSEERR-K8S
+resource "opnsense_unbound_host_alias" "OVERSEERR-K8S" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "overseerr.homelab"
+  domain = "bowmans.site"
+  description = "OVERSEERR-K8S"
+}
 
 
 

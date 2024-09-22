@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: overseerr-k8s
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: overseerr-k8s
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    path: argocd/media/overseerr-k8s
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    - PruneLast=true
+  revisionHistoryLimit: 2
