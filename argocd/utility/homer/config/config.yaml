@@ -75,7 +75,7 @@ services:
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/overseer-logo.svg"
     subtitle: "Manag-arr"
     tag: "media"
-    url: "https://overseerr.bowmans.site"
+    url: "https://overseerr.homelab.bowmans.site"
 - name: "Media-Downloads"
   icon: "fas fa-photo-video"
   items:
