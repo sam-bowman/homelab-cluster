@@ -70,7 +70,7 @@ services:
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/requestrr-logo.png"
     subtitle: "Discord-arr"
     tag: "media"
-    url: "https://requestrr.bowmans.site"
+    url: "https://requestrr.homelab.bowmans.site"
   - name: "Overseerr"
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/overseer-logo.svg"
     subtitle: "Manag-arr"
