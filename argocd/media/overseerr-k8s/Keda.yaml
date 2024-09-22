@@ -7,7 +7,7 @@ spec:
     name: overseerr-k8s-deployment
     kind: Deployment
   minReplicaCount: 1
-  maxReplicaCount: 1
+  maxReplicaCount: 3
   triggers:
   - type: cpu
     metricType: Utilization
