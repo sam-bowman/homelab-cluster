@@ -1,110 +1,92 @@
-# ARGOCD
-resource "opnsense_unbound_host_alias" "ARGOCD" {
+# ARGOCD-K8S
+resource "opnsense_unbound_host_alias" "ARGOCD-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "argocd.homelab"
   domain = "bowmans.site"
-  description = "ARGOCD"
+  description = "ARGOCD-K8S"
 }
-# CONSUL
-resource "opnsense_unbound_host_alias" "CONSUL" {
+# CONSUL-K8S
+resource "opnsense_unbound_host_alias" "CONSUL-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "consul.homelab"
   domain = "bowmans.site"
-  description = "CONSUL"
+  description = "CONSUL-K8S"
 }
-# GRAFANA
-resource "opnsense_unbound_host_alias" "GRAFANA" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "grafana.homelab"
-  domain = "bowmans.site"
-  description = "GRAFANA"
-}
-# HOMER
-resource "opnsense_unbound_host_alias" "HOMER" {
+# HOMER-K8S
+resource "opnsense_unbound_host_alias" "HOMER-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "homer.homelab"
   domain = "bowmans.site"
-  description = "HOMER"
+  description = "HOMER-K8S"
 }
-# KUBERNETES DASHBOARD
-resource "opnsense_unbound_host_alias" "KUBERNETES_DASHBOARD" {
+# KUBERNETES DASHBOARD-K8S
+resource "opnsense_unbound_host_alias" "KUBERNETES_DASHBOARD-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "dashboard.homelab"
   domain = "bowmans.site"
-  description = "KUBERNETES DASHBOARD"
+  description = "KUBERNETES DASHBOARD-K8S"
 }
-# VAULT
-resource "opnsense_unbound_host_alias" "VAULT" {
+# VAULT-K8S
+resource "opnsense_unbound_host_alias" "VAULT-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "vault.homelab"
   domain = "bowmans.site"
-  description = "VAULT"
+  description = "VAULT-K8S"
 }
-# GITEA
-resource "opnsense_unbound_host_alias" "GITEA" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "gitea.homelab"
-  domain = "bowmans.site"
-  description = "GITEA"
-}
-# UNIFI
-resource "opnsense_unbound_host_alias" "UNIFI" {
+# UNIFI-K8S
+resource "opnsense_unbound_host_alias" "UNIFI-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "unifi.homelab"
   domain = "bowmans.site"
-  description = "UNIFI"
+  description = "UNIFI-K8S"
 }
-# WEBSITE
-resource "opnsense_unbound_host_alias" "WEBSITE" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "website.homelab"
-  domain = "bowmans.site"
-  description = "WEBSITE"
-}
-# TRAEFIK-DASHBOARD
-resource "opnsense_unbound_host_alias" "TRAEFIK" {
+# TRAEFIK-DASHBOARD-K8S
+resource "opnsense_unbound_host_alias" "TRAEFIK-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "traefik.homelab"
   domain = "bowmans.site"
-  description = "TRAEFIK"
+  description = "TRAEFIK-K8S"
 }
-# NETBOX
-resource "opnsense_unbound_host_alias" "NETBOX" {
+# NETBOX-K8S
+resource "opnsense_unbound_host_alias" "NETBOX-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "netbox.homelab"
   domain = "bowmans.site"
-  description = "NETBOX"
+  description = "NETBOX-K8S"
 }
-# LONGHORN
-resource "opnsense_unbound_host_alias" "LONGHORN" {
+# LONGHORN-K8S
+resource "opnsense_unbound_host_alias" "LONGHORN-K8S" {
   override = opnsense_unbound_host_override.TRAEFIK.id
 
   enabled = true
   hostname = "longhorn.homelab"
   domain = "bowmans.site"
-  description = "LONGHORN"
+  description = "LONGHORN-K8S"
+}
+# REQUESTRR-K8S
+resource "opnsense_unbound_host_alias" "REQUESTRR-K8S" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "requestrr.homelab"
+  domain = "bowmans.site"
+  description = "REQUESTRR-K8S"
 }
 
 
@@ -183,15 +165,6 @@ resource "opnsense_unbound_host_alias" "TITLECARDMAKERGUI" {
   domain = "bowmans.site"
   description = "TITLECARDMAKERGUI"
 }
-# SYNCTHING
-resource "opnsense_unbound_host_alias" "SYNCTHING" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "syncthing"
-  domain = "bowmans.site"
-  description = "SYNCTHING"
-}
 # TAUTULLI
 resource "opnsense_unbound_host_alias" "TAUTULLI" {
   override = opnsense_unbound_host_override.TRAEFIK.id
@@ -209,13 +182,4 @@ resource "opnsense_unbound_host_alias" "TDARR" {
   hostname = "tdarr"
   domain = "bowmans.site"
   description = "TDARR"
-}
-# AIRDCPP
-resource "opnsense_unbound_host_alias" "AIRDCPP" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "airdcpp"
-  domain = "bowmans.site"
-  description = "AIRDCPP"
 }
