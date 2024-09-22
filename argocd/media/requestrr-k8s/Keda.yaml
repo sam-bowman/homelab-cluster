@@ -1,10 +1,10 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: doplarr-keda
+  name: requestrr-k8s-keda
 spec:
   scaleTargetRef:
-    name: doplarr-deployment
+    name: requestrr-k8s-deployment
     kind: Deployment
   minReplicaCount: 1
   maxReplicaCount: 3

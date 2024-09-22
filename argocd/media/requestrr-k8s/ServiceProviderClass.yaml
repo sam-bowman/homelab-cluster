@@ -1,7 +1,7 @@
 apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
 kind: SecretProviderClass
 metadata:
-  name: doplarr-spc
+  name: requestrr-k8s-spc
 spec:
   provider: vault
   parameters:

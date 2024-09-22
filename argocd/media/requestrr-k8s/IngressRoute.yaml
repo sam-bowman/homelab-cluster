@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: requestrr-k8s-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`requestrr.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: requestrr-k8s-service
+        port: 80
+      middlewares:
+      - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: requestrr-k8s-certificate
