@@ -5,6 +5,7 @@ metadata:
   labels:
     app: requestrr-k8s
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: requestrr-k8s
