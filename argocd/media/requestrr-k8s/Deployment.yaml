@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: requestrr-k8s
-        image: thomst08/requestrr:latest
+        image: thomst08/requestrr:dev
         ports:
         - containerPort: 4545
         volumeMounts:
