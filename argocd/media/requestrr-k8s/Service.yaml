@@ -4,7 +4,7 @@ metadata:
   name: requestrr-k8s-service
 spec:
   selector:
-    app.kubernetes.io/name: requestrr-k8s
+    app: requestrr-k8s
   ports:
     - protocol: TCP
       port: 4545
