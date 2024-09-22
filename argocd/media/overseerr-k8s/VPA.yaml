@@ -23,7 +23,7 @@ spec:
     name: overseerr-k8s-deployment
     kind: Deployment
   updatePolicy:
-    updateMode: "Off"
+    updateMode: "Auto"
   resourcePolicy:
     containerPolicies:
     - containerName: "*"
