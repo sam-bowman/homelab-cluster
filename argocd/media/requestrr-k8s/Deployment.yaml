@@ -25,9 +25,9 @@ spec:
           readOnly: false
         resources:
           limits:
-            cpu: 250m
+            cpu: 100m
           requests:
-            cpu: 200m
+            cpu: 20m
       volumes:
       - name: secrets-store-inline
         csi:
