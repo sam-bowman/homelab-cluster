@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: requestrr-k8s
+      app.kubernetes.io/name: requestrr-k8s
   template:
     metadata:
       labels:
-        app: requestrr-k8s
+        app.kubernetes.io/name: requestrr-k8s
     spec:
       containers:
       - name: requestrr-k8s
