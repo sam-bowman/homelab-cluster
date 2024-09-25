@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maintainerr-deployment
+  labels:
+    app: maintainerr
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: maintainerr
+  template:
+    metadata:
+      labels:
+        app: maintainerr
+    spec:
+      containers:
+      - name: maintainerr
+        image: jorenn92/maintainerr:latest
+        ports:
+        - containerPort: 6246
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+        - name: config
+          mountPath: "/opt/data"
+          readOnly: false
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 400m
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "maintainerr-spc"
+      - name: config
+        persistentVolumeClaim:
+          claimName: maintainerr-pvc
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+        searches:
+          - api.github.com
+          - api.themoviedb.org
+          - plex.tv
+        options:
+          - name: ndots
+            value: "1"

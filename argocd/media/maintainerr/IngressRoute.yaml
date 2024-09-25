@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: maintainerr-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`maintainerr.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: maintainerr-service
+        port: 6246
+      middlewares:
+      - name: kube-system-private-ips-allow@kubernetescrd
+  tls:
+    secretName: maintainerr-certificate

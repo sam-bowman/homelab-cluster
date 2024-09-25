@@ -7,22 +7,6 @@ spec:
   parameters:
     vaultAddress: 'http://hashicorp-vault.hashicorp-vault:8200'
     roleName: 'main-role'
-    objects: |
-      - objectName: "discord_token"
-        secretPath: "secret/data/discord"
-        secretKey: "discord_token"
-      - objectName: "overseerr_api_key"
-        secretPath: "secret/data/overseerr"
-        secretKey: "overseerr_api_key"
-  secretObjects:
-  - secretName: discord-token
-    type: Opaque
-    data:
-    - key: discord_token
-      objectName: discord_token
-  - secretName: overseerr-api-key
-    type: Opaque
-    data:
-    - key: overseerr_api_key
-      objectName: overseerr_api_key
+    objects: []
+  secretObjects: []
     

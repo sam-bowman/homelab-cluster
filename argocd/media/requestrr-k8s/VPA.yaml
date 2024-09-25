@@ -1,7 +1,7 @@
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  name: requestrr-k8s-vpa-memory
+  name: requestrr-k8s-vpa
 spec:
   targetRef:
     name: requestrr-k8s-deployment
@@ -13,19 +13,4 @@ spec:
     - containerName: "*"
       controlledResources:
       - memory
----
-apiVersion: autoscaling.k8s.io/v1
-kind: VerticalPodAutoscaler
-metadata:
-  name: requestrr-k8s-vpa-cpu
-spec:
-  targetRef:
-    name: requestrr-k8s-deployment
-    kind: Deployment
-  updatePolicy:
-    updateMode: "Auto"
-  resourcePolicy:
-    containerPolicies:
-    - containerName: "*"
-      controlledResources:
       - cpu
