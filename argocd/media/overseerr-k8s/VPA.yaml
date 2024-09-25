@@ -11,6 +11,9 @@ spec:
   resourcePolicy:
     containerPolicies:
     - containerName: "*"
+      minAllowed:
+        cpu: "300m"
+        memory: "300Mi"
       controlledResources:
       - memory
       - cpu
