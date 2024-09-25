@@ -106,6 +106,15 @@ resource "opnsense_unbound_host_alias" "MAINTAINERR-K8S" {
   domain = "bowmans.site"
   description = "MAINTAINERR-K8S"
 }
+# TAUTULLI-K8S
+resource "opnsense_unbound_host_alias" "TAUTULLI-K8S" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "tautulli.homelab"
+  domain = "bowmans.site"
+  description = "TAUTULLI-K8S"
+}
 
 
 
