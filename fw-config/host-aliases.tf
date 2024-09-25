@@ -97,6 +97,15 @@ resource "opnsense_unbound_host_alias" "OVERSEERR-K8S" {
   domain = "bowmans.site"
   description = "OVERSEERR-K8S"
 }
+# MAINTAINERR-K8S
+resource "opnsense_unbound_host_alias" "MAINTAINERR-K8S" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "maintainerr.homelab"
+  domain = "bowmans.site"
+  description = "MAINTAINERR-K8S"
+}
 
 
 
