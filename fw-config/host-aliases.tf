@@ -138,15 +138,6 @@ resource "opnsense_unbound_host_alias" "RADARR" {
   domain = "bowmans.site"
   description = "RADARR"
 }
-# REQUESTRR
-resource "opnsense_unbound_host_alias" "REQUESTRR" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "requestrr"
-  domain = "bowmans.site"
-  description = "REQUESTRR"
-}
 # SABNZBD
 resource "opnsense_unbound_host_alias" "SABNZBD" {
   override = opnsense_unbound_host_override.TRAEFIK.id
@@ -164,15 +155,6 @@ resource "opnsense_unbound_host_alias" "SONARR" {
   hostname = "sonarr"
   domain = "bowmans.site"
   description = "SONARR"
-}
-# OVERSEERR
-resource "opnsense_unbound_host_alias" "OVERSEERR" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "overseerr"
-  domain = "bowmans.site"
-  description = "OVERSEERR"
 }
 # TITLECARDMAKERGUI
 resource "opnsense_unbound_host_alias" "TITLECARDMAKERGUI" {
