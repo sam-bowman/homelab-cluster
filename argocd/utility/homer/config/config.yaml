@@ -76,6 +76,11 @@ services:
     subtitle: "Manag-arr"
     tag: "media"
     url: "https://overseerr.homelab.bowmans.site"
+  - name: "Maintainerr"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/maintianerr-logo.svg"
+    subtitle: "Clean-arr"
+    tag: "media"
+    url: "https://maintainerr.homelab.bowmans.site"
 - name: "Media-Downloads"
   icon: "fas fa-photo-video"
   items:
