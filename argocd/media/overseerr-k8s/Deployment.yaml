@@ -23,11 +23,6 @@ spec:
         - name: config
           mountPath: "/config"
           readOnly: false
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 400m
       volumes:
       - name: config
         persistentVolumeClaim:
