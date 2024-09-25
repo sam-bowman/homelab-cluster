@@ -106,7 +106,7 @@ services:
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/tautulli-logo.png"
     subtitle: "Plex Metrics"
     tag: "media"
-    url: "https://tautulli.bowmans.site"
+    url: "https://tautulli.homelab.bowmans.site"
   - name: "Bazarr"
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/bazarr-logo.png"
     subtitle: "Subtitles-arr"
