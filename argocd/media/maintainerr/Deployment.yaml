@@ -20,9 +20,6 @@ spec:
         ports:
         - containerPort: 6246
         volumeMounts:
-        - name: secrets-store-inline
-          mountPath: "/mnt/secrets-store"
-          readOnly: true
         - name: config
           mountPath: "/opt/data"
           readOnly: false
@@ -32,12 +29,6 @@ spec:
           requests:
             cpu: 400m
       volumes:
-      - name: secrets-store-inline
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: "maintainerr-spc"
       - name: config
         persistentVolumeClaim:
           claimName: maintainerr-pvc
