@@ -174,15 +174,6 @@ resource "opnsense_unbound_host_alias" "TITLECARDMAKERGUI" {
   domain = "bowmans.site"
   description = "TITLECARDMAKERGUI"
 }
-# TAUTULLI
-resource "opnsense_unbound_host_alias" "TAUTULLI" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
-
-  enabled = true
-  hostname = "tautulli"
-  domain = "bowmans.site"
-  description = "TAUTULLI"
-}
 # TDARR
 resource "opnsense_unbound_host_alias" "TDARR" {
   override = opnsense_unbound_host_override.TRAEFIK.id
