@@ -12,6 +12,7 @@ spec:
       - name: ext-svc-sonarr
         port: 30027
       middlewares:
-        - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: ext-cert-sonarr

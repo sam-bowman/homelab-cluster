@@ -12,6 +12,7 @@ spec:
       - name: hashicorp-vault
         port: 8200
       middlewares:
-        - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: hashicorp-vault-certificate

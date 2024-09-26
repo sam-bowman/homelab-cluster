@@ -12,6 +12,7 @@ spec:
       - name: maintainerr-service
         port: 6246
       middlewares:
-      - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: maintainerr-certificate

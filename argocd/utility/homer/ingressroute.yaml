@@ -12,6 +12,7 @@ spec:
       - name: homer
         port: 8080
       middlewares:
-        - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: homer-certificate

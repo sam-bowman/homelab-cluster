@@ -12,6 +12,7 @@ spec:
       - name: tautulli-k8s-service
         port: 8181
       middlewares:
-      - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: tautulli-k8s-certificate

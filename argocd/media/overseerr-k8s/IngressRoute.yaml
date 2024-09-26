@@ -12,6 +12,7 @@ spec:
       - name: overseerr-k8s-service
         port: 5055
       middlewares:
-      - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: overseerr-k8s-certificate

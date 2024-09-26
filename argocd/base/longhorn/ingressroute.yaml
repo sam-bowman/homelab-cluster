@@ -12,6 +12,7 @@ spec:
       - name: longhorn-frontend
         port: 80
       middlewares:
-        - name: kube-system-private-ips-allow@kubernetescrd
+      - name: private-ips-allow
+        namespace: traefik
   tls:
     secretName: longhorn-certificate
