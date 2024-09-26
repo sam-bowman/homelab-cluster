@@ -13,3 +13,5 @@ spec:
       kubernetesCRD:
         allowCrossNamespace: true
         allowExternalNameServices: true
+    log:
+      level: DEBUG
