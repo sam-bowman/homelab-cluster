@@ -11,7 +11,7 @@ spec:
       services:
       - name: overseerr-k8s-service
         port: 5055
-      middlewares:
-      - name: kube-system-private-ips-allow@kubernetescrd
+      # middlewares:
+      # - name: kube-system-private-ips-allow@kubernetescrd
   tls:
     secretName: overseerr-k8s-certificate
