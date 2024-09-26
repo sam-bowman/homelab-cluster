@@ -38,7 +38,11 @@
 
   - name: "-- Copy custom traefik helm-chart-config to k3s configs --"
     become: true
-    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/helmchartconfig.yaml > /var/lib/rancher/k3s/server/manifests/traefik-helmchartconfig.yaml"
+    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/traefik-helmchartconfig.yaml > /var/lib/rancher/k3s/server/manifests/traefik-helmchartconfig-custom.yaml"
+
+  - name: "-- Skip default traefik-helmchartconfig.yaml that's included with K3S --"
+    become: true
+    shell: "touch /var/lib/rancher/k3s/server/manifests/traefik-helmchartconfig.yaml.skip"
 
   - name: "-- Modify Traefik helm chart config to run more replicas --"
     become: true
@@ -46,11 +50,15 @@
       namespace: kube-system
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/helmchartconfig.yaml"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/taefik/traefik-helmchartconfig.yaml"
 
   - name: "-- Copy custom coredns manifest to k3s configs --"
     become: true
-    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/manifest.yaml > /var/lib/rancher/k3s/server/manifests/coredns.yaml"
+    shell: "cat {{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/coredns.yaml > /var/lib/rancher/k3s/server/manifests/coredns-custom.yaml"
+
+  - name: "-- Skip default coredns.yaml that's included with K3S --"
+    become: true
+    shell: "touch /var/lib/rancher/k3s/server/manifests/coredns.yaml.skip"
 
   - name: "-- Enable k8s_external on coredns for external resolution --"
     become: true
@@ -58,7 +66,7 @@
       namespace: kube-system
       kubeconfig: /etc/rancher/k3s/k3s.yaml
       state: present
-      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/manifest.yaml"
+      src: "{{ ansible_env.HOME }}/repos/homelab-cluster/argocd/base/coredns/coredns.yaml"
   
   - name: "-- Define service for coredns for external resolution - udp --"
     become: true
