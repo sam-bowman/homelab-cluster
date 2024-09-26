@@ -39,6 +39,7 @@ spec:
     spec:
       containers:
       - args:
+        - --log.level=DEBUG
         - --global.checknewversion
         - --global.sendanonymoususage
         - --entrypoints.metrics.address=:9100/tcp
