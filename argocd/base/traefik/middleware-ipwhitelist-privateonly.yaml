@@ -11,4 +11,4 @@ spec:
       - 192.168.0.0/16
       - 127.0.0.1
     ipStrategy:
-      depth: 2
+      depth: 1
