@@ -27,4 +27,10 @@ spec:
       jqPathExpressions:
       - .metadata.labels."app.kubernetes.io/instance"
       - .metadata.labels."helm.sh/chart"
+    - group: ""
+      kind: Deployment
+      name: traefik
+      jqPathExpressions:
+      - .metadata.labels."app.kubernetes.io/instance"
+      - .metadata.labels."helm.sh/chart"
   revisionHistoryLimit: 2
