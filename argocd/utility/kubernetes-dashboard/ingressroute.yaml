@@ -21,8 +21,5 @@ spec:
       - name: kubernetes-dashboard-kong-proxy
         port: 443
         serversTransport: kubernetes-dashboard-transport
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: kubernetes-dashboard-certificate

@@ -11,8 +11,5 @@ spec:
       services:
       - name: hashicorp-consul-consul-server
         port: 8500
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: hashicorp-consul-certificate

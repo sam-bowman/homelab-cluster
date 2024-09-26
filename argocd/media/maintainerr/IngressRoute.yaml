@@ -11,8 +11,5 @@ spec:
       services:
       - name: maintainerr-service
         port: 6246
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: maintainerr-certificate

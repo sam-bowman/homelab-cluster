@@ -11,8 +11,5 @@ spec:
       services:
       - name: argocd-server
         port: 80
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: argocd-certificate

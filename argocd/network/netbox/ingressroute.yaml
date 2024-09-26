@@ -11,8 +11,5 @@ spec:
       services:
       - name: netbox
         port: 80
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: netbox-certificate

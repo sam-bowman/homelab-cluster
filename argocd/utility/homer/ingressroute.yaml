@@ -11,8 +11,5 @@ spec:
       services:
       - name: homer
         port: 8080
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: homer-certificate

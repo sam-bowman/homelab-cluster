@@ -13,8 +13,5 @@ spec:
         port: 8443
         scheme: https
         serversTransport: unifi
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: unifi-certificate

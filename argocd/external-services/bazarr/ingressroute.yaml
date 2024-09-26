@@ -11,8 +11,5 @@ spec:
       services:
       - name: ext-svc-bazarr
         port: 30046
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: ext-cert-bazarr

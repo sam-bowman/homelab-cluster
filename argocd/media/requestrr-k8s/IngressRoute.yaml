@@ -11,8 +11,5 @@ spec:
       services:
       - name: requestrr-k8s-service
         port: 4545
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: requestrr-k8s-certificate

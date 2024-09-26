@@ -11,8 +11,5 @@ spec:
       services:
       - name: longhorn-frontend
         port: 80
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: longhorn-certificate

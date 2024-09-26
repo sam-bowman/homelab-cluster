@@ -11,8 +11,5 @@ spec:
       services:
       - name: ext-svc-sabnzbd
         port: 30055
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: ext-cert-sabnzbd

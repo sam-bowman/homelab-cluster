@@ -11,8 +11,5 @@ spec:
       services:
       - name: overseerr-k8s-service
         port: 5055
-      middlewares:
-      - name: private-ips-allow
-        namespace: traefik
   tls:
     secretName: overseerr-k8s-certificate
