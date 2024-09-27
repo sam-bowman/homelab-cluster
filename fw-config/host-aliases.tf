@@ -124,15 +124,15 @@ resource "opnsense_unbound_host_alias" "CODER" {
   domain = "bowmans.site"
   description = "CODER"
 }
-# CODER_WILDCARD
-resource "opnsense_unbound_host_alias" "CODER_WILDCARD" {
-  override = opnsense_unbound_host_override.TRAEFIK.id
+# # CODER_WILDCARD
+# resource "opnsense_unbound_host_alias" "CODER_WILDCARD" {
+#   override = opnsense_unbound_host_override.TRAEFIK.id
 
-  enabled = true
-  hostname = "*"
-  domain = "coder.homelab.bowmans.site"
-  description = "CODER_WILDCARD"
-}
+#   enabled = true
+#   hostname = "*"
+#   domain = "coder.homelab.bowmans.site"
+#   description = "CODER_WILDCARD"
+# }
 
 
 
