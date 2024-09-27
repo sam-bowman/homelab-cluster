@@ -1,0 +1,20 @@
+global:
+  postgresql:
+    auth:
+      username: coder
+      password: coder
+      database: coder
+primary:
+  persistence:
+    enabled: true
+    storageClass: "longhorn"
+    accessModes:
+    - ReadWriteMany
+    size: 10Gi
+readReplicas:
+  persistence:
+    enabled: true
+    storageClass: "longhorn"
+    accessModes:
+    - ReadWriteMany
+    size: 10Gi
