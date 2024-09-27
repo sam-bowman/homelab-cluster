@@ -7,5 +7,7 @@ coder:
           key: url
     - name: CODER_ACCESS_URL
       value: "https://coder.homelab.bowmans.site"
+    - name: CODER_WILDCARD_ACCESS_URL
+      value: "*.coder.homelab.bowmans.site"
   service:
     type: ClusterIP
