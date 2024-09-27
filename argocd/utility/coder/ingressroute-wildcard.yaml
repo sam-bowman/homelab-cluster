@@ -1,12 +1,12 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: coder-ingress-route
+  name: coder-wildcard-ingress-route
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`coder.homelab.bowmans.site`)
+    - match: HostRegexp(`^.+\.coder\.homelab\.bowmans\.site$`)
       kind: Rule
       services:
       - name: coder
