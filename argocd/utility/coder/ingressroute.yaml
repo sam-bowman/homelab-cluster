@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: coder-ingress-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`coder.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: coder
+        port: 80
+  tls:
+    secretName: coder-certificate

@@ -115,6 +115,15 @@ resource "opnsense_unbound_host_alias" "TAUTULLI-K8S" {
   domain = "bowmans.site"
   description = "TAUTULLI-K8S"
 }
+# CODER
+resource "opnsense_unbound_host_alias" "CODER" {
+  override = opnsense_unbound_host_override.TRAEFIK.id
+
+  enabled = true
+  hostname = "coder.homelab"
+  domain = "bowmans.site"
+  description = "CODER"
+}
 
 
 
