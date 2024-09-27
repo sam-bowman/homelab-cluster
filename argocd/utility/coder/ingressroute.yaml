@@ -11,5 +11,10 @@ spec:
       services:
       - name: coder
         port: 80
+    - match: Host(`*.coder.homelab.bowmans.site`)
+      kind: Rule
+      services:
+      - name: coder
+        port: 80
   tls:
     secretName: coder-certificate

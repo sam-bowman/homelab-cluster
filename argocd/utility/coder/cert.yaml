@@ -10,3 +10,4 @@ spec:
   commonName: coder.homelab.bowmans.site
   dnsNames:
     - coder.homelab.bowmans.site
+    - "*.coder.homelab.bowmans.site"
