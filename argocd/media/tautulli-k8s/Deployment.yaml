@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tautulli-k8s
-        image: nginx:latest
+        image: tautulli/tautulli:latest
         ports:
         - containerPort: 8181
         volumeMounts:
