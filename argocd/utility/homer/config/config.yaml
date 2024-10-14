@@ -132,6 +132,11 @@ services:
     subtitle: "Declarative GitOps CD for Kubernetes"
     tag: "cicd"
     url: "https://argocd.homelab.bowmans.site"
+  - name: "Coder"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/coder-logo.svg"
+    subtitle: "The #1 Self-Hosted Cloud Development Environment"
+    tag: "cicd"
+    url: "https://coder.homelab.bowmans.site"
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
