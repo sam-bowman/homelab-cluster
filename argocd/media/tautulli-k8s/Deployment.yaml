@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tautulli-k8s
-        image: busybox:latest
+        image: nginx:latest
         ports:
         - containerPort: 8181
         volumeMounts:
