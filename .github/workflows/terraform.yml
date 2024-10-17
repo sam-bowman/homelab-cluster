@@ -35,7 +35,7 @@ jobs:
         node-version: 20
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v3
 
     - name: Terraform Init
       run: terraform init
