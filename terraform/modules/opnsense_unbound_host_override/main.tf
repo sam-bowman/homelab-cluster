@@ -11,8 +11,8 @@ module "host_alias" {
   for_each          = var.aliases
 
   host_override_id  = opnsense_unbound_host_override.host_override.id
-  enabled           = each.enabled
-  description       = each.description != null ? each.description : each.hostname
-  hostname          = each.hostname
-  domain            = each.domain != null ? each.domain : var.hostname
+  enabled           = each.value.enabled
+  description       = each.value.description != null ? each.value.description : each.value.hostname
+  hostname          = each.value.hostname
+  domain            = each.value.domain != null ? each.value.domain : var.hostname
 }
