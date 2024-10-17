@@ -4,5 +4,6 @@ module "host_ovr" {
 
   hostname          = each.value.hostname
   domain            = each.value.domain
+  ip                = each.value.ip
   aliases           = try(each.value.aliases, {})
 }
