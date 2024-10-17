@@ -13,3 +13,7 @@ Config files to managing the hardware using ansible
 ## Scripts
 
 Scripts for base setup
+
+## Terraform
+
+TF Code to deploy local DNS records

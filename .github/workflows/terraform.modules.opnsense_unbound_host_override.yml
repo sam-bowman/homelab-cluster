@@ -1,0 +1,43 @@
+name: 'TERRAFORM - modules.opnsense_unbound_host_override Validation'
+
+on:
+  push:
+    paths:
+    - terraform/opnsense_unbound_host_override/**
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+env:
+  OPNSENSE_API_KEY: ${{ secrets.OPNSENSE_API_KEY }}
+  OPNSENSE_API_SECRET: ${{ secrets.OPNSENSE_API_SECRET }}
+  OPNSENSE_URI: ${{ secrets.OPNSENSE_URI }}
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: [self-hosted, linux, ARM64]
+    environment: production
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform/modules/opnsense_unbound_host_override
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install Node.JS
+      uses: actions/setup-node@v4.0.2
+      with:
+        node-version: 20
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform init -backend=false
+
+    - name: Terraform Validate
+      run: terraform validate

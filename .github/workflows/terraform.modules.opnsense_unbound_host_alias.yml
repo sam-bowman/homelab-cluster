@@ -1,9 +1,9 @@
-name: 'TERRAFORM - FIREWALL CONFIGURATION'
+name: 'TERRAFORM - modules.opnsense_unbound_host_alias Validation'
 
 on:
   push:
     paths:
-    - fw-config/**
+    - terraform/opnsense_unbound_host_alias/**
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: fw-config
+        working-directory: terraform/modules/opnsense_unbound_host_alias
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -37,10 +37,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend=false
 
-    - name: Terraform Plan
-      run: terraform plan -input=false
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false
+    - name: Terraform Validate
+      run: terraform validate
