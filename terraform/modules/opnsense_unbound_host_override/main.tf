@@ -6,11 +6,11 @@ resource "opnsense_unbound_host_override" "host_override" {
   server            = var.ip
 }
 
-module "aliases" {
+module "host_alias" {
   source            = "github.com/sam-bowman/homelab-cluster/terraform/modules/opnsense_unbound_host_alias"
   for_each          = var.aliases
 
-  override          = opnsense_unbound_host_override.host_override.id
+  host_override_id  = opnsense_unbound_host_override.host_override.id
   enabled           = each.enabled
   description       = each.description != null ? each.description : each.hostname
   hostname          = each.hostname
