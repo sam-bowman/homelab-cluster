@@ -6,7 +6,3 @@ terraform {
     }
   }
 }
-
-provider "opnsense" {
-  # Configuration options, configured using environment variables passed in via the pipeline
-}
