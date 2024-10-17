@@ -1,4 +1,4 @@
-module "host_ovr" {
+module "host_override" {
   source            = "github.com/sam-bowman/homelab-cluster/terraform/modules/opnsense_unbound_host_override"
   for_each          = local.overrides
 
