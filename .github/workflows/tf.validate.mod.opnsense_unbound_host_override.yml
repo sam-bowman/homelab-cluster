@@ -1,10 +1,10 @@
-name: 'TERRAFORM'
+name: 'TERRAFORM - modules.opnsense_unbound_host_override Validation'
 
 on:
   push:
     paths:
-    - terraform/**
-    - .github/workflows/terraform.yml
+    - terraform/modules/opnsense_unbound_host_override/*
+    - .github/workflows/tf.validate.mod.opnsense_unbound_host_override.yml
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform
+        working-directory: terraform/modules/opnsense_unbound_host_override
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -35,13 +35,10 @@ jobs:
         node-version: 20
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+      uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend=false
 
-    - name: Terraform Plan
-      run: terraform plan -input=false -out="tfplan"
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false "tfplan"
+    - name: Terraform Validate
+      run: terraform validate

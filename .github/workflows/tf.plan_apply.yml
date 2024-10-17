@@ -1,10 +1,10 @@
-name: 'TERRAFORM - modules.opnsense_unbound_host_alias Validation'
+name: 'TERRAFORM'
 
 on:
   push:
     paths:
-    - terraform/modules/opnsense_unbound_host_alias/*
-    - .github/workflows/terraform.modules.opnsense_unbound_host_alias.yml
+    - terraform/**
+    - .github/workflows/tf.plan_apply.yml
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform/modules/opnsense_unbound_host_alias
+        working-directory: terraform
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -35,10 +35,13 @@ jobs:
         node-version: 20
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v3
 
     - name: Terraform Init
-      run: terraform init -backend=false
+      run: terraform init
 
-    - name: Terraform Validate
-      run: terraform validate
+    - name: Terraform Plan
+      run: terraform plan -input=false -out="tfplan"
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -input=false "tfplan"

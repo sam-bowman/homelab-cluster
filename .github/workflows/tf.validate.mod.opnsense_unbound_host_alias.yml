@@ -1,10 +1,10 @@
-name: 'TERRAFORM - modules.opnsense_unbound_host_override Validation'
+name: 'TERRAFORM - modules.opnsense_unbound_host_alias Validation'
 
 on:
   push:
     paths:
-    - terraform/modules/opnsense_unbound_host_override/*
-    - .github/workflows/terraform.modules.opnsense_unbound_host_override.yml
+    - terraform/modules/opnsense_unbound_host_alias/*
+    - .github/workflows/tf.validate.mod.opnsense_unbound_host_alias.yml
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform/modules/opnsense_unbound_host_override
+        working-directory: terraform/modules/opnsense_unbound_host_alias
     steps:
     - name: Checkout
       uses: actions/checkout@v4
