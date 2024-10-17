@@ -7,7 +7,7 @@ variable "enabled" {
 variable "description" {
   description     = "(Optional ; String ; Default = Same as hostname) Description of the host override."
   type            = string
-  default         = ""
+  default         = null
 }
 
 variable "hostname" {
@@ -23,4 +23,9 @@ variable "domain" {
 variable "ip" {
   description     = "(Required ; String) Target IP for the host override."
   type            = string
+}
+
+variable "aliases" {
+  description     = "(Required ; Map) Aliases tied to this override"
+  type            = map
 }
