@@ -3,27 +3,22 @@ locals {
   overrides = {
     k3scluster01 = {
       hostname        = "K3SCLUSTER01"
-      domain          = local.default_domain
       ip              = "10.10.20.60"
     }
     k3scluster02 = {
       hostname        = "K3SCLUSTER02"
-      domain          = local.default_domain
       ip              = "10.10.20.61"
     }
     k3scluster03 = {
       hostname        = "K3SCLUSTER03"
-      domain          = local.default_domain
       ip              = "10.10.20.62"
     }
     k3scluster04 = {
       hostname        = "K3SCLUSTER04"
-      domain          = local.default_domain
       ip              = "10.10.20.63"
     }
     traefik = {
       hostname        = "traefik.homelab"
-      domain          = local.default_domain
       ip              = "10.10.20.101"
       aliases         = {
         argocd = {

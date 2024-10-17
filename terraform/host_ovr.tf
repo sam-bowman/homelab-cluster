@@ -3,7 +3,7 @@ module "host_ovr" {
   for_each          = local.overrides
 
   hostname          = each.value.hostname
-  domain            = each.value.domain
+  domain            = try(each.value.domain, local.default_domain)
   ip                = each.value.ip
   aliases           = try(each.value.aliases, {})
 }
