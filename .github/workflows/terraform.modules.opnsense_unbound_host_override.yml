@@ -3,7 +3,7 @@ name: 'TERRAFORM - modules.opnsense_unbound_host_override Validation'
 on:
   push:
     paths:
-    - terraform/modules/opnsense_unbound_host_override/**
+    - terraform/modules/opnsense_unbound_host_override/*
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:

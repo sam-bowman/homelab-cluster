@@ -3,7 +3,7 @@ name: 'TERRAFORM - modules.opnsense_unbound_host_alias Validation'
 on:
   push:
     paths:
-    - terraform/modules/opnsense_unbound_host_alias/**
+    - terraform/modules/opnsense_unbound_host_alias/*
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
