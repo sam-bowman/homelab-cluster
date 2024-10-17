@@ -4,6 +4,7 @@ on:
   push:
     paths:
     - terraform/modules/opnsense_unbound_host_override/*
+    - .github/workflows/terraform.modules.opnsense_unbound_host_override.yml
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
