@@ -1,4 +1,4 @@
-name: 'TERRAFORM'
+name: 'TF - Plan & Apply'
 
 on:
   push:

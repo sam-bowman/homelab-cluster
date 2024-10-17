@@ -1,4 +1,4 @@
-name: 'TERRAFORM - modules.opnsense_unbound_host_alias Validation'
+name: 'TF - Validate Module - opnsense_unbound_host_alias'
 
 on:
   push:
