@@ -10,6 +10,6 @@ spec:
       kind: Rule
       services:
       - name: ext-svc-readarr
-        port: 30025
+        port: 30045
   tls:
     secretName: ext-cert-readarr
