@@ -78,6 +78,9 @@ locals {
         sonarr = {
           hostname = "sonarr"
         }
+        readarr = {
+          hostname = "readarr"
+        }
         titlecardmaker = {
           hostname = "titlecardmaker"
         }
