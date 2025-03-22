@@ -17,7 +17,7 @@ spec:
       valueFiles:
       - $values/argocd/utility/vault/values/values.yaml
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 0.28.1
+    targetRevision: 0.29.1
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD

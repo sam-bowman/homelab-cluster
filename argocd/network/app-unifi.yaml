@@ -23,7 +23,7 @@ spec:
       valueFiles:
       - $values/argocd/network/unifi/values/values.yaml
     repoURL: https://charts.egeback.se
-    targetRevision: 1.1.6
+    targetRevision: 1.1.10
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD

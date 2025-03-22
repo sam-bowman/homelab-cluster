@@ -22,7 +22,7 @@ spec:
       valueFiles:
       - $values/argocd/utility/consul/values/values.yaml
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: 1.5.3
+    targetRevision: 1.6.2
   - ref: values
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
