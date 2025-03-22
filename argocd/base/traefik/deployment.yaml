@@ -5,10 +5,9 @@ metadata:
     meta.helm.sh/release-name: traefik
     meta.helm.sh/release-namespace: kube-system
   labels:
-    app.kubernetes.io/instance: traefik-kube-system
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: traefik
-    helm.sh/chart: traefik-25.0.3_up25.0.0
+    helm.sh/chart: traefik-34.2.1_up34.2.0
   name: traefik
   namespace: kube-system
 spec:
@@ -17,7 +16,6 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/instance: traefik-kube-system
       app.kubernetes.io/name: traefik
   strategy:
     rollingUpdate:
@@ -32,10 +30,9 @@ spec:
         prometheus.io/scrape: "true"
       creationTimestamp: null
       labels:
-        app.kubernetes.io/instance: traefik-kube-system
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: traefik
-        helm.sh/chart: traefik-25.0.3_up25.0.0
+        helm.sh/chart: traefik-34.2.1_up34.2.0
     spec:
       containers:
       - args:
