@@ -15,7 +15,7 @@ metadata:
 spec:
   chart: https://%{KUBERNETES_API}%/static/charts/traefik-34.2.1+up34.2.0.tgz
   set:
-    global.systemDefaultRegistry: "%{SYSTEM_DEFAULT_REGISTRY_RAW}%"
+    global.systemDefaultRegistry: ""
   valuesContent: |-
     deployment:
       podAnnotations:
