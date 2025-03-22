@@ -21,13 +21,11 @@ spec:
     - PruneLast=true
     - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: ""
-      kind: Service
+    - kind: Service
       name: traefik
       jqPathExpressions:
       - .metadata.labels."helm.sh/chart"
-    - group: ""
-      kind: Deployment
+    - kind: Deployment
       name: traefik
       jqPathExpressions:
       - .metadata.labels."helm.sh/chart"
