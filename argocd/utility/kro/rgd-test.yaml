@@ -12,8 +12,6 @@ spec:
       # Spec fields that users can provide.
       name: string
       image: string | default="nginx"
-      ingress:
-        enabled: boolean | default=false
     status:
       # Fields the controller will inject into instances status.
       deploymentConditions: ${deployment.status.conditions}
@@ -27,6 +25,12 @@ spec:
         kind: Deployment
         metadata:
           name: ${schema.spec.name} # Use the name provided by user
+          ownerReferences:
+            - apiVersion: kro.run/v1alpha1
+              blockOwnerDeletion: true
+              controller: true
+              kind: RGDTest
+              name: ${schema.metadata.name}
         spec:
           replicas: 3
           selector:
@@ -49,36 +53,10 @@ spec:
         kind: Service
         metadata:
           name: ${schema.spec.name}-service
+          ownerReferences: ${deployment.metadata.ownerReferences}
         spec:
           selector: ${deployment.spec.selector.matchLabels} # Use the deployment selector
           ports:
             - protocol: TCP
               port: 80
               targetPort: 80
-
-    - id: ingress
-      includeWhen:
-        - ${schema.spec.ingress.enabled} # Only include if the user wants to create an Ingress
-      template:
-        apiVersion: networking.k8s.io/v1
-        kind: Ingress
-        metadata:
-          name: ${schema.spec.name}-ingress
-          annotations:
-            kubernetes.io/ingress.class: alb
-            alb.ingress.kubernetes.io/scheme: internet-facing
-            alb.ingress.kubernetes.io/target-type: ip
-            alb.ingress.kubernetes.io/healthcheck-path: /health
-            alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-            alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=60
-        spec:
-          rules:
-            - http:
-                paths:
-                  - path: "/"
-                    pathType: Prefix
-                    backend:
-                      service:
-                        name: ${service.metadata.name} # Use the service name
-                        port:
-                          number: 80
