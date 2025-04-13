@@ -7,7 +7,7 @@ spec:
   # The schema defines what users can provide when they instantiate the RGD (create an instance).
   schema:
     apiVersion: v1alpha1
-    kind: Application
+    kind: RGDTest
     spec:
       # Spec fields that users can provide.
       name: string
