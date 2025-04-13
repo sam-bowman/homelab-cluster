@@ -31,6 +31,7 @@ spec:
               controller: true
               kind: RGDTest
               name: ${schema.metadata.name}
+              uid: ${schema.metadata.uid}
         spec:
           replicas: 3
           selector:
@@ -59,6 +60,7 @@ spec:
               controller: true
               kind: RGDTest
               name: ${schema.metadata.name}
+              uid: ${schema.metadata.uid}
         spec:
           selector: ${deployment.spec.selector.matchLabels} # Use the deployment selector
           ports:
