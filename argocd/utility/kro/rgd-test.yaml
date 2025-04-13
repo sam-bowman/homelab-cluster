@@ -30,8 +30,8 @@ spec:
               blockOwnerDeletion: true
               controller: true
               kind: RGDTest
-              name: ${schema.metadata.name}
-              uid: ${schema.metadata.uid}
+              name: rgd-test-instance
+              uid: d2e85b7d-6f52-4a12-8b0a-96b954ad3a18
         spec:
           replicas: 3
           selector:
@@ -59,8 +59,8 @@ spec:
               blockOwnerDeletion: true
               controller: true
               kind: RGDTest
-              name: ${schema.metadata.name}
-              uid: ${schema.metadata.uid}
+              name: rgd-test-instance
+              uid: d2e85b7d-6f52-4a12-8b0a-96b954ad3a18
         spec:
           selector: ${deployment.spec.selector.matchLabels} # Use the deployment selector
           ports:
