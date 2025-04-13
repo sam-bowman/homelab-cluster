@@ -53,7 +53,12 @@ spec:
         kind: Service
         metadata:
           name: ${schema.spec.name}-service
-          ownerReferences: ${deployment.metadata.ownerReferences}
+          ownerReferences:
+            - apiVersion: kro.run/v1alpha1
+              blockOwnerDeletion: true
+              controller: true
+              kind: RGDTest
+              name: ${schema.metadata.name}
         spec:
           selector: ${deployment.spec.selector.matchLabels} # Use the deployment selector
           ports:
