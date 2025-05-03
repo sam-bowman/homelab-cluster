@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamspeak-deployment
+  labels:
+    app: teamspeak
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: teamspeak
+  template:
+    metadata:
+      labels:
+        app: teamspeak
+    spec:
+      containers:
+      - name: teamspeak
+        image: teamspeak:latest
+        ports:
+        - containerPort: 9987
+        - containerPort: 10011
+        - containerPort: 30033
+        volumeMounts:
+        - name: ts3data
+          mountPath: "/var/ts3server/"
+          readOnly: false
+      volumes:
+      - name: ts3data
+        persistentVolumeClaim:
+          claimName: teamspeak-pvc
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+        searches:
+          - api.github.com
+          - api.themoviedb.org
+          - plex.tv
+        options:
+          - name: ndots
+            value: "1"

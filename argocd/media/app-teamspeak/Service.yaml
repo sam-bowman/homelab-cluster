@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: teamspeak-service
+  annotations:
+    metallb.universe.tf/address-pool: metallb-pool-reserved
+    metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
+spec:
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  loadBalancerIP: 10.10.20.203
+  selector:
+    app: teamspeak
+  ports:
+    - protocol: UDP
+      port: 9987
+      targetPort: 9987
+    - protocol: TCP
+      port: 10011
+      targetPort: 10011
+    - protocol: TCP
+      port: 30033
+      targetPort: 30033
