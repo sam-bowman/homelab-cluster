@@ -11,12 +11,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-    - chart: keda
+    - chart: external-services
       helm:
         values: |
           name: titlecardmaker
           port: 34242
-      repoURL: https://kedacore.github.io/charts
+      repoURL: https://github.com/sam-bowman/homelab-cluster
       targetRevision: 1.0.0
   syncPolicy:
     automated:
