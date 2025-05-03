@@ -17,7 +17,7 @@ spec:
           port: 34242
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
-      targetRevision: 1.0.0
+      targetRevision: main
   syncPolicy:
     automated:
       prune: true
