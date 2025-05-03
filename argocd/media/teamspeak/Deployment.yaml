@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: teamspeak
-          image: ertagh/teamspeak3-server:latest
+          image: ertagh/teamspeak3-server:latest-box
           ports:
             - containerPort: 9987
             - containerPort: 10011
