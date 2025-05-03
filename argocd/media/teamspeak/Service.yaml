@@ -10,15 +10,19 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   loadBalancerIP: 10.10.20.203
+  type: LoadBalancer
   selector:
     app: teamspeak
   ports:
     - protocol: UDP
       port: 9987
       targetPort: 9987
+      name: voice-udp
     - protocol: TCP
       port: 10011
       targetPort: 10011
+      name: serverquery-tcp
     - protocol: TCP
       port: 30033
       targetPort: 30033
+      name: filetransfer-tcp
