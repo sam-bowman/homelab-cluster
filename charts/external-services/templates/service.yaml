@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ext-svc-{{ .Values.name }}
+spec:
+  type: ExternalName
+  externalName: {{ .Values.externalName }}
+  ports:
+    - port: {{ .Values.port }}

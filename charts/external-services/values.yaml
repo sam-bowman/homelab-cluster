@@ -1,0 +1,4 @@
+# name: myapp
+# port: 8080
+externalName: truenas.bowmans.site
+clusterIssuer: cluster-issuer-letsencrypt

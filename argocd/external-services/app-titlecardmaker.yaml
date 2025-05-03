@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: titlecardmaker
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: titlecardmaker
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - chart: keda
+      helm:
+        values: |
+          name: titlecardmaker
+          port: 34242
+      repoURL: https://kedacore.github.io/charts
+      targetRevision: 1.0.0
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
