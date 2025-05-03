@@ -15,20 +15,27 @@ spec:
         app: teamspeak
     spec:
       containers:
-      - name: teamspeak
-        image: teamspeak:latest
-        ports:
-        - containerPort: 9987
-        - containerPort: 10011
-        - containerPort: 30033
-        volumeMounts:
-        - name: ts3data
-          mountPath: "/var/ts3server/"
-          readOnly: false
+        - name: teamspeak
+          image: ertagh/teamspeak3-server:latest
+          ports:
+            - containerPort: 9987
+            - containerPort: 10011
+            - containerPort: 30033
+          volumeMounts:
+            - name: ts3data
+              mountPath: "/teamspeak/save/"
+              readOnly: false
+          env:
+            - name: TS_UPDATE
+              value: "1"
+            - name: TIME_ZONE
+              value: "Europe/London"
+            - name: TS3SERVER_LICENSE
+              value: "accept"
       volumes:
-      - name: ts3data
-        persistentVolumeClaim:
-          claimName: teamspeak-pvc
+        - name: ts3data
+          persistentVolumeClaim:
+            claimName: teamspeak-pvc
       dnsConfig:
         nameservers:
           - 8.8.8.8
