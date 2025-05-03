@@ -17,6 +17,7 @@ spec:
           name: titlecardmaker
           port: 34242
       repoURL: https://github.com/sam-bowman/homelab-cluster
+      path: charts
       targetRevision: 1.0.0
   syncPolicy:
     automated:
