@@ -4,20 +4,26 @@ metadata:
   name: readarr
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: readarr
     server: https://kubernetes.default.svc
   project: default
-  source:
-    path: argocd/external-services/readarr
-    repoURL: https://github.com/sam-bowman/homelab-cluster
-    targetRevision: HEAD
+  sources:
+    - helm:
+        values: |
+          name: readarr
+          port: 30045
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/external-services
+      targetRevision: main
   syncPolicy:
     automated:
       prune: true
       allowEmpty: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
   revisionHistoryLimit: 2
