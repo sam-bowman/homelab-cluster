@@ -20,10 +20,10 @@ spec:
         image:  {{ .image }}
         {{- if .command }}
         command: {{ .command }}
-        {{- command }}
+        {{- end }}
         {{- if .args }}
         args: {{ .args }}
-        {{- args }}
+        {{- end }}
         ports:
         {{- range .ports }}
         - containerPort: {{ .port }}
