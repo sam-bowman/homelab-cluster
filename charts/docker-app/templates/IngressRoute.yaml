@@ -14,7 +14,7 @@ spec:
       {{- range $.Values.containers }}
       {{- range .ports }}
       - name: {{ $.Values.name }}-service
-        port: {{ . }}
+        port: {{ .port }}
       {{- end }}
       {{- end }}
   tls:
