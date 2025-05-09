@@ -9,7 +9,7 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: {{ coalesce $.Value.ingress.hostOverride $.Value.name }}.homelab.bowmans.site
+  commonName: {{ coalesce $.Values.ingress.hostOverride $.Values.name }}.homelab.bowmans.site
   dnsNames:
-    - {{ coalesce $.Value.ingress.hostOverride $.Value.name }}.homelab.bowmans.site
+    - {{ coalesce $.Values.ingress.hostOverride $.Values.name }}.homelab.bowmans.site
 {{- end }}
