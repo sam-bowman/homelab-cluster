@@ -19,7 +19,7 @@ spec:
               image: clockworklabs/spacetime:latest
               ports:
                 - name: main
-                  port: 9987
+                  port: 3000
           service:
             enabled: true
             annotations:
