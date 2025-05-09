@@ -1,31 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: maintainerr-k8s
+  name: overseerr-k8s
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: maintainerr-k8s
+    namespace: overseerr-k8s
     server: https://kubernetes.default.svc
   project: default
   sources:
     - helm:
         values: |
-          name: maintainerr-k8s
+          name: overseerr-k8s
           containers:
-            - name: maintainerr-k8s
-              image: jorenn92/maintainerr:latest
+            - name: overseerr-k8s
+              image: lscr.io/linuxserver/overseerr:latest
               ports:
                 - name: main
-                  port: 6246
+                  port: 5055
           ingress:
             enabled: true
-            hostOverride: maintainerr
+            hostOverride: overseerr
           volumes:
             - name: config
-              mountPath: "/opt/data"
+              mountPath: "/config"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/docker-app
       targetRevision: main
