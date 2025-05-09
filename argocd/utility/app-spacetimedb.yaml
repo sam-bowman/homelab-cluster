@@ -13,7 +13,7 @@ spec:
   sources:
     - helm:
         values: |
-          name: teamspeak
+          name: spacetimedb
           containers:
             - name: spacetimedb
               image: clockworklabs/spacetime:latest
