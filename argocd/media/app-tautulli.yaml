@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tautulli-k8s
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: tautulli-k8s
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: tautulli-k8s
+          containers:
+            - name: tautulli-k8s
+              image: tautulli/tautulli:latest
+              ports:
+                - name: main
+                  port: 8181
+              env:
+                - name: TS_UPDATE
+                  value: "1"
+                - name: TIME_ZONE
+                  value: "Europe/London"
+                - name: TS3SERVER_LICENSE
+                  value: "accept"
+          volumes:
+            - name: config
+              mountPath: "/config"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
