@@ -20,6 +20,7 @@ spec:
               ports:
                 - name: main
                   port: 3000
+              command: ["start"]
           service:
             enabled: true
             annotations:

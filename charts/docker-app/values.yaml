@@ -16,6 +16,7 @@
 #         value: "Europe/London"
 #       - name: TS3SERVER_LICENSE
 #         value: "accept"
+#     command: ["start"]
 # volumes:
 #   - name: ts3data
 #     mountPath: "/teamspeak/save/"

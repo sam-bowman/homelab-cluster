@@ -18,6 +18,9 @@ spec:
       {{- range $.Values.containers }}
       - name: {{ .name }}
         image:  {{ .image }}
+        {{- if .command }}
+        command: {{ .command }}
+        {{- end }}
         ports:
         {{- range .ports }}
         - containerPort: {{ .port }}
