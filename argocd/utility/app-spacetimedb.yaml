@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: spacetimedb
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: spacetimedb
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: teamspeak
+          containers:
+            - name: spacetimedb
+              image: clockworklabs/spacetime:latest
+              ports:
+                - name: main
+                  port: 9987
+          service:
+            enabled: true
+            annotations:
+              metallb.universe.tf/address-pool: metallb-pool-reserved
+              metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
+            extIP: 10.10.20.204
+          cert:
+            enabled: false
+          ingress:
+            enabled: false
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
