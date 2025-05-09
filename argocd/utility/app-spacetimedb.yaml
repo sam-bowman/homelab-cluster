@@ -20,7 +20,7 @@ spec:
               ports:
                 - name: main
                   port: 3000
-              command: ["spacetimedb"]
+              command: ["spacetime"]
               args: ["start"]
           service:
             enabled: true
