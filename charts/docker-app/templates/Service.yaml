@@ -24,11 +24,11 @@ spec:
     - protocol: TCP
       port: {{ .port }}
       targetPort: {{ .port }}
-      name: {{ .name }}-TCP
+      name: {{ .name }}-tcp
     - protocol: UDP
       port: {{ .port }}
       targetPort: {{ .port }}
-      name: {{ .name }}-UDP
+      name: {{ .name }}-udp
   {{- end }}
   {{- end }}
 {{- end }}
