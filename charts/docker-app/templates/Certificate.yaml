@@ -1,4 +1,8 @@
 {{- if eq $.Values.cert.enabled true }}
+{{- $host := $.Values.name -}}
+{{- if $.Values.ingress.hostOverride }}
+{{- $host := $.Values.ingress.hostOverride -}}
+{{- end }}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -9,7 +13,7 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: {{ $.Values.name }}.homelab.bowmans.site
+  commonName: {{ $host }}.homelab.bowmans.site
   dnsNames:
-    - {{ $.Values.name }}.homelab.bowmans.site
+    - {{ $host }}.homelab.bowmans.site
 {{- end }}

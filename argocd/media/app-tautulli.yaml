@@ -27,6 +27,9 @@ spec:
                   value: "Europe/London"
                 - name: TS3SERVER_LICENSE
                   value: "accept"
+          ingress:
+            enabled: true
+            hostOverride: tautulli
           volumes:
             - name: config
               mountPath: "/config"
