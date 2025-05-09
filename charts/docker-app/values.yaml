@@ -1,0 +1,38 @@
+# name: teamspeak
+# containers:
+#   - name: teamspeak
+#     image: ertagh/teamspeak3-server:latest-box
+#     ports:
+#       - name: voice
+#         port: 9987
+#       - name: serverquery
+#         port: 10011
+#       - name: filetransfer
+#         port: 30033
+#     env:
+#       - name: TS_UPDATE
+#         value: "1"
+#       - name: TIME_ZONE
+#         value: "Europe/London"
+#       - name: TS3SERVER_LICENSE
+#         value: "accept"
+# volumes:
+#   - name: ts3data
+#     mountPath: "/teamspeak/save/"
+service:
+  enabled: true
+  # annotations:
+  #   metallb.universe.tf/address-pool: metallb-pool-reserved
+  #   metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
+  # extIP: 10.10.20.203
+cert:
+  enabled: true
+ingress:
+  enabled: true
+serviceAccount:
+  enabled: true
+vpa:
+  enabled: true
+  minAllowed:
+    cpu: "300m"
+    memory: "300Mi"

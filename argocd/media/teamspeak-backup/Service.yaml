@@ -9,8 +9,8 @@ spec:
   ipFamilies:
   - IPv4
   ipFamilyPolicy: SingleStack
-  loadBalancerIP: 10.10.20.203
   type: LoadBalancer
+  loadBalancerIP: 10.10.20.203
   selector:
     app: teamspeak
   ports:

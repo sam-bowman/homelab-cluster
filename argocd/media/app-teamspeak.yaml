@@ -4,22 +4,55 @@ metadata:
   name: teamspeak
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: teamspeak
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - repoURL: https://github.com/sam-bowman/homelab-cluster
-    path: argocd/media/teamspeak
-    targetRevision: HEAD
+    - helm:
+        values: |
+          name: teamspeak
+          containers:
+            - name: teamspeak
+              image: ertagh/teamspeak3-server:latest-box
+              ports:
+                - name: voice
+                  port: 9987
+                - name: serverquery
+                  port: 10011
+                - name: filetransfer
+                  port: 30033
+              env:
+                - name: TS_UPDATE
+                  value: "1"
+                - name: TIME_ZONE
+                  value: "Europe/London"
+                - name: TS3SERVER_LICENSE
+                  value: "accept"
+          volumes:
+            - name: ts3data
+              mountPath: "/teamspeak/save/"
+          service:
+            enabled: true
+            annotations:
+              metallb.universe.tf/address-pool: metallb-pool-reserved
+              metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
+            extIP: 10.10.20.203
+          cert:
+            enabled: false
+          ingress:
+            enabled: false
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
   syncPolicy:
     automated:
       prune: true
       allowEmpty: true
     syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
-    - PruneLast=true
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
   revisionHistoryLimit: 2
