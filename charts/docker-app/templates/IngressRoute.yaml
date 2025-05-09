@@ -1,8 +1,4 @@
 {{- if eq $.Values.ingress.enabled true }}
-{{- $host := $.Values.name -}}
-{{- if $.Values.ingress.hostOverride }}
-{{- $host := $.Values.ingress.hostOverride -}}
-{{- end }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
@@ -12,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`{{ $host }}.homelab.bowmans.site`)
+    - match: Host(`{{ coalesce $.Value.ingress.hostOverride $.Value.name }}.homelab.bowmans.site`)
       kind: Rule
       services:
       {{- range $.Values.containers }}
