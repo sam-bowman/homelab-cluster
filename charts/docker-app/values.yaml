@@ -29,7 +29,7 @@ cert:
   enabled: true
 ingress:
   enabled: true
-  # hostOverride: abc.homelab.bowmans.site
+  # hostOverride: tautulli # This would become tautulli.homelab.bowmans.site
 serviceAccount:
   enabled: true
 vpa:
