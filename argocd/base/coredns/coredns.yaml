@@ -1,4 +1,7 @@
-# /var/lib/rancher/k3s/server/manifests/coredns.yaml
+# cp /var/lib/rancher/k3s/server/manifests/coredns.yaml /var/lib/rancher/k3s/server/manifests/coredns-custom.yaml
+# nano /var/lib/rancher/k3s/server/manifests/coredns-custom.yaml
+# add k8s_external k8s.bowmans.site
+# create /var/lib/rancher/k3s/server/manifests/coredns.yaml.skip
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -122,7 +125,7 @@ spec:
               k8s-app: kube-dns
       containers:
       - name: coredns
-        image: "rancher/mirrored-coredns-coredns:1.10.1"
+        image: "rancher/mirrored-coredns-coredns:1.12.1"
         imagePullPolicy: IfNotPresent
         resources:
           limits:
