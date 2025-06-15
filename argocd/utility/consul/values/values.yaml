@@ -2,4 +2,4 @@ client:
   enabled: true
 connectInject:
   apiGateway:
-    manageExternalCRDs: false
+    manageExternalCRDs: true
