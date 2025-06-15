@@ -1,0 +1,11 @@
+apiVersion: longhorn.io/v1beta2
+kind: BackupTarget
+metadata:
+  finalizers:
+  - longhorn.io
+  name: truenas
+  namespace: longhorn-system
+spec:
+  backupTargetURL: nfs://truenas.bowmans.site:/mnt/pool/longhorn-backups
+  credentialSecret: ""
+  pollInterval: 5m0s
