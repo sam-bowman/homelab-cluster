@@ -177,7 +177,7 @@ services:
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/proxmox-logo.png"
     subtitle: "Simplify your data center"
     tag: "homelab"
-    url: "https://pve1.bowmans.site"
+    url: "https://pve1.bowmans.site:8006"
 - name: "Network"
   icon: "fa-solid fa-network-wired"
   items:
