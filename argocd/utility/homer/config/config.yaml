@@ -161,6 +161,7 @@ services:
     tag: "utility"
     url: "https://longhorn.homelab.bowmans.site/"
   - name: "Gollum"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/gollum-logo.png"
     subtitle: "Wiki"
     tag: "utility"
     url: "https://gollum.homelab.bowmans.site/"
