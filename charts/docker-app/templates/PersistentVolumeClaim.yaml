@@ -1,4 +1,5 @@
 {{- range $.Values.volumes }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,4 +12,5 @@ spec:
       storage: 1Gi
   storageClassName: longhorn
   volumeMode: Filesystem
+---
 {{- end }}
