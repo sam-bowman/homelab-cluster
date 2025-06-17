@@ -87,6 +87,9 @@ locals {
         tdarr = {
           hostname = "tdarr"
         }
+        gollum = {
+          hostname = "gollum"
+        }
       }
     }
   }

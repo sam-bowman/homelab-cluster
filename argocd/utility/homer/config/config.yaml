@@ -160,6 +160,10 @@ services:
     subtitle: "Cloud native distributed block storage for Kubernetes"
     tag: "utility"
     url: "https://longhorn.homelab.bowmans.site/"
+  - name: "Gollum"
+    subtitle: "Wiki"
+    tag: "utility"
+    url: "https://gollum.homelab.bowmans.site/"
 - name: "Homelab"
   icon: "fa-solid fa-server"
   items:
