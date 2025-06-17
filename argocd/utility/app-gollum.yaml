@@ -21,7 +21,9 @@ spec:
                 - name: main
                   port: 4567
               command: ["/docker-run.sh"]
-              args: ["--no-edit"]
+              args: 
+                - "--no-edit"
+                - "--h1-title"
           ingress:
             enabled: true
             hostOverride: gollum
