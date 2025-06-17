@@ -17,6 +17,7 @@ spec:
           containers:
             - name: gollum
               image: gollumwiki/gollum:master
+              args: ["--no-edit"]
               ports:
                 - name: main
                   port: 4567
@@ -26,6 +27,8 @@ spec:
           volumes:
             - name: wiki
               mountPath: "/wiki"
+            - name: www-data
+              mountPath: "/home/www-data"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/docker-app
       targetRevision: main
