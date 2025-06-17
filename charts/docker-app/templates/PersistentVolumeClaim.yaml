@@ -1,7 +1,8 @@
+{{- range $.Values.volumes }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ $.Values.name }}-pvc
+  name: {{ $.Values.name }}-{{ .name }}-pvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -10,3 +11,4 @@ spec:
       storage: 1Gi
   storageClassName: longhorn
   volumeMode: Filesystem
+{{- end }}
