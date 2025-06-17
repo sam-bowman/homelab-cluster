@@ -63,6 +63,9 @@ locals {
         coder = {
           hostname = "coder.homelab"
         }
+        gollum = {
+          hostname = "gollum.homelab"
+        }
         bazarr = {
           hostname = "bazarr"
         }
@@ -86,9 +89,6 @@ locals {
         }
         tdarr = {
           hostname = "tdarr"
-        }
-        gollum = {
-          hostname = "gollum"
         }
       }
     }
