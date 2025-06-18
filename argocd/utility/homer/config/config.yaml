@@ -201,3 +201,11 @@ services:
     subtitle: "a true open source security platform and more"
     tag: "network"
     url: "https://firewall.bowmans.site"
+- name: "Gaming"
+  icon: "fa-solid fa-gamepad"
+  items:
+  - name: "Pterodactyl"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/pterodactyl-logo.svg"
+    subtitle: "Make game servers a first class citizen on your platform."
+    tag: "gaming"
+    url: "https://pterodactyl.bowmans.site"
