@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ext-ingress-route-{{ .Values.name }}
+  name: ext-ingress-route-{{ .Values.name | replace "." "-" }}
 spec:
   entryPoints:
     - websecure
@@ -9,7 +9,7 @@ spec:
     - match: Host(`{{ .Values.name }}.bowmans.site`)
       kind: Rule
       services:
-      - name: ext-svc-{{ .Values.name }}
+      - name: ext-svc-{{ .Values.name | replace "." "-" }}
         port: {{ .Values.port }}
   tls:
-    secretName: ext-cert-{{ .Values.name }}
+    secretName: ext-cert-{{ .Values.name | replace "." "-" }}
