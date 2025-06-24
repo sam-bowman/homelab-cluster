@@ -20,12 +20,18 @@ spec:
               ports:
                 - name: main
                   port: 4567
+              command: ["/docker-run.sh"]
+              args: 
+                - "--no-edit"
+                - "--h1-title"
           ingress:
             enabled: true
             hostOverride: gollum
           volumes:
             - name: wiki
               mountPath: "/wiki"
+            - name: www-data
+              mountPath: "/home/www-data"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/docker-app
       targetRevision: main

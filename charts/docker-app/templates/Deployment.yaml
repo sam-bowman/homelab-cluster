@@ -44,7 +44,7 @@ spec:
       {{- range $.Values.volumes }}
       - name: {{ .name }}
         persistentVolumeClaim:
-          claimName: {{ $.Values.name }}-pvc
+          claimName: {{ $.Values.name }}-{{ .name }}-pvc
       {{- end }}
       dnsConfig:
         nameservers:
