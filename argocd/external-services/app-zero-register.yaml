@@ -13,7 +13,7 @@ spec:
   sources:
     - helm:
         values: |
-          name: register.zero
+          name: register-zero
           port: 5000
           externalName: zero.bowmans.site
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
