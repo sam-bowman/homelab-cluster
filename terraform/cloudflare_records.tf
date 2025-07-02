@@ -18,7 +18,7 @@ resource "cloudflare_dns_record" "alias" {
   name            = "${replace(lower(each.value.hostname),".","-")}"
   type            = "CNAME"
   comment         = try(each.value.description, each.value.hostname)
-  content         = coalesce(each.value.cf_content, "${replace(lower(cloudflare_dns_record.record[each.value.alias_of].name),".","-")}.${data.cloudflare_zone.bowmans_site.name}")
+  content         = try(each.value.cf_content, "${replace(lower(cloudflare_dns_record.record[each.value.alias_of].name),".","-")}.${data.cloudflare_zone.bowmans_site.name}")
   proxied         = each.value.cf_proxy_enabled
   ttl             = 1
 }
