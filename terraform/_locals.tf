@@ -4,34 +4,42 @@ locals {
     "k3scluster01" = {
       hostname        = "K3SCLUSTER01"
       ip              = "10.10.20.60"
+      cf_enabled      = false
     }
     "k3scluster02" = {
       hostname        = "K3SCLUSTER02"
       ip              = "10.10.20.61"
+      cf_enabled      = false
     }
     "k3scluster03" = {
       hostname        = "K3SCLUSTER03"
       ip              = "10.10.20.62"
+      cf_enabled      = false
     }
     "k3scluster04" = {
       hostname        = "K3SCLUSTER04"
       ip              = "10.10.20.63"
+      cf_enabled      = false
     }
     "truenas" = {
       hostname        = "TRUENAS"
       ip              = "10.10.20.50"
+      cf_enabled      = false
     }
     "smam_desktop_2" = {
       hostname        = "SMAM-DESKTOP-2"
       ip              = "10.10.20.52"
+      cf_enabled      = false
     }
     "pve1" = {
       hostname        = "PVE1"
       ip              = "10.10.20.70"
+      cf_enabled      = false
     }
     "vm_pterodactyl" = {
       hostname        = "PTERODACTYL"
       ip              = "10.10.20.80"
+      cf_enabled      = false
     }
     "vm_zero" = {
       hostname        = "ZERO"
