@@ -40,7 +40,7 @@ locals {
       hostname          = "PTERODACTYL"
       ip                = "10.10.20.80"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
     }
@@ -48,7 +48,7 @@ locals {
       hostname          = "ZERO"
       ip                = "10.10.20.81"
       cf_enabled        = true
-      cd_record_type    = "CNAME"
+      cf_record_type    = "CNAME"
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
     }
@@ -56,7 +56,7 @@ locals {
       hostname          = "TRAEFIK.HOMELAB"
       ip                = "10.10.20.101"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
     }
@@ -65,7 +65,7 @@ locals {
     "factorio" = {
       hostname          = "factorio"
       cf_enabled        = true
-      cd_record_type    = "CNAME"
+      cf_record_type    = "CNAME"
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
       alias_of          = "vm_pterodactyl"
@@ -73,7 +73,7 @@ locals {
     "minecraft" = {
       hostname          = "minecraft"
       cf_enabled        = true
-      cd_record_type    = "CNAME"
+      cf_record_type    = "CNAME"
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
       alias_of          = "vm_pterodactyl"
@@ -88,7 +88,7 @@ locals {
     "satisfactory" = {
       hostname          = "satisfactory"
       cf_enabled        = true
-      cd_record_type    = "CNAME"
+      cf_record_type    = "CNAME"
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
       alias_of          = "vm_pterodactyl"
@@ -96,7 +96,7 @@ locals {
     "api" = {
       hostname          = "api.register.zero"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "vm_zero"
@@ -104,7 +104,7 @@ locals {
     "argocd_homelab" = {
       hostname          = "argocd.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -112,7 +112,7 @@ locals {
     "bazarr" = {
       hostname          = "bazarr"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -120,7 +120,7 @@ locals {
     "coder_homelab" = {
       hostname          = "coder.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -128,7 +128,7 @@ locals {
     "consul_homelab" = {
       hostname          = "consul.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -136,7 +136,7 @@ locals {
     "dashboard_homelab" = {
       hostname          = "dashboard.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -144,7 +144,7 @@ locals {
     "gollum_homelab" = {
       hostname          = "gollum.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -152,7 +152,7 @@ locals {
     "homer_homelab" = {
       hostname          = "homer.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -160,7 +160,7 @@ locals {
     "longhorn_homelab" = {
       hostname          = "longhorn.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -168,7 +168,7 @@ locals {
     "maintainerr_homelab" = {
       hostname          = "maintainerr.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -176,7 +176,7 @@ locals {
     "netbox_homelab" = {
       hostname          = "netbox.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -184,7 +184,7 @@ locals {
     "overseerr_homelab" = {
       hostname          = "overseerr.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -192,7 +192,7 @@ locals {
     "plex" = {
       hostname          = "plex"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -200,7 +200,7 @@ locals {
     "radarr" = {
       hostname          = "radarr"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -208,7 +208,7 @@ locals {
     "readarr" = {
       hostname          = "readarr"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -216,7 +216,7 @@ locals {
     "register_zero" = {
       hostname          = "register-zero"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -224,7 +224,7 @@ locals {
     "requestrr_homelab" = {
       hostname          = "requestrr.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -232,7 +232,7 @@ locals {
     "sabnzbd" = {
       hostname          = "sabnzbd"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -240,7 +240,7 @@ locals {
     "sonarr" = {
       hostname          = "sonarr"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -248,7 +248,7 @@ locals {
     "tautulli_homelab" = {
       hostname          = "tautulli.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -256,7 +256,7 @@ locals {
     "tdarr" = {
       hostname          = "tdarr"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -264,7 +264,7 @@ locals {
     "titlecardmaker" = {
       hostname          = "titlecardmaker"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -272,7 +272,7 @@ locals {
     "unifi_homelab" = {
       hostname          = "unifi.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
@@ -280,7 +280,7 @@ locals {
     "vault_homelab" = {
       hostname          = "vault.homelab"
       cf_enabled        = true
-      cd_record_type    = "A"
+      cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
       alias_of          = "traefik_homelab"
