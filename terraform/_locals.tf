@@ -73,13 +73,13 @@ locals {
       cf_proxy_enabled  = false
       alias_of          = "vm_pterodactyl"
     }
-    "wildcard_minecraft" = {
-      hostname          = "*.minecraft"
-      cf_enabled        = true
-      public_ip         = oci_core_instance.ubuntu_vps.public_ip
-      cf_proxy_enabled  = false
-      alias_of          = "vm_pterodactyl"
-    }
+    # "wildcard_minecraft" = {
+    #   hostname          = "*.minecraft"
+    #   cf_enabled        = true
+    #   public_ip         = oci_core_instance.ubuntu_vps.public_ip
+    #   cf_proxy_enabled  = false
+    #   alias_of          = "vm_pterodactyl"
+    # }
     "satisfactory" = {
       hostname          = "satisfactory"
       cf_enabled        = true
