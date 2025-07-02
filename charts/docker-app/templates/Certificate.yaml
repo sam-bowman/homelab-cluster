@@ -3,13 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ $.Values.name }}-certificate
+  name: "{{ $.Values.name }}-certificate"
 spec:
-  secretName: {{ $.Values.name }}-certificate
+  secretName: "{{ $.Values.name }}-certificate"
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: {{ coalesce $.Values.ingress.hostOverride $.Values.name }}.homelab.bowmans.site
+  commonName: "{{ coalesce $.Values.ingress.hostOverride $.Values.name }}-homelab.bowmans.site"
   dnsNames:
-    - {{ coalesce $.Values.ingress.hostOverride $.Values.name }}.homelab.bowmans.site
+    - "{{ coalesce $.Values.ingress.hostOverride $.Values.name }}-homelab.bowmans.site"
 {{- end }}
