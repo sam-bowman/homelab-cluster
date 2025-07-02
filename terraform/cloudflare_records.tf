@@ -10,6 +10,7 @@ resource "cloudflare_dns_record" "record" {
   comment         = try(each.value.description, each.value.hostname)
   content         = each.value.public_ip
   proxied         = each.value.cf_proxy_enabled
+  ttl             = 1
 }
 resource "cloudflare_dns_record" "alias" {
   for_each        = { for alias_key, alias in local.aliases : alias_key => alias if alias.cf_enabled }
@@ -19,4 +20,5 @@ resource "cloudflare_dns_record" "alias" {
   comment         = try(each.value.description, each.value.hostname)
   content         = "${cloudflare_dns_record.record[each.value.alias_of].name}.${cloudflare_dns_record.record[each.value.alias_of].domain}"
   proxied         = each.value.cf_proxy_enabled
+  ttl             = 1
 }
