@@ -1,5 +1,5 @@
 data "cloudflare_zone" "bowmans_site" {
-  zone_id = "469677242a458fb6aa0384da3becf086"
+  zone_id = "6cdcf78c6b27e9e8b8bb8f8cb758abca"
 }
 
 resource "cloudflare_dns_record" "record" {
