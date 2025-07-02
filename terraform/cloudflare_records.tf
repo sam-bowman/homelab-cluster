@@ -16,9 +16,9 @@ resource "cloudflare_dns_record" "alias" {
   for_each        = { for alias_key, alias in local.aliases : alias_key => alias if alias.cf_enabled }
   zone_id         = data.cloudflare_zone.bowmans_site.zone_id
   name            = "${replace(lower(each.value.hostname),".","-")}"
-  type            = each.value.cf_record_type
+  type            = "CNAME"
   comment         = try(each.value.description, each.value.hostname)
-  content         = "${replace(lower(cloudflare_dns_record.record[each.value.alias_of].name),".","-")}.${data.cloudflare_zone.bowmans_site.name}"
+  content         = coalesce(each.value.cf_content, "${replace(lower(cloudflare_dns_record.record[each.value.alias_of].name),".","-")}.${data.cloudflare_zone.bowmans_site.name}")
   proxied         = each.value.cf_proxy_enabled
   ttl             = 1
 }
