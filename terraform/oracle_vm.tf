@@ -163,13 +163,6 @@ resource "oci_core_internet_gateway" "this" {
   display_name = oci_core_vcn.this.display_name
 }
 
-resource "oci_core_internet_gateway" "this" {
-  compartment_id = oci_identity_compartment.this.id
-  vcn_id         = oci_core_vcn.this.id
-
-  display_name = oci_core_vcn.this.display_name
-}
-
 resource "oci_core_default_route_table" "this" {
   manage_default_resource_id = oci_core_vcn.this.default_route_table_id
 
