@@ -1,96 +1,249 @@
 locals {
   default_domain = "bowmans.site"
-  overrides = {
-    k3scluster01 = {
+  records = {
+    "k3scluster01" = {
       hostname        = "K3SCLUSTER01"
       ip              = "10.10.20.60"
     }
-    k3scluster02 = {
+    "k3scluster02" = {
       hostname        = "K3SCLUSTER02"
       ip              = "10.10.20.61"
     }
-    k3scluster03 = {
+    "k3scluster03" = {
       hostname        = "K3SCLUSTER03"
       ip              = "10.10.20.62"
     }
-    k3scluster04 = {
+    "k3scluster04" = {
       hostname        = "K3SCLUSTER04"
       ip              = "10.10.20.63"
     }
-    traefik = {
-      hostname        = "traefik.homelab"
+    "truenas" = {
+      hostname        = "TRUENAS"
+      ip              = "10.10.20.50"
+    }
+    "smam_desktop_2" = {
+      hostname        = "SMAM-DESKTOP-2"
+      ip              = "10.10.20.52"
+    }
+    "pve1" = {
+      hostname        = "PVE1"
+      ip              = "10.10.20.70"
+    }
+    "vm_pterodactyl" = {
+      hostname        = "PTERODACTYL"
+      ip              = "10.10.20.80"
+    }
+    "vm_zero" = {
+      hostname        = "ZERO"
+      ip              = "10.10.20.81"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = false
+    }
+    "traefik_homelab" = {
+      hostname        = "TRAEFIK.HOMELAB"
       ip              = "10.10.20.101"
-      aliases         = {
-        argocd = {
-          hostname = "argocd.homelab"
-        }
-        consul = {
-          hostname = "consul.homelab"
-        }
-        homer = {
-          hostname = "homer.homelab"
-        }
-        dashboard = {
-          hostname = "dashboard.homelab"
-        }
-        vault = {
-          hostname = "vault.homelab"
-        }
-        unifi = {
-          hostname = "unifi.homelab"
-        }
-        traefik = {
-          hostname = "traefik.homelab"
-        }
-        netbox = {
-          hostname = "netbox.homelab"
-        }
-        longhorn = {
-          hostname = "longhorn.homelab"
-        }
-        requestrr = {
-          hostname = "requestrr.homelab"
-        }
-        overseerr = {
-          hostname = "overseerr.homelab"
-        }
-        maintainerr = {
-          hostname = "maintainerr.homelab"
-        }
-        tautulli = {
-          hostname = "tautulli.homelab"
-        }
-        coder = {
-          hostname = "coder.homelab"
-        }
-        gollum = {
-          hostname = "gollum.homelab"
-        }
-        bazarr = {
-          hostname = "bazarr"
-        }
-        plex = {
-          hostname = "plex"
-        }
-        radarr = {
-          hostname = "radarr"
-        }
-        sabnzbd = {
-          hostname = "sabnzbd"
-        }
-        sonarr = {
-          hostname = "sonarr"
-        }
-        readarr = {
-          hostname = "readarr"
-        }
-        titlecardmaker = {
-          hostname = "titlecardmaker"
-        }
-        tdarr = {
-          hostname = "tdarr"
-        }
-      }
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+    }
+  }
+  aliases         = {
+    "factorio" = {
+      hostname        = "factorio"
+      cf_waf_enabled  = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = false
+      alias_of        = "vm_pterodactyl"
+    }
+    "minecraft" = {
+      hostname        = "minecraft"
+      cf_waf_enabled  = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = false
+      alias_of        = "vm_pterodactyl"
+    }
+    "wildcard_minecraft" = {
+      hostname        = "*.minecraft"
+      cf_waf_enabled  = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = false
+      alias_of        = "vm_pterodactyl"
+    }
+    "satisfactory" = {
+      hostname        = "satisfactory"
+      cf_waf_enabled  = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = false
+      alias_of        = "vm_pterodactyl"
+    }
+    "api" = {
+      hostname        = "api.register.zero"
+      cf_waf_enabled  = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "vm_zero"
+    }
+    "argocd_homelab" = {
+      hostname        = "argocd.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "bazarr" = {
+      hostname        = "bazarr"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "coder_homelab" = {
+      hostname        = "coder.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "consul_homelab" = {
+      hostname        = "consul.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "dashboard_homelab" = {
+      hostname        = "dashboard.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "gollum_homelab" = {
+      hostname        = "gollum.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "homer_homelab" = {
+      hostname        = "homer.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "longhorn_homelab" = {
+      hostname        = "longhorn.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "maintainerr_homelab" = {
+      hostname        = "maintainerr.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "netbox_homelab" = {
+      hostname        = "netbox.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "overseerr_homelab" = {
+      hostname        = "overseerr.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "plex" = {
+      hostname        = "plex"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "radarr" = {
+      hostname        = "radarr"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "readarr" = {
+      hostname        = "readarr"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "register_zero" = {
+      hostname        = "register-zero"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "requestrr_homelab" = {
+      hostname        = "requestrr.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "sabnzbd" = {
+      hostname        = "sabnzbd"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "sonarr" = {
+      hostname        = "sonarr"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "tautulli_homelab" = {
+      hostname        = "tautulli.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "tdarr" = {
+      hostname        = "tdarr"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "titlecardmaker" = {
+      hostname        = "titlecardmaker"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "unifi_homelab" = {
+      hostname        = "unifi.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
+    }
+    "vault_homelab" = {
+      hostname        = "vault.homelab"
+      cf_enabled      = true
+      public_ip       = "1.1.1.1"
+      cf_waf_enabled  = true
+      alias_of        = "traefik_homelab"
     }
   }
 }

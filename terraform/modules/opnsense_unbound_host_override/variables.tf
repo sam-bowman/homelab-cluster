@@ -24,8 +24,3 @@ variable "ip" {
   description     = "(Required ; String) Target IP for the host override."
   type            = string
 }
-
-variable "aliases" {
-  description     = "(Required ; Map) Aliases tied to this override"
-  type            = map
-}
