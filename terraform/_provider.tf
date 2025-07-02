@@ -14,3 +14,11 @@ terraform {
     }
   }
 }
+
+provider "oci" {
+  region        = var.region
+  fingerprint   = var.fingerprint
+  private_key   = var.ssh_private_key
+  tenancy_ocid  = var.tenancy_ocid
+  user_ocid     = var.user_ocid
+}

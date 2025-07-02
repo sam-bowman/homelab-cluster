@@ -59,35 +59,35 @@ locals {
   aliases         = {
     "factorio" = {
       hostname        = "factorio"
-      cf_waf_enabled  = true
+      cf_enabled      = true
       public_ip       = "1.1.1.1"
       cf_waf_enabled  = false
       alias_of        = "vm_pterodactyl"
     }
     "minecraft" = {
       hostname        = "minecraft"
-      cf_waf_enabled  = true
+      cf_enabled      = true
       public_ip       = "1.1.1.1"
       cf_waf_enabled  = false
       alias_of        = "vm_pterodactyl"
     }
     "wildcard_minecraft" = {
       hostname        = "*.minecraft"
-      cf_waf_enabled  = true
+      cf_enabled      = true
       public_ip       = "1.1.1.1"
       cf_waf_enabled  = false
       alias_of        = "vm_pterodactyl"
     }
     "satisfactory" = {
       hostname        = "satisfactory"
-      cf_waf_enabled  = true
+      cf_enabled      = true
       public_ip       = "1.1.1.1"
       cf_waf_enabled  = false
       alias_of        = "vm_pterodactyl"
     }
     "api" = {
       hostname        = "api.register.zero"
-      cf_waf_enabled  = true
+      cf_enabled      = true
       public_ip       = "1.1.1.1"
       cf_waf_enabled  = true
       alias_of        = "vm_zero"
