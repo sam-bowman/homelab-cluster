@@ -4,9 +4,6 @@ variable "oracle_tenancy_ocid" {
 variable "oracle_user_ocid" {
   type = string
 }
-variable "oracle_ssh_private_key" {
-  type = string
-}
 variable "oracle_ssh_private_key_base64" {
   type = string
 }
