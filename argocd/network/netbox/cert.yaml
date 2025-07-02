@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: netbox.homelab.bowmans.site
+  commonName: netbox-homelab.bowmans.site
   dnsNames:
-    - netbox.homelab.bowmans.site
+    - netbox-homelab.bowmans.site

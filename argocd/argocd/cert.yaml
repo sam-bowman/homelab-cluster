@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: argocd.homelab.bowmans.site
+  commonName: argocd-homelab.bowmans.site
   dnsNames:
-    - argocd.homelab.bowmans.site
+    - argocd-homelab.bowmans.site

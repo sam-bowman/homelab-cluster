@@ -7,7 +7,7 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: coder.homelab.bowmans.site
+  commonName: coder-homelab.bowmans.site
   dnsNames:
-    - coder.homelab.bowmans.site
-    - "*.coder.homelab.bowmans.site"
+    - coder-homelab.bowmans.site
+    - "*.coder-homelab.bowmans.site"

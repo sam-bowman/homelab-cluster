@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`argocd.homelab.bowmans.site`)
+    - match: Host(`argocd-homelab.bowmans.site`)
       kind: Rule
       services:
       - name: argocd-server

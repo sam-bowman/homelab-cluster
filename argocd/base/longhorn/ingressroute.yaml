@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`longhorn.homelab.bowmans.site`)
+    - match: Host(`longhorn-homelab.bowmans.site`)
       kind: Rule
       services:
       - name: longhorn-frontend

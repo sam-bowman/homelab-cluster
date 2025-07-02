@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostRegexp(`{host:.*\.coder\.homelab\.bowmans\.site}`)
+    - match: HostRegexp(`{host:.*\.coder\-homelab\.bowmans\.site}`)
       kind: Rule
       services:
       - name: coder

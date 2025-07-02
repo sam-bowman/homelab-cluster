@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: unifi.homelab.bowmans.site
+  commonName: unifi-homelab.bowmans.site
   dnsNames:
-    - unifi.homelab.bowmans.site
+    - unifi-homelab.bowmans.site

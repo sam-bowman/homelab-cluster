@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`homer.homelab.bowmans.site`)
+    - match: Host(`homer-homelab.bowmans.site`)
       kind: Rule
       services:
       - name: homer
