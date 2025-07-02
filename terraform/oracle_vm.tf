@@ -7,6 +7,9 @@ variable "user_ocid" {
 variable "ssh_private_key" {
   type = string
 }
+variable "ssh_private_key_base64" {
+  type = string
+}
 variable "ssh_public_key" {
   type = string
 }
