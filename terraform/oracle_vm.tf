@@ -10,7 +10,7 @@ variable "oracle_ssh_private_key" {
 variable "oracle_ssh_private_key_base64" {
   type = string
 }
-variable "oracle_ssh_public_key" {
+variable "oracle_ssh_public_key_base64" {
   type = string
 }
 variable "oracle_fingerprint" {
@@ -113,7 +113,7 @@ resource "oci_core_instance" "ubuntu_vps" {
   preserve_boot_volume = false
 
   metadata = {
-    ssh_authorized_keys = var.oracle_ssh_public_key
+    ssh_authorized_keys = base64decode(var.oracle_ssh_public_key_base64)
     user_data           = data.cloudinit_config.this["ubuntu"].rendered
   }
 
