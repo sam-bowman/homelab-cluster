@@ -16,9 +16,9 @@ terraform {
 }
 
 provider "oci" {
-  region        = var.region
-  fingerprint   = var.fingerprint
-  private_key   = base64decode(var.ssh_private_key_base64)
-  tenancy_ocid  = var.tenancy_ocid
-  user_ocid     = var.user_ocid
+  region        = var.oracle_region
+  fingerprint   = var.oracle_fingerprint
+  private_key   = base64decode(var.oracle_ssh_private_key_base64)
+  tenancy_ocid  = var.oracle_tenancy_ocid
+  user_ocid     = var.oracle_user_ocid
 }

@@ -1,22 +1,22 @@
-variable "tenancy_ocid" {
+variable "oracle_tenancy_ocid" {
   type = string
 }
-variable "user_ocid" {
+variable "oracle_user_ocid" {
   type = string
 }
-variable "ssh_private_key" {
+variable "oracle_ssh_private_key" {
   type = string
 }
-variable "ssh_private_key_base64" {
+variable "oracle_ssh_private_key_base64" {
   type = string
 }
-variable "ssh_public_key" {
+variable "oracle_ssh_public_key" {
   type = string
 }
-variable "fingerprint" {
+variable "oracle_fingerprint" {
   type = string
 }
-variable "region" {
+variable "oracle_region" {
   type = string
 }
 
@@ -33,11 +33,11 @@ locals {
 }
 
 data "oci_identity_availability_domains" "this" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.oracle_tenancy_ocid
 }
 
 resource "oci_identity_compartment" "this" {
-  compartment_id = var.tenancy_ocid
+  compartment_id = var.oracle_tenancy_ocid
   description    = "my compartment"
   name           = replace("my-compartment", " ", "-")
 
@@ -113,7 +113,7 @@ resource "oci_core_instance" "ubuntu_vps" {
   preserve_boot_volume = false
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key
+    ssh_authorized_keys = var.oracle_ssh_public_key
     user_data           = data.cloudinit_config.this["ubuntu"].rendered
   }
 
