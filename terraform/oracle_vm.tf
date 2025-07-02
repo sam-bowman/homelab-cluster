@@ -86,6 +86,15 @@ data "oci_core_images" "this" {
   state            = "AVAILABLE"
 }
 
+resource "oci_core_subnet" "this" {
+  cidr_block     = oci_core_vcn.this.cidr_blocks.0
+  compartment_id = oci_identity_compartment.this.id
+  vcn_id         = oci_core_vcn.this.id
+
+  display_name = oci_core_vcn.this.display_name
+  dns_label    = "subnet"
+}
+
 resource "oci_core_instance" "ubuntu_vps" {
   availability_domain = one(
     [
@@ -127,4 +136,17 @@ resource "oci_core_instance" "ubuntu_vps" {
   lifecycle {
     ignore_changes = [source_details.0.source_id]
   }
+}
+
+data "oci_core_private_ips" "this" {
+  ip_address = oci_core_instance.ubuntu_vps.private_ip
+  subnet_id  = oci_core_subnet.this.id
+}
+
+resource "oci_core_public_ip" "this" {
+  compartment_id = oci_identity_compartment.this.id
+  lifetime       = "RESERVED"
+
+  display_name  = oci_core_instance.ubuntu_vps.display_name
+  private_ip_id = data.oci_core_private_ips.this.private_ips.0.id
 }
