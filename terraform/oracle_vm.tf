@@ -219,6 +219,18 @@ resource "oci_core_default_security_list" "this" {
     }
   }
 
+  ingress_security_rules {
+    protocol    = "all"
+    source      = "10.10.0.0/16"
+    description = "Private traffic for all protocols"
+  }
+
+  ingress_security_rules {
+    protocol    = "all"
+    source      = "10.20.0.0/16"
+    description = "Private traffic for all protocols"
+  }
+
   egress_security_rules {
     destination = "0.0.0.0/0"
     protocol    = "all"
