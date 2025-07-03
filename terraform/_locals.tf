@@ -70,12 +70,6 @@ locals {
     }
   }
   aliases         = {
-    "fossorial_pangolin" = {
-      hostname          = "pangolin"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
-    }
     "factorio" = {
       hostname          = "factorio"
       cf_enabled        = true
