@@ -179,23 +179,43 @@ resource "oci_core_default_route_table" "this" {
 resource "oci_core_default_security_list" "this" {
   manage_default_resource_id = oci_core_vcn.this.default_security_list_id
 
-  dynamic "ingress_security_rules" {
-    for_each = [22, 80, 443, 51820]
-    iterator = port
-    content {
-      protocol = local.protocol_number.tcp
-      source   = "0.0.0.0/0"
+  ingress_security_rules {
+    protocol    = local.protocol_number.tcp
+    source      = "0.0.0.0/0"
+    description = "SSH traffic from any origin"
+    tcp_options {
+      min = "22"
+      max = "22"
+    }
+  }
 
-      description = "SSH and HTTPS traffic from any origin"
+  ingress_security_rules {
+    protocol    = local.protocol_number.tcp
+    source      = "0.0.0.0/0"
+    description = "HTTP traffic from any origin"
+    tcp_options {
+      min = "80"
+      max = "80"
+    }
+  }
 
-      tcp_options {
-        max = port.value
-        min = port.value
-      }
-      udp_options {
-        max = port.value
-        min = port.value
-      }
+  ingress_security_rules {
+    protocol    = local.protocol_number.tcp
+    source      = "0.0.0.0/0"
+    description = "HTTPS traffic from any origin"
+    tcp_options {
+      min = "443"
+      max = "443"
+    }
+  }
+
+  ingress_security_rules {
+    protocol    = local.protocol_number.tcp
+    source      = "0.0.0.0/0"
+    description = "Wireguard traffic from any origin"
+    tcp_options {
+      min = "51820"
+      max = "51820"
     }
   }
 
