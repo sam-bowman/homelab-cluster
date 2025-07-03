@@ -210,7 +210,7 @@ resource "oci_core_default_security_list" "this" {
   }
 
   ingress_security_rules {
-    protocol    = local.protocol_number.tcp
+    protocol    = local.protocol_number.udp
     source      = "0.0.0.0/0"
     description = "Wireguard traffic from any origin"
     tcp_options {
