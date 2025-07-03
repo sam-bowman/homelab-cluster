@@ -180,7 +180,7 @@ resource "oci_core_default_security_list" "this" {
   manage_default_resource_id = oci_core_vcn.this.default_security_list_id
 
   dynamic "ingress_security_rules" {
-    for_each = [22, 80, 443]
+    for_each = [22, 80, 443, 51820]
     iterator = port
     content {
       protocol = local.protocol_number.tcp
@@ -189,6 +189,10 @@ resource "oci_core_default_security_list" "this" {
       description = "SSH and HTTPS traffic from any origin"
 
       tcp_options {
+        max = port.value
+        min = port.value
+      }
+      udp_options {
         max = port.value
         min = port.value
       }
