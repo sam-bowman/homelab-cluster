@@ -213,7 +213,7 @@ resource "oci_core_default_security_list" "this" {
     protocol    = local.protocol_number.udp
     source      = "0.0.0.0/0"
     description = "Wireguard traffic from any origin"
-    tcp_options {
+    udp_options {
       min = "51820"
       max = "51820"
     }
