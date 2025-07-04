@@ -187,6 +187,7 @@ resource "oci_core_default_security_list" "this" {
       min = "22"
       max = "22"
     }
+    stateless = false
   }
 
   ingress_security_rules {
@@ -197,6 +198,7 @@ resource "oci_core_default_security_list" "this" {
       min = "80"
       max = "80"
     }
+    stateless = false
   }
 
   ingress_security_rules {
@@ -207,6 +209,7 @@ resource "oci_core_default_security_list" "this" {
       min = "443"
       max = "443"
     }
+    stateless = false
   }
 
   ingress_security_rules {
@@ -217,18 +220,27 @@ resource "oci_core_default_security_list" "this" {
       min = "51820"
       max = "51820"
     }
+    stateless = false
+  }
+
+  ingress_security_rules {
+    protocol    = local.protocol_number.icmp
+    source      = "0.0.0.0/0"
+    description = "ICMP"
   }
 
   ingress_security_rules {
     protocol    = "all"
     source      = "10.10.0.0/16"
     description = "Private traffic for all protocols"
+    stateless = false
   }
 
   ingress_security_rules {
     protocol    = "all"
     source      = "10.20.0.0/16"
     description = "Private traffic for all protocols"
+    stateless = false
   }
 
   egress_security_rules {
