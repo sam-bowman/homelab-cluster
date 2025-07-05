@@ -44,12 +44,12 @@ locals {
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
     }
-    "ubuntu_vps_seondary" = {
+    "ubuntu_vps_secondary" = {
       hostname          = "UBUNTU-VPS-SECONDARY"
-      ip                = oci_core_instance.ubuntu_vps_seondary.public_ip
+      ip                = oci_core_instance.ubuntu_vps_secondary.public_ip
       cf_enabled        = true
       cf_record_type    = "A"
-      cf_content        = oci_core_instance.ubuntu_vps_seondary.public_ip
+      cf_content        = oci_core_instance.ubuntu_vps_secondary.public_ip
       cf_proxy_enabled  = true
     }
     "vm_pterodactyl" = {
