@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address = "consul-homelab.bowmans.site"
+    address = "consul.bowmans.site"
     scheme  = "https"
     path    = "terraform/fw-config-state.tfstate"
   }

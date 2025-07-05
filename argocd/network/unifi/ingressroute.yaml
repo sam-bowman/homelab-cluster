@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`unifi-homelab.bowmans.site`)
+    - match: Host(`unifi.bowmans.site`)
       kind: Rule
       services:
       - name: unifi

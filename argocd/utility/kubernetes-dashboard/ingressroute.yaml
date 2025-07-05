@@ -15,7 +15,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`dashboard-homelab.bowmans.site`)
+    - match: Host(`dashboard.bowmans.site`)
       kind: Rule
       services:
       - name: kubernetes-dashboard-kong-proxy

@@ -7,6 +7,6 @@ export const options = {
 };
 
 export default function() {
-  http.get('https://homer.homelab.bowmans.site');
+  http.get('https://homer.bowmans.site');
   sleep(1);
 }

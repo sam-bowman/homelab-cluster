@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`consul-homelab.bowmans.site`)
+    - match: Host(`consul.bowmans.site`)
       kind: Rule
       services:
       - name: hashicorp-consul-consul-server

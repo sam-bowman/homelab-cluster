@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: longhorn-homelab.bowmans.site
+  commonName: longhorn.bowmans.site
   dnsNames:
-    - longhorn-homelab.bowmans.site
+    - longhorn.bowmans.site

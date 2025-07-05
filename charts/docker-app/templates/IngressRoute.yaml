@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`{{ coalesce $.Values.ingress.hostOverride $.Values.name }}-homelab.bowmans.site`)
+    - match: Host(`{{ coalesce $.Values.ingress.hostOverride $.Values.name }}.bowmans.site`)
       kind: Rule
       services:
       {{- range $.Values.containers }}

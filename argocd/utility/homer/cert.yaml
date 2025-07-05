@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: homer-homelab.bowmans.site
+  commonName: homer.bowmans.site
   dnsNames:
-    - homer-homelab.bowmans.site
+    - homer.bowmans.site

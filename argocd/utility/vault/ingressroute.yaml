@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`vault-homelab.bowmans.site`)
+    - match: Host(`vault.bowmans.site`)
       kind: Rule
       services:
       - name: hashicorp-vault

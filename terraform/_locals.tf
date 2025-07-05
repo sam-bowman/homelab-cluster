@@ -60,8 +60,8 @@ locals {
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
     }
-    "traefik_homelab" = {
-      hostname          = "TRAEFIK-HOMELAB"
+    "traefik" = {
+      hostname          = "TRAEFIK"
       ip                = "10.10.20.101"
       cf_enabled        = true
       cf_record_type    = "A"
@@ -104,143 +104,143 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "vm_zero"
     }
-    "argocd_homelab" = {
-      hostname          = "argocd-homelab"
+    "argocd" = {
+      hostname          = "argocd"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "bazarr" = {
       hostname          = "bazarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "coder_homelab" = {
-      hostname          = "coder-homelab"
+    "coder" = {
+      hostname          = "coder"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "consul_homelab" = {
-      hostname          = "consul-homelab"
+    "consul" = {
+      hostname          = "consul"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "dashboard_homelab" = {
-      hostname          = "dashboard-homelab"
+    "dashboard" = {
+      hostname          = "dashboard"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "gollum_homelab" = {
-      hostname          = "gollum-homelab"
+    "gollum" = {
+      hostname          = "gollum"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "homer_homelab" = {
-      hostname          = "homer-homelab"
+    "homer" = {
+      hostname          = "homer"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "longhorn_homelab" = {
-      hostname          = "longhorn-homelab"
+    "longhorn" = {
+      hostname          = "longhorn"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "maintainerr_homelab" = {
-      hostname          = "maintainerr-homelab"
+    "maintainerr" = {
+      hostname          = "maintainerr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "netbox_homelab" = {
-      hostname          = "netbox-homelab"
+    "netbox" = {
+      hostname          = "netbox"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "overseerr_homelab" = {
-      hostname          = "overseerr-homelab"
+    "overseerr" = {
+      hostname          = "overseerr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "plex" = {
       hostname          = "plex"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "radarr" = {
       hostname          = "radarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "readarr" = {
       hostname          = "readarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "register_zero" = {
       hostname          = "register-zero"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "requestrr_homelab" = {
-      hostname          = "requestrr-homelab"
+    "requestrr" = {
+      hostname          = "requestrr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "sabnzbd" = {
       hostname          = "sabnzbd"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "sonarr" = {
       hostname          = "sonarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "tautulli_homelab" = {
-      hostname          = "tautulli-homelab"
+    "tautulli" = {
+      hostname          = "tautulli"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "tdarr" = {
       hostname          = "tdarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
     "titlecardmaker" = {
       hostname          = "titlecardmaker"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "unifi_homelab" = {
-      hostname          = "unifi-homelab"
+    "unifi" = {
+      hostname          = "unifi"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
-    "vault_homelab" = {
-      hostname          = "vault-homelab"
+    "vault" = {
+      hostname          = "vault"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik_homelab"
+      alias_of          = "traefik"
     }
   }
 }

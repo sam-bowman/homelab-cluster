@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`netbox-homelab.bowmans.site`)
+    - match: Host(`netbox.bowmans.site`)
       kind: Rule
       services:
       - name: netbox

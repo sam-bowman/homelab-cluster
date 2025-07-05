@@ -7,6 +7,6 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: cluster-issuer-letsencrypt
-  commonName: vault-homelab.bowmans.site
+  commonName: vault.bowmans.site
   dnsNames:
-    - vault-homelab.bowmans.site
+    - vault.bowmans.site
