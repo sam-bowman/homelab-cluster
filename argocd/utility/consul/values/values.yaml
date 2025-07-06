@@ -1,5 +1,13 @@
 client:
   enabled: true
+  resources:
+    requests:
+      memory: "200Mi"
+      cpu: "200m"
+    limits:
+      memory: "200Mi"
+      cpu: "200m"
+
 connectInject:
   apiGateway:
     manageExternalCRDs: false
