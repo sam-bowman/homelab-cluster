@@ -38,7 +38,7 @@ locals {
     }
     "ubuntu_vps" = {
       hostname          = "UBUNTU-VPS"
-      ip                = oci_core_instance.ubuntu_vps.public_ip
+      ip                = oci_core_instance.ubuntu_vps.private_ip
       cf_enabled        = true
       cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
@@ -46,7 +46,7 @@ locals {
     }
     "ubuntu_vps_secondary" = {
       hostname          = "UBUNTU-VPS-SECONDARY"
-      ip                = oci_core_instance.ubuntu_vps_secondary.public_ip
+      ip                = oci_core_instance.ubuntu_vps_secondary.private_ip
       cf_enabled        = true
       cf_record_type    = "A"
       cf_content        = oci_core_instance.ubuntu_vps_secondary.public_ip
