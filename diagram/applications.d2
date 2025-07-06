@@ -1,0 +1,149 @@
+tautulli: {
+    label: "Tautulli"
+}
+plex: {
+    label: "Plex"
+}
+
+tautulli -> plex
+
+nas: {
+    label: "NAS Storage"
+}
+
+plex -> nas
+
+sonarr: {
+    label: "Sonarr"
+}
+radarr: {
+    label: "radarr"
+}
+readarr: {
+    label: "Readarr"
+}
+sabnzbd: {
+    label: "SabNZBD"
+}
+usenet_providers: {
+    label: "Usenet Providers"
+}
+nzb_indexers: {
+    label: "NZB Indexers"
+}
+
+nzb_indexers <- sonarr
+nzb_indexers <- radarr
+nzb_indexers <- readarr
+
+sonarr -> sabnzbd
+radarr -> sabnzbd
+readarr -> sabnzbd
+
+sabnzbd -> nas
+
+usenet_providers <- sabnzbd
+
+overseerr: {
+    label: "Overseerr"
+}
+
+overseerr -> sonarr
+overseerr -> radarr
+overseerr -> tautulli
+overseerr -> plex
+
+maintainerr: {
+    label: "Maintainerr"
+}
+
+maintainerr -> plex
+maintainerr -> overseerr
+maintainerr -> radarr
+maintainerr -> sonarr
+maintainerr -> tautulli
+
+requestrr: {
+    label: "Requestrr"
+}
+discord: {
+    label: "Discord"
+}
+
+requestrr -> overseerr
+requestrr <-> discord
+
+bazarr: {
+    label: "Bazarr"
+}
+
+bazarr -> radarr
+bazarr -> sonarr
+bazarr -> nas
+
+titlecardmaker: {
+    label: "Title Card Maker"
+}
+
+titlecardmaker -> sonarr
+titlecardmaker -> nas
+
+tdarr: {
+    label: "Tdarr"
+}
+
+tdarr -> nas
+
+homelab_cluster_github: {
+    label: "Homelab Cluster Github Repo"
+}
+argocd: {
+    label: "ArgoCD"
+}
+
+homelab_cluster_github <- argocd
+
+traefik: {
+    label: "Traefik Reverse Proxy"
+}
+
+argocd <-> traefik
+
+traefik -> bazarr
+traefik -> plex
+traefik -> radarr
+traefik -> readarr
+traefik -> sabnzbd
+traefik -> sonarr
+traefik -> tdarr
+traefik -> titlecardmaker
+
+zero_register: {
+    label: "Zero private server registration page"
+}
+
+traefik -> zero_register
+
+homer: {
+    label: "Homer Dashboard"
+}
+
+traefik -> homer
+
+consul: {
+    label: "Hashicorp Consul"
+}
+vault: {
+    label: "Hashicorp Vault"
+}
+
+traefik -> consul
+traefik -> vault
+
+github_arc: {
+    label: "Github Actions Runner Controller"
+}
+
+github_arc -> consul
+github_arc -> vault
+

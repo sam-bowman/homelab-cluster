@@ -1,0 +1,189 @@
+ubuntu_vps_secondary: {
+    label: ""
+    explanation: |md
+        # Ubuntu VPS - Secondary
+        - Extra VPS
+        - ens3 IP: 10.20.10.x/24
+    |
+}
+
+ubuntu_vps_group: {
+    label: ""
+    ubuntu_vps_wireguard: {
+        label: ""
+        explanation: |md
+            # Wireguard Instance
+            ## Hosted on Ubuntu VPS
+            - Address: 10.10.12.1/31
+            - Allowed IPs: 
+                - 10.10.12.0/32
+                - 10.10.0.0/16
+                - 10.20.0.0/16
+        |
+    }
+    ubuntu_vps: {
+        label: ""
+        explanation: |md
+            # Ubuntu VPS
+            - WireGuard Host for S2S VPN
+            - ens3 IP: 10.20.10.x/24
+        |
+    }
+    
+}
+
+
+
+ubuntu_vps_secondary -> ubuntu_vps_group.ubuntu_vps: "Route to Wireguard Host"
+
+oracle_sub_net: {
+    label: ""
+    explanation: |md
+        # Oracle VCN Subnet
+        - Network Range: 10.20.10.0/24
+    |
+}
+
+ubuntu_vps_secondary -> oracle_sub_net: "Route to Internet"
+ubuntu_vps_group.ubuntu_vps -> oracle_sub_net: "Route to Internet"
+
+oracle_super_net: {
+    label: ""
+    explanation: |md
+        # Oracle VCN
+        - Network Range: 10.20.0.0/16
+    |
+}
+
+oracle_sub_net -- oracle_super_net
+
+oracle_internet_gateway: {
+    label: ""
+    explanation: |md
+        # Oracle Internet Gateway
+        - LAN IP: 10.20.x.1/24
+        - WAN IP: x.x.x.x/0
+    |
+}
+
+oracle_super_net -> oracle_internet_gateway
+
+internet: {
+    label: ""
+    shape: cloud
+    explanation: |md
+        # Internet
+        - 0.0.0.0/0
+    |
+}
+
+oracle_internet_gateway -> internet
+
+isp_router: {
+    label: ""
+    explanation: |md
+        # ISP Router
+        - WAN IP: x.x.x.x/0
+        - LAN IP: 192.168.1.254/24
+    |
+}
+
+internet <- isp_router
+
+firewall_group: {
+    label: ""
+    direction: right
+    firewall_wireguard_vps_s2s: {
+        label: ""
+        explanation: |md
+            # Wireguard Instance
+            ## Hosted on Firewall
+            ## Connection to Oracle Cloud S2S connection
+            - Address: 10.10.12.0/31
+            - Allowed IPs: 
+                - 10.10.12.1/32
+                - 10.10.0.0/16
+                - 10.20.0.0/16
+        |
+    }
+    firewall_wireguard_ra_vpn: {
+        label: ""
+        explanation: |md
+            # Wireguard Instance
+            ## Hosted on Firewall
+            ## Remote Access VPN
+            - Address: 10.10.11.1/24
+            - Allowed IPs: 
+                - 10.10.11.x/32
+        |
+    }
+    firewall: {
+        label: ""
+        explanation: |md
+            # Firewall
+            - WAN IP: 192.168.1.x/24
+            - LAN IP: See gateways on VLANs
+        |
+    }
+}
+
+isp_router <- firewall_group.firewall
+
+firewall_group.firewall_wireguard_vps_s2s <-> ubuntu_vps_group.ubuntu_vps_wireguard: "VPN between Home + Oracle Cloud"
+
+vnet_0000_mgmt: {
+    label: ""
+    explanation: |md
+        # Management VLAN
+        - Network Range: 10.10.0.0/24
+        - Gateway Address: 10.10.0.1
+        - ID: 0
+        - Purpose: Management VLAN of all network devices
+    |
+}
+vnet_0010_lan: {
+    label: ""
+    explanation: |md
+        # Management VLAN
+        - Network Range: 10.10.10.0/24
+        - Gateway Address: 10.10.10.1
+        - ID: 10
+        - Purpose: Primary LAN Devices, such as gaming PC
+    |
+}
+vnet_0020_server: {
+    label: ""
+    explanation: |md
+        # Management VLAN
+        - Network Range: 10.10.20.0/24
+        - Gateway Address: 10.10.20.1
+        - ID: 20
+        - Purpose: Server Network
+    |
+}
+vnet_0030_iot: {
+    label: ""
+    explanation: |md
+        # Management VLAN
+        - Network Range: 10.10.30.0/24
+        - Gateway Address: 10.10.30.1
+        - ID: 30
+        - Purpose: IOT Devices
+    |
+}
+vnet_0250_isolated: {
+    label: ""
+    explanation: |md
+        # Management VLAN
+        - Network Range: 10.10.250.0/24
+        - Gateway Address: 10.10.250.1
+        - ID: 250
+        - Purpose: Isolated Network for untrusted devices.
+    |
+}
+
+firewall_group <- vnet_0000_mgmt
+firewall_group <- vnet_0010_lan
+firewall_group <- vnet_0020_server
+firewall_group <- vnet_0030_iot
+firewall_group <- vnet_0250_isolated

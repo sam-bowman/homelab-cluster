@@ -1,19 +1,4 @@
-# homelab-cluster
+# Homelab Configuration Files
 
-Config for my homelab k8s cluster
+This repository contains the configuration for my homelab. It is in theory possible to use this for your own homelab, though some tweaking maybe necessary, and some features are dependant on specific hardware.
 
-## ArgoCD
-
-ArgoCD deployments files
-
-## Ansible
-
-Config files to managing the hardware using ansible
-
-## Scripts
-
-Scripts for base setup
-
-## Terraform
-
-TF Code to deploy local DNS records

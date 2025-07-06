@@ -1,0 +1,172 @@
+ubuntu_vps: {
+    label: ""
+    explanation: |md
+        # Ubuntu VPS
+        - Oracle Free Tier VM
+    |
+}
+
+ubuntu_vps_secondary: {
+    label: ""
+    explanation: |md
+        # Ubuntu VPS - Secondary
+        - Oracle Free Tier VM
+    |
+}
+
+ubuntu_vps_secondary -- ubuntu_vps
+
+isp_internet: {
+    shape: cloud
+    label: "Internet"
+}
+
+ubuntu_vps -- isp_internet
+
+isp_router: {
+    label: "ISP Router"
+}
+
+isp_internet -- isp_router
+
+firewall: {
+    label: ""
+    explanation: |md
+        # Firewall
+        - Model: Protectli Vault FW6D
+        - Ports: 6 (1x WAN, 1xLAN)
+        - CPU: Intel i5 8250U
+    |
+}
+
+isp_router -- firewall
+
+smam_sw_2: {
+    label: ""
+    explanation: |md
+        # SMAM-SW-2
+        - Model: UniFi US 8 60W
+        - Ports: 8 Ports (4x PoE)
+    |
+}
+
+firewall -- smam_sw_2
+
+smam_sw_1: {
+    label: ""
+    explanation: |md
+        # SMAM-SW-1
+        - Model: UniFi US 8 60W
+        - Ports: 8 Ports (4x PoE)
+    |
+}
+pc: {
+    label: ""
+    explanation: |md
+        # Gaming PC (Custom Build)
+        - CPU: Intel Core i9-14900k
+        - GPU: NVIDIA RTX 5090
+        - Memory: 64GB DDR5
+    |
+}
+nvidia_shield: {
+    label: ""
+    explanation: |md
+        # NVIDIA Shield
+    |
+}
+philips_hue_hub: {
+    label: ""
+    explanation: |md
+        # Phillips Hue Hub
+        ### Connected to 4 bulbs
+    |
+}
+elegoo_saturn_3d_printer: {
+    label: ""
+    explanation: |md
+        # Elegoo Saturn 3D Printer
+        ### MSLA
+        ### 4K Monochrome
+        ### 192x120x200mm Build Size
+    |
+}
+pve1: {
+    label: ""
+    explanation: |md
+        # PVE1
+        ### Proxmox Host
+        ### Lenovo ThinkCentre M920q
+        ### CPU: Intel Core i7 8700T
+        ### Memory: 32GB DDR3
+    |
+}
+smam_ap_1: {
+    label: ""
+    explanation: |md
+        # SMAM-AP-1
+        - Model: UniFi AC Pro
+    |
+}
+
+smam_sw_2 -- smam_sw_1
+smam_sw_2 -- pc
+smam_sw_2 -- nvidia_shield
+smam_sw_2 -- philips_hue_hub
+smam_sw_2 -- elegoo_saturn_3d_printer
+smam_sw_2 -- pve1
+smam_sw_2 -- smam_ap_1
+
+nas: {
+    label: ""
+    explanation: |md
+        # NAS
+        - OS: TrueNAS Scale
+        - CPU: Intel Core i5 11400
+        - Memory: 32GB DDR4
+        - POOL: 
+            - Used for Mass storage
+            - RAIDZ1
+            - 6x3.64 TiB Hard Drive (split into 2 VDEVs)
+            - 1x 465.76 GiB SSD (Cache)
+            - Usable Capacity: 14.4 TiB
+        - APP-POOL:
+            - Used for App/Docker Storage
+            - 1x 465.76 GiB SSD
+
+    |
+}
+k3scluster01: {
+    label: ""
+    explanation: |md
+        # K3SCLUSTER01
+        - Model: Raspberry Pi
+    |
+}
+k3scluster02: {
+    label: ""
+    explanation: |md
+        # K3SCLUSTER02
+        - Model: Raspberry Pi
+    |
+}
+k3scluster03: {
+    label: ""
+    explanation: |md
+        # K3SCLUSTER03
+        - Model: Raspberry Pi
+    |
+}
+k3scluster04: {
+    label: ""
+    explanation: |md
+        # K3SCLUSTER04
+        - Model: Raspberry Pi
+    |
+}
+
+smam_sw_1 -- nas
+smam_sw_1 -- k3scluster01
+smam_sw_1 -- k3scluster02
+smam_sw_1 -- k3scluster03
+smam_sw_1 -- k3scluster04
