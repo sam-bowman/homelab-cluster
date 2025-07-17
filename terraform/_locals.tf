@@ -180,6 +180,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "n8n" = {
+      hostname          = "n8n"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
+    }
     "netbox" = {
       hostname          = "netbox"
       cf_enabled        = true

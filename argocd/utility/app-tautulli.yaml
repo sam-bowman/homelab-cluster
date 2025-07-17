@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: n8n
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: n8n
+          containers:
+            - name: n8n
+              image: n8nio/n8n:latest
+              ports:
+                - name: main
+                  port: 5678
+          ingress:
+            enabled: true
+            hostOverride: n8n
+          volumes:
+            - name: n8n_data
+              mountPath: "/home/node/.n8n"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
