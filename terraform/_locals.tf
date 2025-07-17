@@ -70,7 +70,7 @@ locals {
     }
     "vm_haos" = {
       hostname          = "HAOS"
-      ip                = "10.10.20.8.82"
+      ip                = "10.10.20.82"
       cf_enabled        = false
       cf_record_type    = "CNAME"
       cf_content        = "traefik.bowmans.site"
