@@ -68,6 +68,14 @@ locals {
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
     }
+    "vm_haos" = {
+      hostname          = "HAOS"
+      ip                = "10.10.20.8.82"
+      cf_enabled        = false
+      cf_record_type    = "CNAME"
+      cf_content        = "traefik.bowmans.site"
+      cf_proxy_enabled  = true
+    }
     "traefik" = {
       hostname          = "TRAEFIK"
       ip                = "10.10.20.101"
