@@ -209,3 +209,11 @@ services:
     subtitle: "Make game servers a first class citizen on your platform."
     tag: "gaming"
     url: "https://pterodactyl.bowmans.site"
+- name: "Smart Home"
+  icon: "fa-solid fa-home"
+  items:
+  - name: "Home Assistant"
+    logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/hass-logo.png"
+    subtitle: "Smart Home Automation"
+    tag: "smart-home"
+    url: "https://haos.bowmans.site"
