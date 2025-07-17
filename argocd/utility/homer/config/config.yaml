@@ -216,4 +216,4 @@ services:
     logo: "https://raw.githubusercontent.com/sam-bowman/homelab-cluster/main/argocd/utility/homer/config/images/hass-logo.png"
     subtitle: "Smart Home Automation"
     tag: "smart-home"
-    url: "https://haos.bowmans.site"
+    url: "https://hass.bowmans.site"

@@ -156,6 +156,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "hass" = {
+      hostname          = "hass"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
+    }
     "homer" = {
       hostname          = "homer"
       cf_enabled        = true
