@@ -24,7 +24,7 @@ spec:
             enabled: true
             hostOverride: n8n
           volumes:
-            - name: n8n_data
+            - name: data
               mountPath: "/home/node/.n8n"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/docker-app
