@@ -26,6 +26,14 @@ locals {
       ip                = "10.10.20.50"
       cf_enabled        = false
     }
+    "teamspeak" = {
+      hostname          = "TEAMSPEAK"
+      ip                = "10.10.20.203"
+      cf_enabled        = true
+      cf_record_type    = "CNAME"
+      cf_content        = "home.bowmans.site"
+      cf_proxy_enabled  = false
+    }
     "smam_desktop_2" = {
       hostname          = "SMAM-DESKTOP-2"
       ip                = "10.10.10.52"
@@ -250,12 +258,6 @@ locals {
       hostname          = "tdarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "teamspeak" = {
-      hostname          = "teamspeak"
-      cf_enabled        = true
-      cf_proxy_enabled  = false
       alias_of          = "traefik"
     }
     "titlecardmaker" = {
