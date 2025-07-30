@@ -252,6 +252,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "teamspeak" = {
+      hostname          = "teamspeak"
+      cf_enabled        = true
+      cf_proxy_enabled  = false
+      alias_of          = "traefik"
+    }
     "titlecardmaker" = {
       hostname          = "titlecardmaker"
       cf_enabled        = true
