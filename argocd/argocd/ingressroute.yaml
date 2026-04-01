@@ -12,6 +12,7 @@ metadata:
     gethomepage.dev/name: ArgoCD
     gethomepage.dev/widget.type: "argocd"
     gethomepage.dev/widget.url: "https://argocd.bowmans.site/"
+    gethomepage.dev/widget.key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJyZWFkb25seTphcGlLZXkiLCJuYmYiOjE3NzUwNzMzMDIsImlhdCI6MTc3NTA3MzMwMiwianRpIjoiaG9tZXBhZ2UifQ.1wmMLqlq85Jh8K4dHPmbyzzJpUVgtlI1BS75YnIJxQg"
     gethomepage.dev/pod-selector: "app.kubernetes.io/name=argocd-server"
 spec:
   entryPoints:
