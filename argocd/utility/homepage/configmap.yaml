@@ -8,6 +8,8 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
+    ingress: true
+    traefik: true
   settings.yaml: ""
   custom.css: ""
   custom.js: ""
@@ -16,21 +18,57 @@ data:
         - Github:
             - abbr: GH
               href: https://github.com/
-  services.yaml: |
-    - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
-
-    - My Second Group:
-        - My Second Service:
-            href: http://localhost/
-            description: Homepage is the best
-
-    - My Third Group:
-        - My Third Service:
-            href: http://localhost/
-            description: Homepage is 😎
+        - Github homelab cluster:
+            - abbr: HL
+              href: https://github.com/sam-bowman/homelab-cluster
+        - Github portfolio website:
+            - abbr: PF
+              href: https://github.com/sam-bowman/portfolio-website
+    - Social:
+        - Facebook:
+            - abbr: FB
+              href: https://facebook.com/
+        - Instagram:
+            - abbr: IG
+              href: https://instagram.com/
+        - Reddit:
+            - abbr: RD
+              href: https://reddit.com/
+    - Shopping:
+        - Amazon:
+            - abbr: AZ
+              href: https://amazon.co.uk/
+    - Media:
+        - Youtube:
+            - abbr: YT
+              href: https://youtube.com/
+        - Youtube Music:
+            - abbr: YTM
+              href: https://music.youtube.com/
+    - Web Games:
+        - JKLM:
+            - abbr: JKLM
+              href: https://jklm.fun/
+        - GuessTheSong:
+            - abbr: GTS
+              href: https://guessthesong.io/
+        - Skribbl:
+            - abbr: SK
+              href: https://skribbl.io/
+    - Game Wikis:
+        - Runescape:
+            - abbr: RS3
+              href: https://runescape.wiki/
+        - OldSchool Runescape:
+            - abbr: OSRS
+              href: https://oldschool.runescape.wiki/
+        - Retro Game Walkthroughs:
+            - abbr: RPG
+              href: https://www.rpgsite.net/
+        - WH Horus Heresy:
+            - abbr: WH
+              href: https://gaming.kylebb.com/hhtimeline/
+  services.yaml:  ""
   widgets.yaml: |
     - kubernetes:
         cluster:
