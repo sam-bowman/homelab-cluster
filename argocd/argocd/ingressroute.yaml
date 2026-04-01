@@ -8,13 +8,11 @@ metadata:
     gethomepage.dev/description: ArgoCD
     gethomepage.dev/group: CICD
     gethomepage.dev/icon: argocd.png
-    gethomepage.dev/app: argocd-server # optional, may be needed if app.kubernetes.io/name != ingress metadata.name
+    gethomepage.dev/app: argocd-server
     gethomepage.dev/name: ArgoCD
     gethomepage.dev/widget.type: "argocd"
     gethomepage.dev/widget.url: "https://argocd.bowmans.site/"
-    gethomepage.dev/pod-selector: ""
-    gethomepage.dev/weight: 10 # optional
-    gethomepage.dev/instance: "public" # optional
+    gethomepage.dev/pod-selector: "app.kubernetes.io/name=argocd-server"
 spec:
   entryPoints:
     - websecure
