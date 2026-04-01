@@ -9,4 +9,5 @@ metadata:
   namespace: argocd
 data:
   policy.csv: |
+    p, readonly, applications, get, */*, allow
     g, readonly, role: readonly
