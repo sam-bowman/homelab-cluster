@@ -176,6 +176,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "homepage" = {
+      hostname          = "homepage"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
+    }
     "longhorn" = {
       hostname          = "longhorn"
       cf_enabled        = true
