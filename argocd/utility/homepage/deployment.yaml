@@ -83,9 +83,18 @@ spec:
               subPath: proxmox.yaml
             - mountPath: /app/config/logs
               name: logs
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
       volumes:
         - name: homepage-config
           configMap:
             name: homepage
         - name: logs
           emptyDir: {}
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.x-k8s.io
+            readOnly: true
+            volumeAttributes:
+              SecretProviderClass: homepage-spc
