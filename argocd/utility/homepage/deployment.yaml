@@ -97,4 +97,4 @@ spec:
             driver: 'secrets-store.csi.k8s.io'
             readOnly: true
             volumeAttributes:
-              SecretProviderClass: homepage-spc
+              secretProviderClass: homepage-spc
