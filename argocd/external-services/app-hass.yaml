@@ -24,7 +24,7 @@ spec:
             gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/home-assistant.png"
             gethomepage.dev/app: hass
             gethomepage.dev/name: HASS
-            gethomepage.dev/widget.type: "hass"
+            gethomepage.dev/widget.type: "homeassistant"
             gethomepage.dev/widget.url: "https://hass.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_HASS_API_KEY}}"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
