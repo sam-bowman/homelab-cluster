@@ -1,8 +1,36 @@
 service:
+  main:
+    ports:
+      http:
+        port: 80
   dns-tcp:
-    enabled: false
+    enabled: true
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    annotations:
+      metallb.universe.tf/allow-shared-ip: adguard-home
+    ports:
+      dns-tcp:
+        enabled: true
+        port: 53
+      dns-over-tls:
+        enabled: true
+        port: 853
   dns-udp:
-    enabled: false
+    enabled: true
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    annotations:
+      metallb.universe.tf/allow-shared-ip: adguard-home
+    ports:
+      dns-udp:
+        enabled: true
+        protocol: UDP
+        port: 53
+      dns-over-quic:
+        enabled: true
+        protocol: UDP
+        port: 784
 
 
 persistence:
