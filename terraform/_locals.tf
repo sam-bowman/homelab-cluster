@@ -34,6 +34,11 @@ locals {
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
     }
+    "adguarddns" = {
+      hostname          = "ADGUARDDNS"
+      ip                = "10.10.20.205"
+      cf_enabled        = false
+    }
     "smam_desktop_2" = {
       hostname          = "SMAM-DESKTOP-2"
       ip                = "10.10.10.52"
@@ -127,6 +132,12 @@ locals {
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "vm_zero"
+    }
+    "adguard" = {
+      hostname          = "adguard"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
     }
     "argocd" = {
       hostname          = "argocd"
