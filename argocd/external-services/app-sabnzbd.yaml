@@ -15,6 +15,18 @@ spec:
         values: |
           name: sabnzbd
           port: 30055
+          annotations:
+            gethomepage.dev/href: "https://sabnzbd.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: SABnzbd
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/sabnzbd.png"
+            gethomepage.dev/app: sabnzbd
+            gethomepage.dev/name: SABnzbd
+            gethomepage.dev/widget.type: "sabnzbd"
+            gethomepage.dev/widget.url: "https://sabnzbd.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SABNZBD_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=sabnzbd"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

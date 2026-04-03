@@ -4,6 +4,8 @@ metadata:
   name: {{ $.Values.name }}-deployment
   labels:
     app: {{ $.Values.name }}
+  annotations:
+    app.kubernetes.io/name: {{ $.Values.name }}
 spec:
   revisionHistoryLimit: 2
   selector:
@@ -13,6 +15,8 @@ spec:
     metadata:
       labels:
         app: {{ $.Values.name }}
+      annotations:
+        app.kubernetes.io/name: {{ $.Values.name }}
     spec:
       containers:
       {{- range $.Values.containers }}

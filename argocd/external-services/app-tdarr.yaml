@@ -15,6 +15,18 @@ spec:
         values: |
           name: tdarr
           port: 30028
+          annotations:
+            gethomepage.dev/href: "https://tdarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Tdarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/tdarr.png"
+            gethomepage.dev/app: tdarr
+            gethomepage.dev/name: Tdarr
+            gethomepage.dev/widget.type: "tdarr"
+            gethomepage.dev/widget.url: "https://tdarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_TDARR_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=tdarr"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

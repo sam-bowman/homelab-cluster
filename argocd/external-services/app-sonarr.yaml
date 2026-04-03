@@ -15,6 +15,18 @@ spec:
         values: |
           name: sonarr
           port: 30027
+          annotations:
+            gethomepage.dev/href: "https://sonarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Sonarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/sonarr.png"
+            gethomepage.dev/app: sonarr
+            gethomepage.dev/name: Sonarr
+            gethomepage.dev/widget.type: "sonarr"
+            gethomepage.dev/widget.url: "https://sonarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=sonarr"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

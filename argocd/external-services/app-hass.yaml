@@ -16,6 +16,18 @@ spec:
           name: hass
           port: 8123
           externalName: haos.bowmans.site
+          annotations:
+            gethomepage.dev/href: "https://hass.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: HASS
+            gethomepage.dev/group: Smart Home
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/hass.png"
+            gethomepage.dev/app: hass
+            gethomepage.dev/name: HASS
+            gethomepage.dev/widget.type: "hass"
+            gethomepage.dev/widget.url: "https://hass.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_HASS_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=hass"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

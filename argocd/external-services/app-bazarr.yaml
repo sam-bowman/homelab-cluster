@@ -15,6 +15,18 @@ spec:
         values: |
           name: bazarr
           port: 30046
+          annotations:
+            gethomepage.dev/href: "https://bazarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Bazarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/bazarr.png"
+            gethomepage.dev/app: bazarr
+            gethomepage.dev/name: Bazarr
+            gethomepage.dev/widget.type: "bazarr"
+            gethomepage.dev/widget.url: "https://bazarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_BAZARR_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=bazarr"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

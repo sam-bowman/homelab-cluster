@@ -2,6 +2,19 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: unifi-ingress-route
+  annotations:
+    gethomepage.dev/href: "https://unifi.bowmans.site/"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Unifi
+    gethomepage.dev/group: Media
+    gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/unifi.png"
+    gethomepage.dev/app: unifi
+    gethomepage.dev/name: Unifi
+    gethomepage.dev/widget.type: "unifi"
+    gethomepage.dev/widget.url: "https://unifi.bowmans.site/"
+    gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_UNIFI_USERNAME}}"
+    gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_UNIFI_PASSWORD}}"
+    gethomepage.dev/pod-selector: "app.kubernetes.io/name=unifi"
 spec:
   entryPoints:
     - websecure

@@ -15,6 +15,18 @@ spec:
         values: |
           name: readarr
           port: 30045
+          annotations:
+            gethomepage.dev/href: "https://readarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Readarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/readarr.png"
+            gethomepage.dev/app: readarr
+            gethomepage.dev/name: Readarr
+            gethomepage.dev/widget.type: "readarr"
+            gethomepage.dev/widget.url: "https://readarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_READARR_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=readarr"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

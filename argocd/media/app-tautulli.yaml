@@ -30,6 +30,18 @@ spec:
           ingress:
             enabled: true
             hostOverride: tautulli
+            annotations:
+              gethomepage.dev/href: "https://tautulli.bowmans.site/"
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/description: Tautulli
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/tautulli.png"
+              gethomepage.dev/app: tautulli
+              gethomepage.dev/name: Tautulli
+              gethomepage.dev/widget.type: "tautulli"
+              gethomepage.dev/widget.url: "https://tautulli.bowmans.site/"
+              gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_TAUTULLI_API_KEY}}"
+              gethomepage.dev/pod-selector: "app.kubernetes.io/name=tautulli"
           volumes:
             - name: config
               mountPath: "/config"

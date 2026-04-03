@@ -10,7 +10,10 @@ data:
     mode: cluster
     ingress: true
     traefik: true
-  settings.yaml: ""
+  settings.yaml: |
+    providers:
+      longhorn:
+        url: https://longhorn.bowmans.site
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
@@ -68,7 +71,71 @@ data:
         - WH Horus Heresy:
             - abbr: WH
               href: https://gaming.kylebb.com/hhtimeline/
-  services.yaml:  ""
+    - Homelab:
+        - Requestrr:
+            - abbr: RQRR
+              href: https://requestrr.bowmans.site/
+        - Maintainerr:
+            - abbr: MTRR
+              href: https://maintainerr.bowmans.site/
+        - TitleCardMaker:
+            - abbr: TCM
+              href: https://titlecardmaker.bowmans.site/
+        - Consul:
+            - abbr: CN
+              href: https://consul.bowmans.site/
+        - Vault:
+            - abbr: VLT
+              href: https://vault.bowmans.site/
+        - Gollum:
+            - abbr: GL
+              href: https://gollum.bowmans.site/
+        - K8S Dashboard:
+            - abbr: K8DB
+              href: https://dashboard.bowmans.site/
+        - n8n:
+            - abbr: N8N
+              href: https://n8n.bowmans.site/
+  services.yaml: |
+    - Network
+        - Firewall
+            href: https://firewall.bowmans.site
+            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/onpsense.png"
+            description: OPNSense Firewall
+            widget:
+              type: opnsense
+              url: https://firewall.bowmans.site
+              username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
+              password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
+    - Infrastructure
+        - PVE1
+            href: https://pve1.bowmans.site:8006/
+            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/proxmox.png"
+            description: Proxmox PVE1
+            widget:
+              type: proxmox
+              url: https://pve1.bowmans.site:8006/
+              username: {{HOMEPAGE_VAR_PVE_USERNAME}}
+              password: {{HOMEPAGE_VAR_PVE_PASSWORD}}
+        - Pterodactyl
+            href: https://pterodactyl.bowmans.site/
+            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/pterodactyl.png"
+            description: Pterodactyl Game Server Hosting
+            widget:
+              type: pterodactyl
+              url: https://pterodactyl.bowmans.site/
+              key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
+        - TrueNAS
+            href: https://truenas.bowmans.site
+            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/truenas.png"
+            description: TrueNAS
+            widget:
+              type: truenas
+              version: 2
+              url: https://truenas.bowmans.site
+              key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
+              enablePools: true
+              nasType: scale
   widgets.yaml: |
     - kubernetes:
         cluster:
@@ -88,6 +155,22 @@ data:
         cpu: true
         memory: true
         network: default
+    - longhorn:
+        expanded: true
+        total: true
+        labels: true
+        nodes: true
+    - unifi_console:
+        url: https://unifi.bowmans.site
+        site: SMAM-Network
+        username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
+        password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
+    - datetime:
+        text_size: xl
+        format:
+          dateStyle: short
+          timeStyle: short
+          hour12: true
     - search:
         provider: duckduckgo
         target: _blank

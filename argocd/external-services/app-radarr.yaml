@@ -15,6 +15,18 @@ spec:
         values: |
           name: radarr
           port: 30025
+          annotations:
+            gethomepage.dev/href: "https://radarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Radarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/radarr.png"
+            gethomepage.dev/app: radarr
+            gethomepage.dev/name: Radarr
+            gethomepage.dev/widget.type: "radarr"
+            gethomepage.dev/widget.url: "https://radarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=radarr"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

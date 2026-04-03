@@ -32,6 +32,8 @@ cert:
 ingress:
   enabled: true
   # hostOverride: tautulli # This would become tautulli.bowmans.site
+  # annotations:
+  #   foo: "bar"
 serviceAccount:
   enabled: true
 vpa:

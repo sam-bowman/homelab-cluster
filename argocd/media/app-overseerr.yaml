@@ -23,6 +23,18 @@ spec:
           ingress:
             enabled: true
             hostOverride: overseerr
+            annotations:
+              gethomepage.dev/href: "https://overseerr.bowmans.site/"
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/description: Overseerr
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/seerr.png"
+              gethomepage.dev/app: overseerr
+              gethomepage.dev/name: Overseerr
+              gethomepage.dev/widget.type: "seerr"
+              gethomepage.dev/widget.url: "https://overseerr.bowmans.site/"
+              gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_OVERSEERR_API_KEY}}"
+              gethomepage.dev/pod-selector: "app.kubernetes.io/name=overseerr"
           volumes:
             - name: config
               mountPath: "/config"
