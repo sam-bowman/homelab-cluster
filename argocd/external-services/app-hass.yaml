@@ -21,7 +21,7 @@ spec:
             gethomepage.dev/enabled: "true"
             gethomepage.dev/description: HASS
             gethomepage.dev/group: Smart Home
-            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/hass.png"
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/home-assistant.png"
             gethomepage.dev/app: hass
             gethomepage.dev/name: HASS
             gethomepage.dev/widget.type: "hass"

@@ -98,15 +98,15 @@ data:
               href: https://n8n.bowmans.site/
   services.yaml: |
     - Network:
-        - Firewall:
-            href: https://firewall.bowmans.site
-            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/onpsense.png"
-            description: OPNSense Firewall
-            widget:
-              type: opnsense
-              url: https://firewall.bowmans.site
-              username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
-              password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
+      - Firewall:
+          href: https://firewall.bowmans.site
+          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/opnsense.png"
+          description: OPNSense Firewall
+          widget:
+            type: opnsense
+            url: https://firewall.bowmans.site
+            username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
+            password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
     - Infrastructure:
       - PVE1:
           href: https://pve1.bowmans.site:8006/
@@ -127,7 +127,7 @@ data:
             key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
       - TrueNAS:
           href: https://truenas.bowmans.site
-          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/truenas.png"
+          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/truenas-scale.png"
           description: TrueNAS
           widget:
             type: truenas
