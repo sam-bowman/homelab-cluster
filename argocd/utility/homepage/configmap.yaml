@@ -11,6 +11,21 @@ data:
     ingress: true
     traefik: true
   settings.yaml: |
+    title: Hoshi Homepage
+    description: My really funky homepage
+    layout:
+    - Media:
+        style: row
+        columns: 4
+    - Infrastructure:
+        style: row
+        columns: 3
+    - CICD:
+    - Smart Home:
+    - Network:
+    fullWidth: true
+    useEqualHeights: true
+    bookmarksStyle: icons
     providers:
       longhorn:
         url: https://longhorn.bowmans.site
