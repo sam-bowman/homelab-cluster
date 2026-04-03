@@ -25,7 +25,7 @@ persistence:
 probes:
   liveness:
     enabled: false
-  rediness:
+  readiness:
     enabled: false
   startup:
     enabled: false
