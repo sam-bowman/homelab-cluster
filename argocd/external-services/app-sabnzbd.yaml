@@ -26,6 +26,7 @@ spec:
             gethomepage.dev/widget.type: "sabnzbd"
             gethomepage.dev/widget.url: "https://sabnzbd.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SABNZBD_API_KEY}}"
+            gethomepage.dev/namespace: kube-system
             gethomepage.dev/pod-selector: "app.kubernetes.io/name=traefik"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
