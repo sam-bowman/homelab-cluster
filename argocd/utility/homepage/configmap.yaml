@@ -132,7 +132,7 @@ data:
           widget:
             type: truenas
             version: 2
-            url: https://truenas.bowmans.site
+            url: https://10.10.20.50
             key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
             enablePools: true
             nasType: scale
