@@ -20,9 +20,11 @@ data:
     - Infrastructure:
         style: row
         columns: 3
+    - Network:
+        style: row
+        columns: 3
     - CICD:
     - Smart Home:
-    - Network:
     fullWidth: true
     useEqualHeights: true
     bookmarksStyle: icons
