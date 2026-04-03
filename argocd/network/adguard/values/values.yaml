@@ -10,10 +10,14 @@ persistence:
     enabled: true
     retain: true
     mountPath: /opt/adguardhome/conf
+    accessMode: ReadWriteOnce
+    storageClass: longhorn
   data:
     enabled: true
     retain: true
     mountPath: /opt/adguardhome/work
+    accessMode: ReadWriteOnce
+    storageClass: longhorn
 
 
 probes:
