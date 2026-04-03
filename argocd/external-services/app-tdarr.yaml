@@ -26,8 +26,6 @@ spec:
             gethomepage.dev/widget.type: "tdarr"
             gethomepage.dev/widget.url: "https://tdarr.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_TDARR_API_KEY}}"
-            gethomepage.dev/namespace: kube-system
-            gethomepage.dev/pod-selector: "app.kubernetes.io/name=traefik"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main
