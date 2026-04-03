@@ -57,17 +57,16 @@ data:
         - X:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/x.png
               href: https://x.com/
-    - Shopping:
-        - Amazon:
-            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/amazon.png
-              href: https://amazon.co.uk/
-    - Media:
         - Youtube:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/youtube.png
               href: https://youtube.com/
         - Youtube Music:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/youtube-shorts.png
               href: https://music.youtube.com/
+    - Shopping:
+        - Amazon:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/amazon.png
+              href: https://amazon.co.uk/
     - Web Games:
         - JKLM:
             - abbr: JKLM
