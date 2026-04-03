@@ -4,7 +4,7 @@ metadata:
   annotations:
     metallb.universe.tf/address-pool: metallb-pool-reserved
     metallb.universe.tf/ip-allocated-from-pool: metallb-pool-reserved
-  name: adguard-ext
+  name: adguard-dns
   namespace: adguard
 spec:
   allocateLoadBalancerNodePorts: true

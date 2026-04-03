@@ -9,7 +9,7 @@ spec:
     - match: Host(`adguard.bowmans.site`)
       kind: Rule
       services:
-      - name: adguard
+      - name: adguard-adguard-home
         port: 3000
   tls:
     secretName: adguard-certificate

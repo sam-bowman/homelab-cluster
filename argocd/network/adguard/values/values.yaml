@@ -1,0 +1,5 @@
+service:
+  dns-tcp:
+    enabled: false
+  dns-udp:
+    enabled: false
