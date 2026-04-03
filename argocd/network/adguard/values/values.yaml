@@ -3,3 +3,12 @@ service:
     enabled: false
   dns-udp:
     enabled: false
+
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /opt/adguardhome/conf
+    retain: true
+
+
