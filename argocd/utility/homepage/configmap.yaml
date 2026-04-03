@@ -161,8 +161,7 @@ data:
         labels: true
         nodes: true
     - unifi_console:
-        url: https://unifi.bowmans.site
-        site: SMAM-Network
+        url: "https://unifi.bowmans.site/"
         username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
         password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
     - datetime:
