@@ -26,7 +26,7 @@ spec:
             gethomepage.dev/widget.type: "tdarr"
             gethomepage.dev/widget.url: "https://tdarr.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_TDARR_API_KEY}}"
-            # gethomepage.dev/pod-selector: "app.kubernetes.io/name=tdarr"
+            gethomepage.dev/pod-selector: ""
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

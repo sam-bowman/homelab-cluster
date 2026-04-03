@@ -27,7 +27,7 @@ spec:
             gethomepage.dev/widget.type: "hass"
             gethomepage.dev/widget.url: "https://hass.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_HASS_API_KEY}}"
-            # gethomepage.dev/pod-selector: "app.kubernetes.io/name=hass"
+            gethomepage.dev/pod-selector: ""
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

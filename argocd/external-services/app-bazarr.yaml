@@ -26,7 +26,7 @@ spec:
             gethomepage.dev/widget.type: "bazarr"
             gethomepage.dev/widget.url: "https://bazarr.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_BAZARR_API_KEY}}"
-            # gethomepage.dev/pod-selector: "app.kubernetes.io/name=bazarr"
+            gethomepage.dev/pod-selector: ""
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main
