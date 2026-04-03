@@ -26,7 +26,7 @@ spec:
             gethomepage.dev/widget.type: "radarr"
             gethomepage.dev/widget.url: "https://radarr.bowmans.site/"
             gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_RADARR_API_KEY}}"
-            gethomepage.dev/pod-selector: ""
+            gethomepage.dev/pod-selector: "app.kubernetes.io/name=traefik"
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main
