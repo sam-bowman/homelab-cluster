@@ -91,28 +91,28 @@ data:
               href: https://gaming.kylebb.com/hhtimeline/
     - Homelab:
         - Requestrr:
-            - abbr: REQ
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/requestrr.png
               href: https://requestrr.bowmans.site/
         - Maintainerr:
-            - abbr: MNT
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/maintainerr.png
               href: https://maintainerr.bowmans.site/
         - TitleCardMaker:
             - abbr: TCM
               href: https://titlecardmaker.bowmans.site/
         - Consul:
-            - abbr: CNSL
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/hashicorp-consul.png
               href: https://consul.bowmans.site/
         - Vault:
-            - abbr: VLT
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/hashicorp-vault.png
               href: https://vault.bowmans.site/
         - Gollum:
-            - abbr: GLM
+            - abbr: GLLM
               href: https://gollum.bowmans.site/
         - K8S Dashboard:
-            - abbr: DASH
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/grafana-alerts-dashboard.png
               href: https://dashboard.bowmans.site/
         - n8n:
-            - abbr: N8N
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/n8n.png
               href: https://n8n.bowmans.site/
   services.yaml: |
     - Network:
