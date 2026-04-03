@@ -97,8 +97,8 @@ data:
             - abbr: N8N
               href: https://n8n.bowmans.site/
   services.yaml: |
-    - Network
-        - Firewall
+    - Network:
+        - Firewall:
             href: https://firewall.bowmans.site
             icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/onpsense.png"
             description: OPNSense Firewall
@@ -107,35 +107,35 @@ data:
               url: https://firewall.bowmans.site
               username: {{HOMEPAGE_VAR_OPNSENSE_USERNAME}}
               password: {{HOMEPAGE_VAR_OPNSENSE_PASSWORD}}
-    - Infrastructure
-        - PVE1
-            href: https://pve1.bowmans.site:8006/
-            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/proxmox.png"
-            description: Proxmox PVE1
-            widget:
-              type: proxmox
-              url: https://pve1.bowmans.site:8006/
-              username: {{HOMEPAGE_VAR_PVE_USERNAME}}
-              password: {{HOMEPAGE_VAR_PVE_PASSWORD}}
-        - Pterodactyl
-            href: https://pterodactyl.bowmans.site/
-            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/pterodactyl.png"
-            description: Pterodactyl Game Server Hosting
-            widget:
-              type: pterodactyl
-              url: https://pterodactyl.bowmans.site/
-              key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
-        - TrueNAS
-            href: https://truenas.bowmans.site
-            icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/truenas.png"
-            description: TrueNAS
-            widget:
-              type: truenas
-              version: 2
-              url: https://truenas.bowmans.site
-              key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
-              enablePools: true
-              nasType: scale
+    - Infrastructure:
+      - PVE1:
+          href: https://pve1.bowmans.site:8006/
+          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/proxmox.png"
+          description: Proxmox PVE1
+          widget:
+            type: proxmox
+            url: https://pve1.bowmans.site:8006/
+            username: {{HOMEPAGE_VAR_PVE_USERNAME}}
+            password: {{HOMEPAGE_VAR_PVE_PASSWORD}}
+      - Pterodactyl:
+          href: https://pterodactyl.bowmans.site/
+          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/pterodactyl.png"
+          description: Pterodactyl Game Server Hosting
+          widget:
+            type: pterodactyl
+            url: https://pterodactyl.bowmans.site/
+            key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
+      - TrueNAS:
+          href: https://truenas.bowmans.site
+          icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/truenas.png"
+          description: TrueNAS
+          widget:
+            type: truenas
+            version: 2
+            url: https://truenas.bowmans.site
+            key: {{HOMEPAGE_VAR_TRUENAS_API_KEY}}
+            enablePools: true
+            nasType: scale
   widgets.yaml: |
     - kubernetes:
         cluster:
