@@ -10,6 +10,6 @@ spec:
       kind: Rule
       services:
       - name: adguard-adguard-home
-        port: 3000
+        port: 80
   tls:
     secretName: adguard-certificate
