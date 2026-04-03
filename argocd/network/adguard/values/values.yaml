@@ -12,12 +12,14 @@ persistence:
     mountPath: /opt/adguardhome/conf
     accessMode: ReadWriteOnce
     storageClass: longhorn
+    size: 1Gi
   data:
     enabled: true
     retain: true
     mountPath: /opt/adguardhome/work
     accessMode: ReadWriteOnce
     storageClass: longhorn
+    size: 1Gi
 
 
 probes:
