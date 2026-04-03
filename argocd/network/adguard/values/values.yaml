@@ -8,7 +8,18 @@ service:
 persistence:
   config:
     enabled: true
-    mountPath: /opt/adguardhome/conf
     retain: true
+    mountPath: /opt/adguardhome/conf
+  data:
+    enabled: true
+    retain: true
+    mountPath: /opt/adguardhome/work
 
 
+probes:
+  liveness:
+    enabled: false
+  rediness:
+    enabled: false
+  startup:
+    enabled: false
