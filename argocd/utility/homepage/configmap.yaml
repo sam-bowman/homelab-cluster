@@ -34,34 +34,37 @@ data:
   bookmarks.yaml: |
     - Developer:
         - Github:
-            - abbr: GH
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/github.png
               href: https://github.com/
         - Github homelab cluster:
-            - abbr: HL
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/github.png
               href: https://github.com/sam-bowman/homelab-cluster
         - Github portfolio website:
-            - abbr: PF
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/github.png
               href: https://github.com/sam-bowman/portfolio-website
     - Social:
         - Facebook:
-            - abbr: FB
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/facebook.png
               href: https://facebook.com/
         - Instagram:
-            - abbr: IG
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/instagram.png
               href: https://instagram.com/
         - Reddit:
-            - abbr: RD
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/reddit.png
               href: https://reddit.com/
+        - X:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/x.png
+              href: https://x.com/
     - Shopping:
         - Amazon:
-            - abbr: AZ
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/amazon.png
               href: https://amazon.co.uk/
     - Media:
         - Youtube:
-            - abbr: YT
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/youtube.png
               href: https://youtube.com/
         - Youtube Music:
-            - abbr: YTM
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/youtube-shorts.png
               href: https://music.youtube.com/
     - Web Games:
         - JKLM:
@@ -71,7 +74,7 @@ data:
             - abbr: GTS
               href: https://guessthesong.io/
         - Skribbl:
-            - abbr: SK
+            - abbr: SKR
               href: https://skribbl.io/
     - Game Wikis:
         - Runescape:
@@ -84,29 +87,29 @@ data:
             - abbr: RPG
               href: https://www.rpgsite.net/
         - WH Horus Heresy:
-            - abbr: WH
+            - abbr: WHHH
               href: https://gaming.kylebb.com/hhtimeline/
     - Homelab:
         - Requestrr:
-            - abbr: RQRR
+            - abbr: REQ
               href: https://requestrr.bowmans.site/
         - Maintainerr:
-            - abbr: MTRR
+            - abbr: MNT
               href: https://maintainerr.bowmans.site/
         - TitleCardMaker:
             - abbr: TCM
               href: https://titlecardmaker.bowmans.site/
         - Consul:
-            - abbr: CN
+            - abbr: CNSL
               href: https://consul.bowmans.site/
         - Vault:
             - abbr: VLT
               href: https://vault.bowmans.site/
         - Gollum:
-            - abbr: GL
+            - abbr: GLM
               href: https://gollum.bowmans.site/
         - K8S Dashboard:
-            - abbr: K8DB
+            - abbr: DASH
               href: https://dashboard.bowmans.site/
         - n8n:
             - abbr: N8N
