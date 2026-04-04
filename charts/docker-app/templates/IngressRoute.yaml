@@ -4,10 +4,12 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: {{ $.Values.name }}-route
+  {{- if $.Values.annotations }}
   annotations:
     {{- with $.Values.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- end }}
 spec:
   entryPoints:
     - websecure
