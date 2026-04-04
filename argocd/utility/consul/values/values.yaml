@@ -2,10 +2,10 @@ client:
   enabled: true
   resources:
     requests:
-      memory: "200Mi"
+      memory: "400Mi"
       cpu: "200m"
     limits:
-      memory: "200Mi"
+      memory: "400Mi"
       cpu: "200m"
 
 connectInject:
