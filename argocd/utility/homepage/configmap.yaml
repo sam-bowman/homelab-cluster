@@ -90,6 +90,13 @@ data:
         - WH Horus Heresy:
             - abbr: WHHH
               href: https://gaming.kylebb.com/hhtimeline/
+    - Homepage:
+        - Documentation:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/homepage.png
+              href: https://gethomepage.dev/widgets/
+        - Icons:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/selfh-st.png
+              href: https://selfh.st/icons/
     - Homelab:
         - Requestrr:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/requestrr.png
@@ -115,6 +122,12 @@ data:
         - n8n:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/n8n.png
               href: https://n8n.bowmans.site/
+        - Cloudflare:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cloudflare.png
+              href: https://dash.cloudflare.com/
+        - Oracle:
+            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/oracle.png
+              href: https://cloud.oracle.com/?region=uk-london-1
   services.yaml: |
     - Network:
       - Firewall:
