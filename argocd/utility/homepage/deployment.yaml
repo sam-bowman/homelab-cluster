@@ -48,106 +48,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: app-api-keys
-                  key: "HOMEPAGE_VAR_ARGOCD_API_KEY"
-
-            - name: "HOMEPAGE_VAR_BAZARR_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_BAZARR_API_KEY"
-
-            - name: "HOMEPAGE_VAR_HASS_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_HASS_API_KEY"
-
-            - name: "HOMEPAGE_VAR_OPNSENSE_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_OPNSENSE_PASSWORD"
-            - name: "HOMEPAGE_VAR_OPNSENSE_USERNAME"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_OPNSENSE_USERNAME"
-
-            - name: "HOMEPAGE_VAR_OVERSEERR_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_OVERSEERR_API_KEY"
-
-            - name: "HOMEPAGE_VAR_PLEX_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_PLEX_API_KEY"
-
-            - name: "HOMEPAGE_VAR_PTERODACTYL_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_PTERODACTYL_API_KEY"
-
-            - name: "HOMEPAGE_VAR_PVE_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_PVE_PASSWORD"
-            - name: "HOMEPAGE_VAR_PVE_USERNAME"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_PVE_USERNAME"
-
-            - name: "HOMEPAGE_VAR_RADARR_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_RADARR_API_KEY"
-
-            - name: "HOMEPAGE_VAR_READARR_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_READARR_API_KEY"
-
-            - name: "HOMEPAGE_VAR_SABNZBD_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_SABNZBD_API_KEY"
-
-            - name: "HOMEPAGE_VAR_SONARR_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_SONARR_API_KEY"
-
-            - name: "HOMEPAGE_VAR_TAUTULLI_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_TAUTULLI_API_KEY"
-
-            - name: "HOMEPAGE_VAR_TRUENAS_API_KEY"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_TRUENAS_API_KEY"
-
-            - name: "HOMEPAGE_VAR_UNIFI_PASSWORD"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_UNIFI_PASSWORD"
-            - name: "HOMEPAGE_VAR_UNIFI_USERNAME"
-              valueFrom:
-                secretKeyRef:
-                  name: app-api-keys
-                  key: "HOMEPAGE_VAR_UNIFI_USERNAME"
           ports:
             - name: http
               containerPort: 3000
@@ -188,18 +88,9 @@ spec:
               subPath: proxmox.yaml
             - mountPath: /app/config/logs
               name: logs
-            - name: secrets-store-inline
-              mountPath: "/mnt/secrets-store"
-              readOnly: true
       volumes:
         - name: homepage-config
           configMap:
             name: homepage
         - name: logs
           emptyDir: {}
-        - name: secrets-store-inline
-          csi:
-            driver: 'secrets-store.csi.k8s.io'
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: homepage-spc
