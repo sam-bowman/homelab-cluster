@@ -77,6 +77,15 @@ data:
         - Skribbl:
             - abbr: SKR
               href: https://skribbl.io/
+        - Settlers of Catan:
+            - abbr: SoC
+              href: https://colonist.io/
+        - Codenames:
+            - abbr: CN
+              href: https://codenames.game/
+        - Board Game Arena:
+            - abbr: BGA
+              href: https://boardgamearena.com/welcome
     - Game Wikis:
         - Runescape:
             - abbr: RS3
