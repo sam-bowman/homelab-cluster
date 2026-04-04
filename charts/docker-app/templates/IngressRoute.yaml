@@ -4,9 +4,9 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: {{ $.Values.name }}-route
-  {{- if $.Values.annotations }}
+  {{- if $.Values.ingress.annotations }}
   annotations:
-    {{- with $.Values.annotations }}
+    {{- with $.Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
