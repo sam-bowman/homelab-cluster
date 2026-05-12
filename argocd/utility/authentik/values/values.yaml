@@ -1,1 +1,17 @@
-#
+authentik:
+  secret_key: "TemporarySecretKey"
+  # This sends anonymous usage-data, stack traces on errors and
+  # performance data to sentry.io, and is fully opt-in
+  error_reporting:
+    enabled: true
+  postgresql:
+    password: "TemporaryPassword"
+
+server:
+  ingress:
+    enabled: false
+
+postgresql:
+  enabled: true
+  auth:
+    password: "TemporaryPassword"
