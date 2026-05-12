@@ -145,6 +145,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "authentik" = {
+      hostname          = "authentik"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
+    }
     "bazarr" = {
       hostname          = "bazarr"
       cf_enabled        = true
