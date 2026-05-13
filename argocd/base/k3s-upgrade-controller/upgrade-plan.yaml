@@ -1,3 +1,4 @@
+# https://github.com/k3s-io/k3s/releases/latest
 # Server plan
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
