@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: foundryvtt
+  name: foundry
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: foundryvtt
+    namespace: foundry
     server: https://kubernetes.default.svc
   project: default
   sources:
     - helm:
         values: |
-          name: foundryvtt
+          name: foundry
           port: 30000
           externalName: foundry.bowmans.site
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
