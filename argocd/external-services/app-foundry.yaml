@@ -15,7 +15,6 @@ spec:
         values: |
           name: foundry
           port: 30000
-          externalName: foundry.bowmans.site
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main
