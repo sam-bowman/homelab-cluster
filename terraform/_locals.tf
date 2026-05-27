@@ -103,7 +103,7 @@ locals {
       hostname          = "foundry"
       cf_enabled        = true
       cf_content        = "home.bowmans.site"
-      cf_proxy_enabled  = false
+      cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
     "factorio" = {
