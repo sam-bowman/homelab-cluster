@@ -99,6 +99,13 @@ locals {
     }
   }
   aliases         = {
+    "foundry" = {
+      hostname          = "foundry"
+      cf_enabled        = true
+      cf_content        = "home.bowmans.site"
+      cf_proxy_enabled  = false
+      alias_of          = "traefik"
+    }
     "factorio" = {
       hostname          = "factorio"
       cf_enabled        = true
