@@ -16,7 +16,7 @@ spec:
           name: plex
           port: 32400
           annotations:
-            gethomepage.dev/href: "https://plex.bowmans.site/"
+            gethomepage.dev/href: "https://app.plex.tv/"
             gethomepage.dev/enabled: "true"
             gethomepage.dev/description: Plex
             gethomepage.dev/group: Media

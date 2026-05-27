@@ -86,6 +86,9 @@ data:
         - Board Game Arena:
             - abbr: BGA
               href: https://boardgamearena.com/welcome
+        - Foundry:
+            - abbr: F
+              href: https://foundry.bowmans.site
     - Game Wikis:
         - Runescape:
             - abbr: RS3
