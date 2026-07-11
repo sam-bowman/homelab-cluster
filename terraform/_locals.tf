@@ -230,6 +230,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "openproject" = {
+      hostname          = "openproject"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      alias_of          = "traefik"
+    }
     "overseerr" = {
       hostname          = "overseerr"
       cf_enabled        = true

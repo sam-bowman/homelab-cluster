@@ -142,6 +142,11 @@ services:
     subtitle: "The #1 Self-Hosted Cloud Development Environment"
     tag: "cicd"
     url: "https://coder.bowmans.site"
+  - name: "OpenProject"
+    logo: "https://raw.githubusercontent.com/opf/openproject/refs/heads/dev/public/favicon.ico"
+    subtitle: "OpenProject is the leading open source project management software. "
+    tag: "cicd"
+    url: "https://openproject.bowmans.site"
 - name: "Utility"
   icon: "fas fa-wrench"
   items:
