@@ -24,7 +24,11 @@ data:
         style: row
         columns: 3
     - CICD:
+        style: row
+        columns: 2
     - Smart Home:
+        style: row
+        columns: 1
     fullWidth: true
     useEqualHeights: true
     bookmarksStyle: icons
