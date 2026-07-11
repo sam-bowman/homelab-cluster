@@ -20,5 +20,10 @@ spec:
       services:
       - name: openproject
         port: 8080
+    - match: Host(`openproject.bowmans.site`) && PathPrefix(`/hocuspocus`)
+      kind: Rule
+      services:
+      - name: openproject-hocuspocus
+        port: 1234
   tls:
     secretName: openproject-certificate

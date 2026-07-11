@@ -1,1 +1,5 @@
-#
+ingress:
+  enabled: false
+
+openproject:
+  host: openproject.bowmans.site
