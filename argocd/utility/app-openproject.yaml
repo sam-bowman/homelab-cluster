@@ -12,7 +12,7 @@ spec:
   project: default
   revisionHistoryLimit: 2
   sources:
-  - chart: openproject/openproject
+  - chart: openproject
     helm:
       valueFiles:
       - $values/argocd/utility/openproject/values/values.yaml
