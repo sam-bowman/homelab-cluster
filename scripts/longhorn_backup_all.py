@@ -4,7 +4,8 @@
 Run it before anything risky (a Longhorn upgrade, a k3s upgrade). It only adds a snapshot and a backup per
 volume; running data is not touched. Backups go to the default Longhorn backup target (the NAS).
 
-Usage: python scripts/longhorn_backup_all.py [--timeout-minutes 20]
+Usage: python scripts/longhorn_backup_all.py [--only namespace/pvc ...] [--timeout-minutes 20]
+  --only   back up just these volumes, e.g. --only unifi/unifi-pvc
 Exit code 0 only if every volume backed up.
 """
 import argparse
@@ -53,6 +54,7 @@ def wait(fetch, done, bad, timeout):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--timeout-minutes', type=int, default=20)
+    parser.add_argument('--only', nargs='+', metavar='NAMESPACE/PVC', help='back up only these volumes')
     args = parser.parse_args()
     timeout = args.timeout_minutes * 60
     stamp = datetime.now().strftime('%Y%m%d-%H%M%S')
@@ -62,6 +64,14 @@ def main():
         sys.exit('The default backup target is not available. Fix that first.')
 
     volumes = get('volumes.longhorn.io')['items']
+    def pvc_of(v):
+        ks = v['status'].get('kubernetesStatus', {})
+        return f"{ks.get('namespace', '-')}/{ks.get('pvcName', v['metadata']['name'])}"
+
+    if args.only:
+        volumes = [v for v in volumes if pvc_of(v) in args.only]
+        if len(volumes) != len(args.only):
+            sys.exit(f'Not every volume in --only was found: {args.only}')
     attached = [v for v in volumes if v['status'].get('state') == 'attached']
     skipped = [v for v in volumes if v['status'].get('state') != 'attached']
     print(f'{len(attached)} attached volume(s) to back up, {len(skipped)} skipped (not attached).\n')
