@@ -19,9 +19,6 @@ sonarr: {
 radarr: {
     label: "radarr"
 }
-readarr: {
-    label: "Readarr"
-}
 sabnzbd: {
     label: "SabNZBD"
 }
@@ -34,11 +31,9 @@ nzb_indexers: {
 
 nzb_indexers <- sonarr
 nzb_indexers <- radarr
-nzb_indexers <- readarr
 
 sonarr -> sabnzbd
 radarr -> sabnzbd
-readarr -> sabnzbd
 
 sabnzbd -> nas
 
@@ -112,7 +107,6 @@ argocd <-> traefik
 traefik -> bazarr
 traefik -> plex
 traefik -> radarr
-traefik -> readarr
 traefik -> sabnzbd
 traefik -> sonarr
 traefik -> tdarr

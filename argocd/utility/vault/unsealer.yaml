@@ -1,0 +1,103 @@
+# Unseals the Vault pods whenever they come up sealed (e.g. after a node reboot).
+#
+# The unseal keys are NOT in git. Create the Secret yourself once, see
+# scripts/vault-create-unseal-secret.sh. Until it exists this pod sits in
+# CreateContainerConfigError, which is harmless.
+#
+# Trade-off: the keys live in a Kubernetes Secret in this namespace, so anyone
+# who can read Secrets in hashicorp-vault can unseal Vault. Only supply as many
+# keys as the threshold needs, and keep the rest offline.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-unsealer
+data:
+  unseal.sh: |
+    #!/bin/sh
+    # vault status exit codes: 0 = unsealed, 1 = error/unreachable, 2 = sealed
+    INTERVAL="${INTERVAL:-15}"
+    while true; do
+      for pod in $VAULT_PODS; do
+        export VAULT_ADDR="http://${pod}.hashicorp-vault-internal.hashicorp-vault.svc:8200"
+        vault status >/dev/null 2>&1
+        if [ $? -eq 2 ]; then
+          echo "$(date -u +%FT%TZ) ${pod} is sealed, unsealing"
+          for key in /keys/*; do
+            vault operator unseal - < "$key" >/dev/null 2>&1 || echo "unseal call failed for ${pod}"
+            vault status >/dev/null 2>&1 && break
+          done
+          vault status >/dev/null 2>&1
+          [ $? -eq 0 ] && echo "$(date -u +%FT%TZ) ${pod} unsealed" || echo "$(date -u +%FT%TZ) ${pod} still sealed or unreachable"
+        fi
+      done
+      sleep "$INTERVAL"
+    done
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-unsealer
+  labels:
+    app.kubernetes.io/name: vault-unsealer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vault-unsealer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vault-unsealer
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 100
+        runAsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: unsealer
+        image: hashicorp/vault:1.21.2
+        command: ["/bin/sh", "/scripts/unseal.sh"]
+        env:
+        - name: VAULT_PODS
+          value: "hashicorp-vault-0 hashicorp-vault-1"
+        - name: INTERVAL
+          value: "15"
+        - name: HOME
+          value: /tmp
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+          readOnly: true
+        - name: keys
+          mountPath: /keys
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: scripts
+        configMap:
+          name: vault-unsealer
+      - name: keys
+        secret:
+          secretName: vault-unseal-keys
+          defaultMode: 0400
+      - name: tmp
+        emptyDir:
+          medium: Memory
+          sizeLimit: 8Mi

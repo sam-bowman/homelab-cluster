@@ -174,12 +174,6 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
-    "hass" = {
-      hostname          = "hass"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
     "homer" = {
       hostname          = "homer"
       cf_enabled        = true
@@ -216,12 +210,6 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
-    "openproject" = {
-      hostname          = "openproject"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
     "overseerr" = {
       hostname          = "overseerr"
       cf_enabled        = true
@@ -236,12 +224,6 @@ locals {
     }
     "radarr" = {
       hostname          = "radarr"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "readarr" = {
-      hostname          = "readarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "traefik"

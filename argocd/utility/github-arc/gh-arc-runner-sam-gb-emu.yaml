@@ -1,9 +1,0 @@
-apiVersion: actions.summerwind.dev/v1alpha1
-kind: RunnerDeployment
-metadata:
-  name: runner-deployment-sam-gb-emu
-spec:
-  replicas: 1
-  template:
-    spec:
-      repository: sam-bowman/sam-gb-emu

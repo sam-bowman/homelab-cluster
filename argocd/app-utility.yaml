@@ -10,6 +10,11 @@ spec:
     namespace: utility
     server: https://kubernetes.default.svc
   project: default
+  ignoreDifferences:
+  - group: argoproj.io
+    kind: Application
+    jqPathExpressions:
+    - .metadata.finalizers
   source:
     path: apps/utility
     repoURL: https://github.com/sam-bowman/homelab-cluster
