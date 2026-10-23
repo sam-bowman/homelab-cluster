@@ -23,7 +23,7 @@ data:
         if [ $? -eq 2 ]; then
           echo "$(date -u +%FT%TZ) ${pod} is sealed, unsealing"
           for key in /keys/*; do
-            vault operator unseal - < "$key" >/dev/null 2>&1 || echo "unseal call failed for ${pod}"
+            vault operator unseal "$(cat "$key")" >/dev/null 2>&1 || echo "unseal call failed for ${pod}"
             vault status >/dev/null 2>&1 && break
           done
           vault status >/dev/null 2>&1
