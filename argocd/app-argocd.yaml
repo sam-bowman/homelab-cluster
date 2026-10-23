@@ -20,4 +20,7 @@ spec:
       allowEmpty: true
     syncOptions:
     - CreateNamespace=true
+    # The ApplicationSet CRD is too big for client-side apply ("metadata.annotations: Too long"), which made
+    # every sync of this app fail on that CRD.
+    - ServerSideApply=true
   revisionHistoryLimit: 2
