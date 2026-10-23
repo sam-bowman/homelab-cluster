@@ -145,7 +145,7 @@ d2 media.d2 media.svg
 
 ## Things worth knowing
 
-- **Traefik is owned by k3s.** The Deployment and Service come from k3s's own Helm chart, and the repo only holds the `HelmChart`, `HelmChartConfig` and middleware. Do not add a Traefik Deployment or Service here. The `traefik` app is manual-sync for that reason.
+- **Traefik is owned by k3s.** The Deployment and Service come from k3s's own Helm chart, and k3s creates and upgrades the `HelmChart` objects itself, so the repo only holds the `HelmChartConfig` (our settings) and the middleware. Do not add a Traefik Deployment or Service here. The `traefik` app is manual-sync for that reason.
 - **UniFi's controller image is pinned (currently `v10.0.162`)**, upgraded in steps with a backup first, and the `unifi-ext` service uses `externalTrafficPolicy: Local`. With the default policy every device appears to come from one node address and the switches never settle as connected.
 - **Pinning matters for stateful apps.** UniFi's chart defaults to a much newer controller and a different data path. Check `values.yaml` before bumping its chart.
 - **Vault and Consul are linked.** Vault stores its data in Consul. Back both up before touching either.
