@@ -13,6 +13,11 @@ server:
     enabled: true
     path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
     initialDelaySeconds: 60
+    # Tolerate about a minute of storage trouble (e.g. the single Consul server restarting) before the pod is
+    # restarted. The chart default restarts it after 4 seconds.
+    periodSeconds: 10
+    failureThreshold: 6
+    timeoutSeconds: 5
   standalone:
     enabled: false
   ha:
