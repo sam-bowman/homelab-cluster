@@ -1,0 +1,14 @@
+{{- range $namespace, $override := .Values.namespaces }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ $namespace }}
+  namespace: {{ $namespace }}
+spec:
+  limits:
+  - type: Container
+    defaultRequest:
+      cpu: {{ default $.Values.defaults.cpu $override.cpu }}
+      memory: {{ default $.Values.defaults.memory $override.memory }}
+{{- end }}

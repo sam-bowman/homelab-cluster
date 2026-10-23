@@ -1,0 +1,35 @@
+# A LimitRange gives containers that declare no requests a default one, so the
+# scheduler always knows roughly what a pod needs. It only applies to pods
+# created after the LimitRange exists.
+#
+# Every namespace listed here gets one LimitRange (named after the namespace).
+# Override `cpu` or `memory` per namespace where the default is too small.
+#
+# Left out on purpose:
+#   longhorn-system  ~50 containers without requests; a default would reserve
+#                    about 5 cores and 5 GiB on a small cluster.
+#   chat             installed by hand with Helm, not managed from this repo.
+#   namespaces whose apps already set their own requests (the media apps).
+
+defaults:
+  cpu: 100m
+  memory: 100Mi
+
+namespaces:
+  adguard: {}
+  argocd: {}
+  cert-manager: {}
+  csi-secrets-store: {}
+  external-secrets: {}
+  github-arc: {}
+  hashicorp-consul:
+    cpu: 200m
+    memory: 200Mi
+  hashicorp-vault:
+    cpu: 200m
+    memory: 200Mi
+  homepage: {}
+  kube-system: {}
+  metallb-system: {}
+  system-upgrade: {}
+  unifi: {}

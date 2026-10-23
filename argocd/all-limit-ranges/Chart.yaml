@@ -1,0 +1,5 @@
+apiVersion: v2
+name: limit-ranges
+description: Default container resource requests for namespaces that run workloads without their own requests.
+type: application
+version: 0.1.0

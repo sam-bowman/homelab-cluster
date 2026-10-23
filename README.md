@@ -42,7 +42,7 @@ apps/                      Application manifests, one folder per category
 argocd/
   app-*.yaml                 bootstrap parent apps (path: apps/<category>)
   argocd/                    ArgoCD itself: install manifest, repo credentials, ingress
-  all-limit-ranges/          default resource requests per namespace
+  all-limit-ranges/          Helm chart: a default-requests LimitRange for each namespace listed in values.yaml
   <category>/<app>/          what each app deploys: values/values.yaml, cert.yaml, ingressroute.yaml, ...
 charts/
   docker-app/                generic chart for a container image that has no chart of its own
@@ -97,6 +97,10 @@ Add an entry to `apps/external-services/values.yaml` with a `name` and `port`. A
 ### Add a hostname
 
 Add an entry to `terraform/_locals.tf`, usually with `alias_of = "traefik"`. A push under `terraform/` creates the local and Cloudflare records.
+
+### Give a namespace default resource requests
+
+Add it to `namespaces` in `argocd/all-limit-ranges/values.yaml`, with an optional `cpu` or `memory` override. A LimitRange only applies to pods created after it exists, so restart existing pods to pick it up. `longhorn-system` is left out on purpose: it runs about 50 containers without requests, and a default would reserve around 5 cores and 5 GiB.
 
 ### Remove an app
 
