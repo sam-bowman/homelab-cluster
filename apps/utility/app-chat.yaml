@@ -28,6 +28,9 @@ spec:
   - repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
     ref: values
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    path: argocd/utility/chat/secrets
   syncPolicy:
     syncOptions:
     - ServerSideApply=true

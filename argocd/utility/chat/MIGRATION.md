@@ -56,7 +56,9 @@ credential (the secret half stays in the cluster). Rotate it later if you want i
    Never run `helm uninstall chat` or `helm upgrade chat` from now on. Releases happen by changing `targetRevision` in `apps/utility/app-chat.yaml`.
 7. **Stop using `.run/upgrade-chat.ps1` for this release.** Once step 6 is done it finds no Helm release and stops. Between step 4 and step 6 it would still run `helm upgrade`, which fights ArgoCD, so do not run it then either. Upgrades now work as described below.
 8. **Later, optional follow-ups**, each as its own change:
-   - Move the three Secrets into Vault with External Secrets (`creationPolicy: Merge`, same names), so they can be rebuilt from Vault.
+   - Move the three Secrets into Vault with External Secrets. The values are in Vault at `secret/CHAT` (`CH_JWTACCESSSECRET`, `CH_JWTREFRESHSECRET`, `PG_PASSWORD`, `VO_APISECRET`). Done in two steps so a typo in Vault can never overwrite a working secret:
+     1. `argocd/utility/chat/secrets/vault-check.yaml` reads Vault into a scratch Secret, `chat-vault-check`. After syncing, run `bash scripts/chat-verify-vault-secrets.sh`. It prints OK or MISMATCH per value, never the value.
+     2. Only when all four are OK, replace that file with ExternalSecrets that merge into the real Secrets (`creationPolicy: Merge`, same names), and delete `chat-vault-check`.
    - Add resource requests to the server, client, redis, postgres and livekit.
    - Turn on automated sync (without prune) once you trust it.
 
