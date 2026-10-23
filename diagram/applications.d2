@@ -1,131 +1,91 @@
-tautulli: {
-    label: "Tautulli"
-}
-plex: {
-    label: "Plex"
-}
-
-tautulli -> plex
-
-nas: {
-    label: "NAS Storage"
+# What runs where, and how requests reach it.
+# Render: d2 applications.d2 applications.svg
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+    dark-theme-id: 200
+    pad: 40
+  }
 }
 
-plex -> nas
+direction: down
 
-sonarr: {
-    label: "Sonarr"
-}
-radarr: {
-    label: "radarr"
-}
-sabnzbd: {
-    label: "SabNZBD"
-}
-usenet_providers: {
-    label: "Usenet Providers"
-}
-nzb_indexers: {
-    label: "NZB Indexers"
-}
-
-nzb_indexers <- sonarr
-nzb_indexers <- radarr
-
-sonarr -> sabnzbd
-radarr -> sabnzbd
-
-sabnzbd -> nas
-
-usenet_providers <- sabnzbd
-
-overseerr: {
-    label: "Overseerr"
+classes: {
+  box: {
+    style: {
+      border-radius: 8
+    }
+  }
+  group: {
+    style: {
+      border-radius: 12
+      stroke-dash: 4
+      font-size: 18
+    }
+  }
 }
 
-overseerr -> sonarr
-overseerr -> radarr
-overseerr -> tautulli
-overseerr -> plex
+users: "You (LAN, VPN or internet)\n*.bowmans.site resolves to Traefik" {class: box}
 
-maintainerr: {
-    label: "Maintainerr"
+cluster: "k3s cluster - MetalLB layer 2" {
+  class: group
+
+  traefik: "Traefik 10.10.20.101\nTLS certificates from cert-manager (Let's Encrypt)" {class: box}
+
+  apps: "Web apps running in the cluster" {
+    class: group
+    grid-columns: 4
+    homepage: Homepage {class: box}
+    overseerr: Overseerr {class: box}
+    maintainerr: Maintainerr {class: box}
+    requestrr: Requestrr {class: box}
+    tautulli: Tautulli {class: box}
+    unifi: "UniFi controller" {class: box}
+    adguard: "AdGuard Home" {class: box}
+  }
+
+  platform: "Platform UIs" {
+    class: group
+    grid-columns: 4
+    argocd: ArgoCD {class: box}
+    longhorn: Longhorn {class: box}
+    vault: Vault {class: box}
+    consul: Consul {class: box}
+  }
+
+  direct: "Services that skip Traefik (own load balancer IP)" {
+    class: group
+    grid-columns: 3
+    unifi_ip: "UniFi inform\n10.10.20.202:8080" {class: box}
+    adguard_ip: "AdGuard DNS\n10.10.20.205" {class: box}
+    dns_ip: "Cluster DNS\n10.10.20.201" {class: box}
+  }
+
+  storage: "Longhorn volumes\n3 replicas, backed up nightly at 01:00" {class: box}
+
+  traefik -> apps
+  traefik -> platform
+  apps -> storage
 }
 
-maintainerr -> plex
-maintainerr -> overseerr
-maintainerr -> radarr
-maintainerr -> sonarr
-maintainerr -> tautulli
-
-requestrr: {
-    label: "Requestrr"
-}
-discord: {
-    label: "Discord"
-}
-
-requestrr -> overseerr
-requestrr <-> discord
-
-bazarr: {
-    label: "Bazarr"
+truenas: "TrueNAS apps at truenas.bowmans.site\n(proxied through ExternalName services)" {
+  class: group
+  grid-columns: 3
+  plex: "Plex :32400" {class: box}
+  sonarr: "Sonarr :30027" {class: box}
+  radarr: "Radarr :30025" {class: box}
+  bazarr: "Bazarr :30046" {class: box}
+  sabnzbd: "SABnzbd :30055" {class: box}
+  tdarr: "Tdarr :30028" {class: box}
+  titlecardmaker: "Title Card Maker :34242" {class: box}
+  foundry: "Foundry VTT :30000" {class: box}
+  nextcloud: "Nextcloud :31234" {class: box}
 }
 
-bazarr -> radarr
-bazarr -> sonarr
-bazarr -> nas
+backup: "NAS backup target\nnfs://truenas/mnt/pool/longhorn-backups" {class: box}
 
-titlecardmaker: {
-    label: "Title Card Maker"
-}
-
-titlecardmaker -> sonarr
-titlecardmaker -> nas
-
-tdarr: {
-    label: "Tdarr"
-}
-
-tdarr -> nas
-
-homelab_cluster_github: {
-    label: "Homelab Cluster Github Repo"
-}
-argocd: {
-    label: "ArgoCD"
-}
-
-homelab_cluster_github <- argocd
-
-traefik: {
-    label: "Traefik Reverse Proxy"
-}
-
-argocd <-> traefik
-
-traefik -> bazarr
-traefik -> plex
-traefik -> radarr
-traefik -> sabnzbd
-traefik -> sonarr
-traefik -> tdarr
-traefik -> titlecardmaker
-
-consul: {
-    label: "Hashicorp Consul"
-}
-vault: {
-    label: "Hashicorp Vault"
-}
-
-traefik -> consul
-traefik -> vault
-
-github_arc: {
-    label: "Github Actions Runner Controller"
-}
-
-github_arc -> consul
-github_arc -> vault
-
+users -> cluster.traefik
+users -> cluster.direct
+cluster.traefik -> truenas: proxied
+cluster.storage -> backup

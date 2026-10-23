@@ -1,0 +1,72 @@
+# How a media request flows through the stack.
+# Render: d2 media.d2 media.svg
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+    dark-theme-id: 200
+    pad: 40
+  }
+}
+
+direction: down
+
+classes: {
+  box: {
+    style: {
+      border-radius: 8
+    }
+  }
+  group: {
+    style: {
+      border-radius: 12
+      stroke-dash: 4
+      font-size: 18
+    }
+  }
+}
+
+request: "1. Request" {
+  class: group
+  grid-columns: 3
+  discord: Discord {class: box}
+  requestrr: "Requestrr\n(Discord bot)" {class: box}
+  overseerr: Overseerr {class: box}
+}
+
+automation: "2. Automation" {
+  class: group
+  grid-columns: 3
+  sonarr: "Sonarr\nTV" {class: box}
+  radarr: "Radarr\nmovies" {class: box}
+  bazarr: "Bazarr\nsubtitles" {class: box}
+}
+
+download: "3. Download" {
+  class: group
+  grid-columns: 3
+  indexers: "NZB indexers" {class: box}
+  sabnzbd: SABnzbd {class: box}
+  usenet: "Usenet providers" {class: box}
+}
+
+library: "4. Library" {
+  class: group
+  grid-columns: 3
+  nas: "NAS storage" {class: box}
+  plex: Plex {class: box}
+  tdarr: "Tdarr\ntranscoding" {class: box}
+}
+
+care: "Housekeeping" {
+  class: group
+  grid-columns: 3
+  tautulli: "Tautulli\nplay statistics" {class: box}
+  maintainerr: "Maintainerr\nremoves unwatched media" {class: box}
+  titlecards: "Title Card Maker\nepisode title cards" {class: box}
+}
+
+request -> automation: "approved requests"
+automation -> download: "search and send"
+download -> library: "completed files"
+library -> care: "monitored by"

@@ -1,172 +1,85 @@
-ubuntu_vps: {
-    label: ""
-    explanation: |md
-        # Ubuntu VPS
-        - Oracle Free Tier VM
-    |
+# Physical layout: what hardware exists and how it is cabled.
+# Render: d2 hardware.d2 hardware.svg
+vars: {
+  d2-config: {
+    layout-engine: elk
+    theme-id: 0
+    dark-theme-id: 200
+    pad: 40
+  }
 }
 
-ubuntu_vps_secondary: {
-    label: ""
-    explanation: |md
-        # Ubuntu VPS - Secondary
-        - Oracle Free Tier VM
-    |
+direction: down
+
+classes: {
+  box: {
+    style: {
+      border-radius: 8
+    }
+  }
+  group: {
+    style: {
+      border-radius: 12
+      stroke-dash: 4
+      font-size: 18
+    }
+  }
 }
 
-ubuntu_vps_secondary -- ubuntu_vps
-
-isp_internet: {
-    shape: cloud
-    label: "Internet"
+internet: Internet {
+  shape: cloud
 }
 
-ubuntu_vps -- isp_internet
-
-isp_router: {
-    label: "ISP Router"
+oracle: Oracle Cloud (free tier) {
+  class: group
+  vps: "Ubuntu VPS\nWireGuard site-to-site host" {class: box}
+  vps2: "Ubuntu VPS (secondary)" {class: box}
 }
 
-isp_internet -- isp_router
+isp: "ISP router\n192.168.1.254" {class: box}
 
-firewall: {
-    label: ""
-    explanation: |md
-        # Firewall
-        - Model: Protectli Vault FW6D
-        - Ports: 6 (1x WAN, 1xLAN)
-        - CPU: Intel i5 8250U
-    |
-}
+firewall: "Firewall (OPNsense)\nProtectli Vault FW6D\nIntel i5-8250U, 6 ports" {class: box}
 
-isp_router -- firewall
+sw2: "SMAM-SW-2 (core switch)\nUniFi US-8-60W, 8 ports (4x PoE)" {class: box}
 
-smam_sw_2: {
-    label: ""
-    explanation: |md
-        # SMAM-SW-2
-        - Model: UniFi US 8 60W
-        - Ports: 8 Ports (4x PoE)
-    |
+sw1: "SMAM-SW-1\nUniFi US-8-60W, 8 ports (4x PoE)" {class: box}
+
+ap: "SMAM-AP-1\nUniFi AC Pro" {class: box}
+
+pve1: "PVE1 - Proxmox host, 10.10.20.70\nLenovo ThinkCentre M920q, i7-8700T, 32 GB" {
+  class: group
+  grid-columns: 2
+  pterodactyl: "VM: Pterodactyl\n10.10.20.80" {class: box}
+  haos: "VM: Home Assistant OS\n10.10.20.82" {class: box}
 }
 
-firewall -- smam_sw_2
-
-smam_sw_1: {
-    label: ""
-    explanation: |md
-        # SMAM-SW-1
-        - Model: UniFi US 8 60W
-        - Ports: 8 Ports (4x PoE)
-    |
-}
-pc: {
-    label: ""
-    explanation: |md
-        # Gaming PC (Custom Build)
-        - CPU: Intel Core i9-14900k
-        - GPU: NVIDIA RTX 5090
-        - Memory: 64GB DDR5
-    |
-}
-nvidia_shield: {
-    label: ""
-    explanation: |md
-        # NVIDIA Shield
-    |
-}
-philips_hue_hub: {
-    label: ""
-    explanation: |md
-        # Phillips Hue Hub
-        ### Connected to 4 bulbs
-    |
-}
-elegoo_saturn_3d_printer: {
-    label: ""
-    explanation: |md
-        # Elegoo Saturn 3D Printer
-        ### MSLA
-        ### 4K Monochrome
-        ### 192x120x200mm Build Size
-    |
-}
-pve1: {
-    label: ""
-    explanation: |md
-        # PVE1
-        ### Proxmox Host
-        ### Lenovo ThinkCentre M920q
-        ### CPU: Intel Core i7 8700T
-        ### Memory: 32GB DDR3
-    |
-}
-smam_ap_1: {
-    label: ""
-    explanation: |md
-        # SMAM-AP-1
-        - Model: UniFi AC Pro
-    |
+desk: "Other devices on SW-2" {
+  class: group
+  grid-columns: 2
+  pc: "Gaming PC (10.10.10.52)\ni9-14900K, RTX 5090, 64 GB" {class: box}
+  shield: "NVIDIA Shield" {class: box}
+  hue: "Philips Hue Hub\n4 bulbs" {class: box}
+  printer: "Elegoo Saturn\nMSLA 3D printer" {class: box}
 }
 
-smam_sw_2 -- smam_sw_1
-smam_sw_2 -- pc
-smam_sw_2 -- nvidia_shield
-smam_sw_2 -- philips_hue_hub
-smam_sw_2 -- elegoo_saturn_3d_printer
-smam_sw_2 -- pve1
-smam_sw_2 -- smam_ap_1
-
-nas: {
-    label: ""
-    explanation: |md
-        # NAS
-        - OS: TrueNAS Scale
-        - CPU: Intel Core i5 11400
-        - Memory: 32GB DDR4
-        - POOL: 
-            - Used for Mass storage
-            - RAIDZ1
-            - 6x3.64 TiB Hard Drive (split into 2 VDEVs)
-            - 1x 465.76 GiB SSD (Cache)
-            - Usable Capacity: 14.4 TiB
-        - APP-POOL:
-            - Used for App/Docker Storage
-            - 1x 465.76 GiB SSD
-
-    |
-}
-k3scluster01: {
-    label: ""
-    explanation: |md
-        # K3SCLUSTER01
-        - Model: Raspberry Pi
-    |
-}
-k3scluster02: {
-    label: ""
-    explanation: |md
-        # K3SCLUSTER02
-        - Model: Raspberry Pi
-    |
-}
-k3scluster03: {
-    label: ""
-    explanation: |md
-        # K3SCLUSTER03
-        - Model: Raspberry Pi
-    |
-}
-k3scluster04: {
-    label: ""
-    explanation: |md
-        # K3SCLUSTER04
-        - Model: Raspberry Pi
-    |
+cluster: "k3s cluster - 4 Raspberry Pi control-plane nodes" {
+  class: group
+  grid-columns: 4
+  n1: "k3scluster01\n10.10.20.60" {class: box}
+  n2: "k3scluster02\n10.10.20.61" {class: box}
+  n3: "k3scluster03\n10.10.20.62" {class: box}
+  n4: "k3scluster04\n10.10.20.63" {class: box}
 }
 
-smam_sw_1 -- nas
-smam_sw_1 -- k3scluster01
-smam_sw_1 -- k3scluster02
-smam_sw_1 -- k3scluster03
-smam_sw_1 -- k3scluster04
+nas: "NAS (truenas, 10.10.20.50)\nTrueNAS Scale, i5-11400, 32 GB\nMain pool: 6x 3.64 TiB RAIDZ1, 14.4 TiB usable\n+ 466 GiB SSD cache\nApp pool: 466 GiB SSD" {class: box}
+
+internet -- isp -- firewall -- sw2
+internet -- oracle
+
+sw2 -- sw1
+sw2 -- ap: "PoE"
+sw2 -- pve1
+sw2 -- desk
+
+sw1 -- cluster
+sw1 -- nas
