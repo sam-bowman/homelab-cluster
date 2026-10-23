@@ -234,8 +234,10 @@ def analyse(old, new):
                         notes.append(line)
                 om = sorted((m['name'], m['mountPath']) for m in old_c[cn].get('volumeMounts', []))
                 nm = sorted((m['name'], m['mountPath']) for m in new_c[cn].get('volumeMounts', []))
-                if om != nm:
-                    flags.append(f'{kind} {name}/{cn}: volume mount paths change {om} -> {nm}')
+                if set(om) - set(nm):
+                    flags.append(f'{kind} {name}/{cn}: volume mounts removed or moved {sorted(set(om) - set(nm))}')
+                elif om != nm:
+                    notes.append(f'mounts    {name}/{cn}: new mounts {sorted(set(nm) - set(om))}')
             if sorted(old_c) != sorted(new_c):
                 notes.append(f'containers {name}: {sorted(old_c)} -> {sorted(new_c)}')
         elif kind == 'PersistentVolumeClaim' and a.get('spec') != b.get('spec'):

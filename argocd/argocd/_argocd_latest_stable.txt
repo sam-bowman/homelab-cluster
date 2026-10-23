@@ -1,1 +1,5 @@
-https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+To upgrade ArgoCD, replace install.yaml with the manifest for the version you want (pinned, not 'stable'):
+  curl -sSL https://raw.githubusercontent.com/argoproj/argo-cd/vX.Y.Z/manifests/install.yaml -o install.yaml
+Currently: v3.5.6 (https://raw.githubusercontent.com/argoproj/argo-cd/v3.5.6/manifests/install.yaml)
+Read docs/operator-manual/upgrading/<old>-<new>.md for each minor version first.
+The app (apps argocd) needs ServerSideApply: the ApplicationSet CRD is too big for client-side apply.
