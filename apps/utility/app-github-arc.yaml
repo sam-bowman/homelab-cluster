@@ -23,6 +23,13 @@ spec:
   - repoURL: https://github.com/sam-bowman/homelab-cluster
     path: argocd/utility/github-arc
     targetRevision: HEAD
+  # The API server defaults these CRD fields, so they always differ from the chart.
+  ignoreDifferences:
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    jsonPointers:
+    - /spec/preserveUnknownFields
+    - /spec/conversion
   syncPolicy:
     automated:
       prune: true
