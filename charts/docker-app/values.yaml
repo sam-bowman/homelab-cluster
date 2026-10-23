@@ -36,8 +36,7 @@ ingress:
   #   foo: "bar"
 serviceAccount:
   enabled: true
-vpa:
-  enabled: true
-  minAllowed:
-    cpu: "300m"
-    memory: "300Mi"
+resources:
+  requests:
+    cpu: 50m
+    memory: 256Mi

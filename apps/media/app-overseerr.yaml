@@ -14,6 +14,10 @@ spec:
     - helm:
         values: |
           name: overseerr-k8s
+          resources:
+            requests:
+              cpu: 100m
+              memory: 400Mi
           containers:
             - name: overseerr-k8s
               image: lscr.io/linuxserver/overseerr:latest

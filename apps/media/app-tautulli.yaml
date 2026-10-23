@@ -14,6 +14,10 @@ spec:
     - helm:
         values: |
           name: tautulli-k8s
+          resources:
+            requests:
+              cpu: 50m
+              memory: 300Mi
           containers:
             - name: tautulli-k8s
               image: tautulli/tautulli:latest

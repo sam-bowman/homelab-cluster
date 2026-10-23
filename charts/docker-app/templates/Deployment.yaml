@@ -22,6 +22,8 @@ spec:
       {{- range $.Values.containers }}
       - name: {{ .name }}
         image:  {{ .image }}
+        resources:
+          {{- toYaml $.Values.resources | nindent 10 }}
         {{- if .command }}
         command: {{ .command }}
         {{- end }}
