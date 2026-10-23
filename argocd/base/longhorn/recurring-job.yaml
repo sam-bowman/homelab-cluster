@@ -11,5 +11,5 @@ spec:
   labels: {}
   name: Backups
   parameters: {}
-  retain: 1
+  retain: 7
   task: backup

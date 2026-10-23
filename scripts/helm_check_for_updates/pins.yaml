@@ -4,9 +4,10 @@
 unifi:
   pinned: true
   reason: >-
-    Chart 2.x defaults to a much newer UniFi (v10) and mounts data at /data, and 2.x changed the
-    Deployment selector (once broke the controller). The image is pinned to v8.6.9 and the mount path
-    is set in argocd/network/unifi/values/values.yaml. Back up first (see README) and check --diff.
+    Chart 2.x mounts data at /data (this image keeps it in /unifi/data) and changed the Deployment
+    selector (once broke the controller). The mount path and the image tag (now v10.0.162) are set in
+    argocd/network/unifi/values/values.yaml. Controller upgrades only migrate forward: take a Longhorn
+    backup (scripts/longhorn_backup_all.py --only unifi/unifi-pvc) and a UniFi .unf backup first, and check --diff.
 chat:
   pinned: true
   reason: >-

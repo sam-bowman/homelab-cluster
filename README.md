@@ -12,7 +12,7 @@ It is written for my own network, but the layout should be easy to adapt. IP add
 | Deployment | ArgoCD, app-of-apps, automated sync with pruning |
 | Ingress | Traefik (bundled with k3s) at `10.10.20.101`, TLS from cert-manager and Let's Encrypt |
 | Load balancing | MetalLB layer 2: `10.10.20.101-200` assigned automatically, `201-220` reserved for fixed IPs |
-| Storage | Longhorn (3 replicas), nightly backup to the NAS over NFS |
+| Storage | Longhorn (3 replicas), nightly backup to the NAS over NFS (last 7 kept) |
 | Secrets | Vault (Consul storage) with External Secrets; `vault-unsealer` unseals after a restart |
 | DNS | AdGuard Home and OPNsense Unbound locally, Cloudflare publicly, all records in Terraform |
 | CI | Self-hosted GitHub Actions runner in the cluster runs Terraform |
@@ -146,7 +146,7 @@ d2 media.d2 media.svg
 ## Things worth knowing
 
 - **Traefik is owned by k3s.** The Deployment and Service come from k3s's own Helm chart, and the repo only holds the `HelmChart`, `HelmChartConfig` and middleware. Do not add a Traefik Deployment or Service here. The `traefik` app is manual-sync for that reason.
-- **UniFi is pinned to `v8.6.9`** and the `unifi-ext` service uses `externalTrafficPolicy: Local`. With the default policy every device appears to come from one node address and the switches never settle as connected.
+- **UniFi's controller image is pinned (currently `v10.0.162`)**, upgraded in steps with a backup first, and the `unifi-ext` service uses `externalTrafficPolicy: Local`. With the default policy every device appears to come from one node address and the switches never settle as connected.
 - **Pinning matters for stateful apps.** UniFi's chart defaults to a much newer controller and a different data path. Check `values.yaml` before bumping its chart.
 - **Vault and Consul are linked.** Vault stores its data in Consul. Back both up before touching either.
 - **Some drift is expected.** Parent apps ignore finalizers on child Applications, and a few apps ignore fields that the cluster fills in itself (CRD defaults, the UniFi load balancer address).
