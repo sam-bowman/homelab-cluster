@@ -73,14 +73,6 @@ locals {
       cf_content        = oci_core_instance.ubuntu_vps.public_ip
       cf_proxy_enabled  = true
     }
-    "vm_zero" = {
-      hostname          = "ZERO"
-      ip                = "10.10.20.81"
-      cf_enabled        = true
-      cf_record_type    = "CNAME"
-      cf_content        = "home.bowmans.site"
-      cf_proxy_enabled  = false
-    }
     "vm_haos" = {
       hostname          = "HAOS"
       ip                = "10.10.20.82"
@@ -133,12 +125,6 @@ locals {
       cf_content        = "home.bowmans.site"
       cf_proxy_enabled  = false
       alias_of          = "vm_pterodactyl"
-    }
-    "api" = {
-      hostname          = "api.register.zero"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "vm_zero"
     }
     "adguard" = {
       hostname          = "adguard"
@@ -256,12 +242,6 @@ locals {
     }
     "readarr" = {
       hostname          = "readarr"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "register_zero" = {
-      hostname          = "register-zero"
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "traefik"

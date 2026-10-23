@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: overseerr-k8s
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: overseerr-k8s
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: overseerr-k8s
+          containers:
+            - name: overseerr-k8s
+              image: lscr.io/linuxserver/overseerr:latest
+              ports:
+                - name: main
+                  port: 5055
+          ingress:
+            enabled: true
+            hostOverride: overseerr
+            annotations:
+              gethomepage.dev/href: "https://overseerr.bowmans.site/"
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/description: Overseerr
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/seerr.png"
+              gethomepage.dev/app: overseerr
+              gethomepage.dev/name: Overseerr
+              gethomepage.dev/widget.type: "seerr"
+              gethomepage.dev/widget.url: "https://overseerr.bowmans.site/"
+              gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_OVERSEERR_API_KEY}}"
+              gethomepage.dev/pod-selector: "app.kubernetes.io/name=overseerr"
+          volumes:
+            - name: config
+              mountPath: "/config"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

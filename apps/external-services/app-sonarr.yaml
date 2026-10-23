@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonarr
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: sonarr
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: sonarr
+          port: 30027
+          annotations:
+            gethomepage.dev/href: "https://sonarr.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Sonarr
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/sonarr.png"
+            gethomepage.dev/app: sonarr
+            gethomepage.dev/name: Sonarr
+            gethomepage.dev/widget.type: "sonarr"
+            gethomepage.dev/widget.url: "https://sonarr.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_API_KEY}}"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/external-services
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

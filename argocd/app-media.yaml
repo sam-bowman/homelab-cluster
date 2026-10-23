@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd/media
+    path: apps/media
     repoURL: https://github.com/sam-bowman/homelab-cluster
     targetRevision: HEAD
   syncPolicy:

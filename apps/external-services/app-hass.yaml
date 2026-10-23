@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hass
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: zero
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: hass
+          port: 8123
+          externalName: haos.bowmans.site
+          annotations:
+            gethomepage.dev/href: "https://hass.bowmans.site/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: HASS
+            gethomepage.dev/group: Smart Home
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/home-assistant.png"
+            gethomepage.dev/app: hass
+            gethomepage.dev/name: HASS
+            gethomepage.dev/widget.type: "homeassistant"
+            gethomepage.dev/widget.url: "https://hass.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_HASS_API_KEY}}"
+            gethomepage.dev/widget.fields: '["people_home", "lights_on"]'
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/external-services
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: requestrr-k8s
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: requestrr-k8s
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: requestrr-k8s
+          containers:
+            - name: requestrr-k8s
+              image: thomst08/requestrr:latest
+              ports:
+                - name: main
+                  port: 4545
+          ingress:
+            enabled: true
+            hostOverride: requestrr
+          volumes:
+            - name: config
+              mountPath: "/root/config"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

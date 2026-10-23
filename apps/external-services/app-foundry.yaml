@@ -1,21 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: zero-register
+  name: foundry
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: zero
+    namespace: foundry
     server: https://kubernetes.default.svc
   project: default
   sources:
     - helm:
         values: |
-          name: register-zero
-          port: 5000
-          externalName: zero.bowmans.site
+          name: foundry
+          port: 30000
       repoURL: https://github.com/sam-bowman/homelab-cluster.git
       path: charts/external-services
       targetRevision: main

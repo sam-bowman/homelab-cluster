@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: plex
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: plex
+          port: 32400
+          annotations:
+            gethomepage.dev/href: "https://app.plex.tv/"
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Plex
+            gethomepage.dev/group: Media
+            gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/plex.png"
+            gethomepage.dev/app: plex
+            gethomepage.dev/name: Plex
+            gethomepage.dev/widget.type: "plex"
+            gethomepage.dev/widget.url: "https://plex.bowmans.site/"
+            gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PLEX_API_KEY}}"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/external-services
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
