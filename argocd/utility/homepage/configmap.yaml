@@ -16,19 +16,22 @@ data:
     layout:
     - Media:
         style: row
-        columns: 4
-    - Infrastructure:
+        columns: 5
+    - Media Automation:
         style: row
-        columns: 3
+        columns: 6
+    - Apps:
+        style: row
+        columns: 4
     - Network:
         style: row
         columns: 3
-    - CICD:
+    - Infrastructure:
         style: row
-        columns: 2
-    - Smart Home:
+        columns: 3
+    - Platform:
         style: row
-        columns: 1
+        columns: 4
     fullWidth: true
     useEqualHeights: true
     bookmarksStyle: icons

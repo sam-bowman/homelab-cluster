@@ -2,12 +2,16 @@
 # (an ExternalName service, an ingress route and a certificate).
 #
 # Add an app by adding an entry here. Fields:
-#   name       hostname and namespace: <name>.bowmans.site
-#   port       port the app listens on at the target host
-#   title      display name; setting it adds the Homepage tile (omit for no tile)
-#   icon       icon file name on selfh.st (default: <name>)
-#   href       link behind the tile (default: https://<name>.<domain>/)
-#   externalName  target host (default in the chart: truenas.bowmans.site)
+#   name         hostname and namespace: <name>.bowmans.site
+#   port         port the app listens on at the target host
+#   title        display name; setting it adds the Homepage tile (omit for no tile)
+#   group        Homepage group for the tile (default: homepage.group below)
+#   description  line under the title (default: the title)
+#   icon         icon file name on selfh.st, or a full http(s) URL (default: <name>)
+#   href         link behind the tile (default: https://<name>.<domain>/)
+#   widget       false for a plain tile with no Homepage widget (default: widget on, which needs
+#                HOMEPAGE_VAR_<NAME>_API_KEY in Vault)
+#   externalName target host (default in the chart: truenas.bowmans.site)
 
 domain: bowmans.site
 
@@ -24,10 +28,20 @@ services:
   - name: bazarr
     port: 30046
     title: Bazarr
+    group: Media Automation
   - name: foundry
     port: 30000
+    title: Foundry VTT
+    description: Virtual tabletop
+    group: Apps
+    icon: foundry-virtual-tabletop
+    widget: false
   - name: nextcloud
     port: 31234
+    title: Nextcloud
+    description: Files and sync
+    group: Apps
+    widget: false
   - name: plex
     port: 32400
     title: Plex
@@ -35,14 +49,23 @@ services:
   - name: radarr
     port: 30025
     title: Radarr
+    group: Media Automation
   - name: sabnzbd
     port: 30055
     title: SABnzbd
+    group: Media Automation
   - name: sonarr
     port: 30027
     title: Sonarr
+    group: Media Automation
   - name: tdarr
     port: 30028
     title: Tdarr
+    group: Media Automation
   - name: titlecardmaker
     port: 34242
+    title: Title Card Maker
+    description: Episode title cards
+    group: Media Automation
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/title-card-maker.png
+    widget: false

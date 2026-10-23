@@ -3,17 +3,21 @@
 {{- $values := dict "name" .name "port" .port }}
 {{- if .externalName }}{{ $_ := set $values "externalName" .externalName }}{{ end }}
 {{- if .title }}
+{{- $icon := default .name .icon }}
 {{- $ann := dict
       "gethomepage.dev/enabled" "true"
       "gethomepage.dev/name" .title
-      "gethomepage.dev/description" .title
-      "gethomepage.dev/group" $.Values.homepage.group
+      "gethomepage.dev/description" (default .title .description)
+      "gethomepage.dev/group" (default $.Values.homepage.group .group)
       "gethomepage.dev/app" .name
+      "gethomepage.dev/external" "true"
       "gethomepage.dev/href" (default $url .href)
-      "gethomepage.dev/icon" (printf "%s/%s.png" $.Values.homepage.iconBase (default .name .icon))
-      "gethomepage.dev/widget.type" .name
-      "gethomepage.dev/widget.url" $url
-      "gethomepage.dev/widget.key" (printf "{{HOMEPAGE_VAR_%s_API_KEY}}" (upper .name)) }}
+      "gethomepage.dev/icon" (ternary $icon (printf "%s/%s.png" $.Values.homepage.iconBase $icon) (hasPrefix "http" $icon)) }}
+{{- if ne (toString .widget) "false" }}
+{{- $_ := set $ann "gethomepage.dev/widget.type" .name }}
+{{- $_ := set $ann "gethomepage.dev/widget.url" $url }}
+{{- $_ := set $ann "gethomepage.dev/widget.key" (printf "{{HOMEPAGE_VAR_%s_API_KEY}}" (upper .name)) }}
+{{- end }}
 {{- $_ := set $values "annotations" $ann }}
 {{- end }}
 ---

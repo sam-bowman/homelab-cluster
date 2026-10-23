@@ -2,6 +2,14 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-ingress-route
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: Longhorn
+    gethomepage.dev/description: Storage
+    gethomepage.dev/group: Platform
+    gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/longhorn.png"
+    gethomepage.dev/href: "https://longhorn.bowmans.site/"
+    gethomepage.dev/pod-selector: "app=longhorn-ui"
 spec:
   entryPoints:
     - websecure

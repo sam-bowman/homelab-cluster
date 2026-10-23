@@ -27,6 +27,14 @@ spec:
           ingress:
             enabled: true
             hostOverride: maintainerr
+            annotations:
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/name: Maintainerr
+              gethomepage.dev/description: Media cleanup
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/maintainerr.png"
+              gethomepage.dev/href: "https://maintainerr.bowmans.site/"
+              gethomepage.dev/pod-selector: "app=maintainerr-k8s"
           volumes:
             - name: config
               mountPath: "/opt/data"

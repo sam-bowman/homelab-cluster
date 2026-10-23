@@ -38,7 +38,7 @@ spec:
               gethomepage.dev/widget.type: "seerr"
               gethomepage.dev/widget.url: "https://overseerr.bowmans.site/"
               gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_OVERSEERR_API_KEY}}"
-              gethomepage.dev/pod-selector: "app.kubernetes.io/name=overseerr"
+              gethomepage.dev/pod-selector: "app=overseerr-k8s"
           volumes:
             - name: config
               mountPath: "/config"

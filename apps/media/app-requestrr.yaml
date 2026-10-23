@@ -27,6 +27,14 @@ spec:
           ingress:
             enabled: true
             hostOverride: requestrr
+            annotations:
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/name: Requestrr
+              gethomepage.dev/description: Discord requests
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/requestrr.png"
+              gethomepage.dev/href: "https://requestrr.bowmans.site/"
+              gethomepage.dev/pod-selector: "app=requestrr-k8s"
           volumes:
             - name: config
               mountPath: "/root/config"

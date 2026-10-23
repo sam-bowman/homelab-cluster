@@ -6,7 +6,7 @@ metadata:
     gethomepage.dev/href: "https://argocd.bowmans.site/"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: ArgoCD
-    gethomepage.dev/group: CICD
+    gethomepage.dev/group: Platform
     gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/argo-cd.png"
     gethomepage.dev/app: argocd-server
     gethomepage.dev/name: ArgoCD
