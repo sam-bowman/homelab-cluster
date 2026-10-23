@@ -8,7 +8,8 @@ metadata:
   namespace: unifi
 spec:
   allocateLoadBalancerNodePorts: true
-  externalTrafficPolicy: Cluster
+  # Local keeps each device's real source IP; with Cluster every device appears as the node's 10.42.x.1 address.
+  externalTrafficPolicy: Local
   internalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
