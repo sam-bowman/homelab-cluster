@@ -56,6 +56,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 100
         runAsGroup: 1000
+        fsGroup: 1000
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -96,7 +97,7 @@ spec:
       - name: keys
         secret:
           secretName: vault-unseal-keys
-          defaultMode: 0400
+          defaultMode: 0440
       - name: tmp
         emptyDir:
           medium: Memory
