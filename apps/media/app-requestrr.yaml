@@ -20,7 +20,7 @@ spec:
               memory: 320Mi
           containers:
             - name: requestrr-k8s
-              image: thomst08/requestrr:latest
+              image: thomst08/requestrr:v2.1.10
               ports:
                 - name: main
                   port: 4545

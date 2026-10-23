@@ -20,7 +20,7 @@ spec:
               memory: 400Mi
           containers:
             - name: overseerr-k8s
-              image: lscr.io/linuxserver/overseerr:latest
+              image: lscr.io/linuxserver/overseerr:v1.35.0-ls159
               ports:
                 - name: main
                   port: 5055

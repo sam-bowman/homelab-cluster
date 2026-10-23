@@ -20,7 +20,7 @@ spec:
               memory: 300Mi
           containers:
             - name: tautulli-k8s
-              image: tautulli/tautulli:latest
+              image: tautulli/tautulli:v2.18.2
               ports:
                 - name: main
                   port: 8181

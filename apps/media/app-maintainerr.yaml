@@ -20,7 +20,7 @@ spec:
               memory: 550Mi
           containers:
             - name: maintainerr-k8s
-              image: jorenn92/maintainerr:latest
+              image: jorenn92/maintainerr:3.31.0
               ports:
                 - name: main
                   port: 6246
