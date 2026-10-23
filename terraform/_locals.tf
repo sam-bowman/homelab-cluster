@@ -26,14 +26,6 @@ locals {
       ip                = "10.10.20.50"
       cf_enabled        = false
     }
-    "teamspeak" = {
-      hostname          = "TEAMSPEAK"
-      ip                = "10.10.20.203"
-      cf_enabled        = true
-      cf_record_type    = "CNAME"
-      cf_content        = "home.bowmans.site"
-      cf_proxy_enabled  = false
-    }
     "adguarddns" = {
       hostname          = "ADGUARDDNS"
       ip                = "10.10.20.205"
@@ -138,44 +130,14 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
-    "authentik" = {
-      hostname          = "authentik"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
     "bazarr" = {
       hostname          = "bazarr"
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
-    "coder" = {
-      hostname          = "coder"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
     "consul" = {
       hostname          = "consul"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "dashboard" = {
-      hostname          = "dashboard"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "gollum" = {
-      hostname          = "gollum"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "homer" = {
-      hostname          = "homer"
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "traefik"
@@ -194,18 +156,6 @@ locals {
     }
     "maintainerr" = {
       hostname          = "maintainerr"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "n8n" = {
-      hostname          = "n8n"
-      cf_enabled        = true
-      cf_proxy_enabled  = true
-      alias_of          = "traefik"
-    }
-    "netbox" = {
-      hostname          = "netbox"
       cf_enabled        = true
       cf_proxy_enabled  = true
       alias_of          = "traefik"

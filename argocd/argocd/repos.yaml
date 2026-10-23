@@ -11,54 +11,6 @@ stringData:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: helm-grafana
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: https://grafana.github.io/helm-charts
-  name: grafana
-  type: helm
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: helm-victoria-metrics
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: https://victoriametrics.github.io/helm-charts
-  name: victoriametrics
-  type: helm
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: helm-kubeshop
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: https://kubeshop.github.io/helm-charts
-  name: kubeshop
-  type: helm
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: helm-kyverno
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: https://kyverno.github.io/kyverno
-  name: kyverno
-  type: helm
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: helm-github-arc
   namespace: argocd
   labels:

@@ -129,15 +129,6 @@ data:
         - Vault:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/hashicorp-vault.png
               href: https://vault.bowmans.site/
-        - Gollum:
-            - abbr: GLLM
-              href: https://gollum.bowmans.site/
-        - K8S Dashboard:
-            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/grafana-alerts-dashboard.png
-              href: https://dashboard.bowmans.site/
-        - n8n:
-            - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/n8n.png
-              href: https://n8n.bowmans.site/
         - Cloudflare:
             - icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cloudflare.png
               href: https://dash.cloudflare.com/
