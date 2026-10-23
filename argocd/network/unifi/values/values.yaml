@@ -11,7 +11,8 @@ controllers:
           JVM_MAX_HEAP_SIZE: 1024M
         image:
           repository: jacobalberty/unifi
-          tag: "{{ .Chart.AppVersion }}"
+          # Pinned: chart 2.x defaults to a much newer UniFi (v10); upgrade deliberately via backup/restore.
+          tag: v8.6.9
           pullPolicy: IfNotPresent
 defaultPodOptions:
   podSecurityContext:
@@ -77,6 +78,11 @@ persistence:
     enabled: true
     existingClaim: unifi-pvc
     retain: true
+    # Chart 2.x mounts at /data; this image keeps its state in /unifi/data.
+    advancedMounts:
+      main:
+        main:
+        - path: /unifi/data/
 mongodb:
   enabled: false
   architecture: standalone
