@@ -60,7 +60,7 @@ credential (the secret half stays in the cluster). Rotate it later if you want i
      1. `argocd/utility/chat/secrets/vault-check.yaml` reads Vault into a scratch Secret, `chat-vault-check`. After syncing, run `bash scripts/chat-verify-vault-secrets.sh`. It prints OK or MISMATCH per value, never the value.
      2. Done: all four matched, so `secrets/chat-secrets.yaml` now merges them into the real Secrets (`creationPolicy: Merge`, same names). The scratch Secret `chat-vault-check` is no longer needed.
    - Add resource requests to the server, client, redis, postgres and livekit.
-   - Turn on automated sync (without prune) once you trust it.
+   - ~~Turn on automated sync (without prune)~~ Done: `app-chat.yaml` now syncs automatically, without pruning.
 
 ## If something looks wrong
 
@@ -73,9 +73,9 @@ credential (the secret half stays in the cluster). Rotate it later if you want i
 `upgrade-chat.ps1` backs up before every upgrade because a new chart version can migrate the database, and
 `helm rollback` (or an ArgoCD rollback) does not undo that: the backup is the way back. Keep that habit:
 
-1. `bash scripts/chat-backup.sh`
+1. `bash scripts/chat-backup.sh`  (do this before pushing: sync is automatic, so the new version deploys as soon as ArgoCD sees the push)
 2. In `apps/utility/app-chat.yaml` change `targetRevision` to the new chart version (the one your release workflow publishes). Change `argocd/utility/chat/values.yaml` in the same commit if the release adds or renames a value.
-3. Push, check `argocd app diff chat`, then sync by hand.
+3. Push. ArgoCD applies it within a few minutes. Watch `kubectl get pods -n chat` and the app in the ArgoCD UI.
 4. Check chat.bowmans.site answers. To go back: set `targetRevision` to the old version **and** restore the database from step 1, since the new version may already have migrated it.
 
 Secrets: `personal-secrets.yaml` stays in your chat app checkout for now. If you rotate a secret, update the Kubernetes Secret

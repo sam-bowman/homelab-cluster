@@ -1,12 +1,14 @@
 # Chat server (federated-chat-app). Migrated from a hand-installed Helm release;
 # see argocd/utility/chat/MIGRATION.md.
 #
-# Deliberately cautious while the namespace holds real data:
+# Deliberately cautious because the namespace holds real data:
 #   - no resources-finalizer, so deleting this Application never deletes the
 #     Postgres or uploads volumes
-#   - no automated sync, so nothing changes until you sync by hand
-# Once the migration is settled, consider turning on automated sync (without
-# prune) and, if you want them, the finalizer.
+#   - automated sync WITHOUT prune: changes in git are applied, but nothing is
+#     ever deleted automatically. Remove an old resource by hand.
+#   - no selfHeal, so a manual kubectl change is not silently reverted
+# Because sync is automatic, a push that changes targetRevision deploys a new
+# chart version within minutes: run scripts/chat-backup.sh BEFORE you push it.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -32,6 +34,9 @@ spec:
     targetRevision: HEAD
     path: argocd/utility/chat/secrets
   syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
     syncOptions:
     - ServerSideApply=true
     - PruneLast=true
