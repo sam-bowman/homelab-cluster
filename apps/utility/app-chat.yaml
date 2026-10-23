@@ -1,5 +1,5 @@
-# Chat server (federated-chat-app). Migrated from a hand-installed Helm release;
-# see argocd/utility/chat/MIGRATION.md.
+# Chat server (federated-chat-app), released from the chat app repo. It was migrated in place from a
+# hand-installed Helm release, and its secrets now come from Vault (argocd/utility/chat/secrets).
 #
 # Deliberately cautious because the namespace holds real data:
 #   - no resources-finalizer, so deleting this Application never deletes the

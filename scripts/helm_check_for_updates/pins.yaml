@@ -12,7 +12,7 @@ chat:
   pinned: true
   reason: >-
     Released from the chat app repo. Run scripts/chat-backup.sh BEFORE bumping: new versions can
-    migrate the database. See argocd/utility/chat/MIGRATION.md.
+    migrate the database. The script's output (volumes and database dump) is the way back.
 hashicorp-vault:
   careful: "pods use OnDelete: delete them one at a time after the sync; vault-unsealer unseals them again"
 hashicorp-consul:

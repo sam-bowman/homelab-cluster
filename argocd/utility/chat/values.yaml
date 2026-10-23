@@ -4,7 +4,7 @@
 #   secrets.existingSecret            JWT signing secrets
 #   postgresql.auth.existingSecret    Postgres password (baked into the database volume)
 #   voice.existingSecret              LiveKit API secret
-# They are the Secrets the original `helm install` created, left untouched. See MIGRATION.md.
+# They are created by the ExternalSecrets in secrets/chat-secrets.yaml from Vault (secret/CHAT).
 client:
   affinity: {}
   fixedServerMode: true
