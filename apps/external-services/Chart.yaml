@@ -1,0 +1,5 @@
+apiVersion: v2
+name: external-services-apps
+description: One ArgoCD Application per app that runs outside the cluster (on the NAS) but is proxied through Traefik.
+type: application
+version: 0.1.0

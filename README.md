@@ -38,7 +38,7 @@ apps/                      Application manifests, one folder per category
   network/                   adguard, unifi
   media/                     overseerr, requestrr, tautulli, maintainerr
   utility/                   cert-manager, consul, vault, external-secrets, homepage, github-arc, ...
-  external-services/         proxies to apps that run outside the cluster
+  external-services/         Helm chart: one Application per entry in values.yaml, for apps that run outside the cluster
 argocd/
   app-*.yaml                 bootstrap parent apps (path: apps/<category>)
   argocd/                    ArgoCD itself: install manifest, repo credentials, ingress
@@ -92,7 +92,7 @@ Create `apps/<category>/app-<name>.yaml`, copying an existing one such as `apps/
 
 ### Add an app that runs elsewhere
 
-Copy a file in `apps/external-services/` and change `name` and `port`. The target host defaults to `truenas.bowmans.site`; set `externalName` to point somewhere else.
+Add an entry to `apps/external-services/values.yaml` with a `name` and `port`. Add a `title` as well to get a Homepage tile (the widget expects `HOMEPAGE_VAR_<NAME>_API_KEY` in Vault). The target host defaults to `truenas.bowmans.site`; set `externalName` to point somewhere else. The chart in that folder renders one ArgoCD Application per entry.
 
 ### Add a hostname
 

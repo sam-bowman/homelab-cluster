@@ -1,0 +1,48 @@
+# Each entry becomes an ArgoCD Application that deploys charts/external-services
+# (an ExternalName service, an ingress route and a certificate).
+#
+# Add an app by adding an entry here. Fields:
+#   name       hostname and namespace: <name>.bowmans.site
+#   port       port the app listens on at the target host
+#   title      display name; setting it adds the Homepage tile (omit for no tile)
+#   icon       icon file name on selfh.st (default: <name>)
+#   href       link behind the tile (default: https://<name>.<domain>/)
+#   externalName  target host (default in the chart: truenas.bowmans.site)
+
+domain: bowmans.site
+
+source:
+  repoURL: https://github.com/sam-bowman/homelab-cluster
+  targetRevision: HEAD
+  path: charts/external-services
+
+homepage:
+  group: Media
+  iconBase: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png
+
+services:
+  - name: bazarr
+    port: 30046
+    title: Bazarr
+  - name: foundry
+    port: 30000
+  - name: nextcloud
+    port: 31234
+  - name: plex
+    port: 32400
+    title: Plex
+    href: https://app.plex.tv/
+  - name: radarr
+    port: 30025
+    title: Radarr
+  - name: sabnzbd
+    port: 30055
+    title: SABnzbd
+  - name: sonarr
+    port: 30027
+    title: Sonarr
+  - name: tdarr
+    port: 30028
+    title: Tdarr
+  - name: titlecardmaker
+    port: 34242

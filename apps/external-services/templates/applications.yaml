@@ -1,0 +1,48 @@
+{{- range .Values.services }}
+{{- $url := printf "https://%s.%s/" .name $.Values.domain }}
+{{- $values := dict "name" .name "port" .port }}
+{{- if .externalName }}{{ $_ := set $values "externalName" .externalName }}{{ end }}
+{{- if .title }}
+{{- $ann := dict
+      "gethomepage.dev/enabled" "true"
+      "gethomepage.dev/name" .title
+      "gethomepage.dev/description" .title
+      "gethomepage.dev/group" $.Values.homepage.group
+      "gethomepage.dev/app" .name
+      "gethomepage.dev/href" (default $url .href)
+      "gethomepage.dev/icon" (printf "%s/%s.png" $.Values.homepage.iconBase (default .name .icon))
+      "gethomepage.dev/widget.type" .name
+      "gethomepage.dev/widget.url" $url
+      "gethomepage.dev/widget.key" (printf "{{HOMEPAGE_VAR_%s_API_KEY}}" (upper .name)) }}
+{{- $_ := set $values "annotations" $ann }}
+{{- end }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .name }}
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          {{- toYaml $values | nindent 10 }}
+      repoURL: {{ $.Values.source.repoURL }}
+      path: {{ $.Values.source.path }}
+      targetRevision: {{ $.Values.source.targetRevision }}
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2
+{{- end }}
