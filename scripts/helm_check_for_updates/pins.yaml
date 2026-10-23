@@ -1,0 +1,26 @@
+# Per-app notes for check_updates.py.
+#   pinned: true  -> --apply refuses unless --force (reason is shown)
+#   careful: ...  -> only shown in the report and the diff, to remind you what to do first
+unifi:
+  pinned: true
+  reason: >-
+    Chart 2.x defaults to a much newer UniFi (v10) and mounts data at /data, and 2.x changed the
+    Deployment selector (once broke the controller). The image is pinned to v8.6.9 and the mount path
+    is set in argocd/network/unifi/values/values.yaml. Back up first (see README) and check --diff.
+chat:
+  pinned: true
+  reason: >-
+    Released from the chat app repo. Run scripts/chat-backup.sh BEFORE bumping: new versions can
+    migrate the database. See argocd/utility/chat/MIGRATION.md.
+hashicorp-vault:
+  careful: "pods use OnDelete: delete them one at a time after the sync; vault-unsealer unseals them again"
+hashicorp-consul:
+  careful: "Vault keeps its data in Consul: take a snapshot first and move one minor version at a time"
+longhorn:
+  careful: "storage: one minor version at a time, all volumes healthy first, nightly backup to the NAS must be recent"
+cert-manager:
+  careful: "installs CRDs: read the release notes for removed API versions"
+external-secrets:
+  careful: "installs CRDs: read the release notes; the chat and homepage secrets depend on it"
+github-arc:
+  careful: "the runner that applies Terraform runs here; do not update while a workflow is running"

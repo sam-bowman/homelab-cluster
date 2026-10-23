@@ -7,3 +7,5 @@ fw-config/.terraform/providers/registry.terraform.io/browningluke/opnsense/0.10.
 fw-config/.terraform/providers/registry.terraform.io/browningluke/opnsense/0.10.1/windows_386/README.md
 fw-config/.terraform/terraform.tfstate
 scripts/helm_check_for_updates/__pycache__/
+# helm_check_for_updates output
+scripts/helm_check_for_updates/last-diff-*.txt
