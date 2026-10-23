@@ -1,0 +1,164 @@
+# Non-secret Helm values for the chat release (chart: federated-chat-app, from ghcr.io/sam-bowman/charts).
+#
+# Secrets are NOT here. The chart reads them from existing Kubernetes Secrets:
+#   secrets.existingSecret            JWT signing secrets
+#   postgresql.auth.existingSecret    Postgres password (baked into the database volume)
+#   voice.existingSecret              LiveKit API secret
+# They are the Secrets the original `helm install` created, left untouched. See MIGRATION.md.
+client:
+  affinity: {}
+  fixedServerMode: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/sam-bowman/federated-chat-app-client
+    tag: ''
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: cluster-issuer-letsencrypt
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    className: traefik
+    enabled: true
+    host: chat.bowmans.site
+    tls:
+    - hosts:
+      - chat.bowmans.site
+      secretName: chat-client-tls
+  nodeSelector: {}
+  podAnnotations: {}
+  podDisruptionBudget:
+    enabled: false
+    minAvailable: 1
+  preStopDelaySeconds: 5
+  replicaCount: 3
+  resources: {}
+  service:
+    port: 8080
+    type: ClusterIP
+  strategy:
+    type: Recreate
+  terminationGracePeriodSeconds: 30
+  tolerations: []
+  topologySpreadConstraints: []
+domain: chat.bowmans.site
+externalDatabase:
+  url: ''
+externalRedisUrl: ''
+keepVolumesOnUninstall: true
+postgresql:
+  auth:
+    database: chat
+    existingSecret: chat-federated-chat-app-postgresql
+    username: chat
+  enabled: true
+  image:
+    repository: postgres
+    tag: 16-alpine
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: longhorn
+  resources: {}
+redis:
+  enabled: true
+  image:
+    repository: redis
+    tag: 7-alpine
+  resources: {}
+secrets:
+  existingSecret: chat-federated-chat-app-jwt
+server:
+  accountDeletion:
+    graceDays: 14
+  admin:
+    enabled: true
+  affinity: {}
+  auditLog:
+    retentionDays: 365
+  clientPublicUrl: https://chat.bowmans.site
+  communityVisibility:
+    default: PUBLIC
+    limit: PUBLIC
+  contactPolicy:
+    default: ANYONE
+    limit: ANYONE
+  directory:
+    enabled: true
+    people: default-off
+  extraCorsOrigins: []
+  extraEnv: []
+  federation:
+    allowedDomains: []
+    blockedDomains: []
+    enabled: true
+    userDiscoverability: default-on
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/sam-bowman/federated-chat-app-server
+    tag: ''
+  ingress:
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    className: traefik
+    enabled: true
+    host: ''
+    sharedHost: true
+    tls:
+    - hosts:
+      - chat.bowmans.site
+      secretName: chat-client-tls
+  linkPreviews: true
+  nodeSelector: {}
+  podAnnotations: {}
+  podSecurityContext:
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+  preStopDelaySeconds: 5
+  publicUrl: https://chat.bowmans.site
+  rateLimit:
+    authMax: 100
+    max: 300
+  registrationEnabled: true
+  registrationInviteOnly: true
+  replicaCount: 3
+  resources: {}
+  service:
+    port: 4000
+    type: ClusterIP
+  storage:
+    driver: disk
+    s3:
+      bucket: ''
+      endpoint: ''
+      existingSecret: ''
+      forcePathStyle: false
+      publicUrlBase: ''
+      region: ''
+  strategy:
+    type: Recreate
+  terminationGracePeriodSeconds: 30
+  tolerations: []
+  trustProxy: 1
+  uploads:
+    allowUnsharedWithReplicas: false
+    persistence:
+      accessMode: ReadWriteMany
+      enabled: true
+      size: 5Gi
+      storageClassName: longhorn
+serverName: Hoshi Chat Server
+voice:
+  apiKey: chatvoice
+  enabled: true
+  existingSecret: chat-federated-chat-app-livekit
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: cluster-issuer-letsencrypt
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    className: traefik
+    host: voice.bowmans.site
+    tls:
+    - hosts:
+      - voice.bowmans.site
+      secretName: chat-voice-tls
+  media:
+    serviceType: LoadBalancer

@@ -1,0 +1,35 @@
+# Chat server (federated-chat-app). Migrated from a hand-installed Helm release;
+# see argocd/utility/chat/MIGRATION.md.
+#
+# Deliberately cautious while the namespace holds real data:
+#   - no resources-finalizer, so deleting this Application never deletes the
+#     Postgres or uploads volumes
+#   - no automated sync, so nothing changes until you sync by hand
+# Once the migration is settled, consider turning on automated sync (without
+# prune) and, if you want them, the finalizer.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chat
+  namespace: argocd
+spec:
+  destination:
+    namespace: chat
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: ghcr.io/sam-bowman/charts
+    chart: federated-chat-app
+    targetRevision: 0.18.0
+    helm:
+      releaseName: chat
+      valueFiles:
+      - $values/argocd/utility/chat/values.yaml
+  - repoURL: https://github.com/sam-bowman/homelab-cluster
+    targetRevision: HEAD
+    ref: values
+  syncPolicy:
+    syncOptions:
+    - ServerSideApply=true
+    - PruneLast=true
+  revisionHistoryLimit: 2
