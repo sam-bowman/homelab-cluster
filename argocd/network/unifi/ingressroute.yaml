@@ -22,7 +22,7 @@ spec:
     - match: Host(`unifi.bowmans.site`)
       kind: Rule
       services:
-      - name: unifi
+      - name: unifi-main
         port: 8443
         scheme: https
         serversTransport: unifi

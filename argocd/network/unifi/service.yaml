@@ -40,7 +40,7 @@ spec:
     protocol: UDP
     targetPort: 5514
   selector:
-    app.kubernetes.io/component: main
+    app.kubernetes.io/controller: main
     app.kubernetes.io/instance: unifi
     app.kubernetes.io/name: unifi
   type: LoadBalancer
