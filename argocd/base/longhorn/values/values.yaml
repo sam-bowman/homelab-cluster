@@ -1,1 +1,5 @@
-#
+# Longhorn 1.12 turns on ingress NetworkPolicies for its internal components by default, and k3s
+# enforces NetworkPolicies. They stay off here so the 1.12 upgrade changes one thing at a time.
+# Turn them on later, deliberately, after reading the Longhorn "Internal Network Policies" notes.
+networkPolicies:
+  restrictInternalTraffic: false

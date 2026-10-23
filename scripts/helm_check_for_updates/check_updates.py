@@ -325,7 +325,7 @@ def do_apply(name, to, force):
     if flags and not force:
         sys.exit('\nRefusing to apply: the diff above has dangerous changes. Plan for them, or use --force.')
     text = app['file'].read_text(encoding='utf-8')
-    pattern = re.compile(rf'(targetRevision:\s*["\']?){re.escape(app["current"])}(["\']?\s*(?:\r?\n|$))')
+    pattern = re.compile(rf'(targetRevision:\s*["\']?){re.escape(app["current"])}(["\']?[ \t]*(?:#[^\r\n]*)?(?:\r?\n|$))')
     matches = pattern.findall(text)
     if len(matches) != 1:
         sys.exit(f'Expected exactly one "targetRevision: {app["current"]}" in {app["file"]}, found {len(matches)}. Edit it by hand.')
