@@ -1,9 +1,12 @@
+# Longhorn sends every volume's backups to the target named "default" (each volume's
+# spec.backupTargetName). This used to be called "truenas", which no volume used, while "default" had an
+# empty URL and was never available, so the nightly backup job produced no backups.
 apiVersion: longhorn.io/v1beta2
 kind: BackupTarget
 metadata:
   finalizers:
   - longhorn.io
-  name: truenas
+  name: default
   namespace: longhorn-system
 spec:
   backupTargetURL: nfs://truenas.bowmans.site:/mnt/pool/longhorn-backups
