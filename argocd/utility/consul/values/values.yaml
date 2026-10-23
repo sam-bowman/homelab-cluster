@@ -11,3 +11,10 @@ client:
 connectInject:
   apiGateway:
     manageExternalCRDs: false
+
+server:
+  # Consul holds all of Vault's data. It used to sit on a local-path volume on a single node (no replicas, no
+  # backup). Longhorn gives it 3 replicas and the nightly backup.
+  # Changing this on an existing StatefulSet needs the cutover in MIGRATION.md; do not push it without that.
+  storageClass: longhorn
+
