@@ -8,9 +8,11 @@ client:
       memory: "400Mi"
       cpu: "200m"
 
+# Consul is only Vault's storage backend here; the service mesh is not used. The injector (and its webhook) needs the
+# Gateway API CRDs, which are not installed, so since 2.1.0 it crash-loops. Turning it off removes it, its webhook
+# and the service-mesh CRDs, none of which have any objects.
 connectInject:
-  apiGateway:
-    manageExternalCRDs: false
+  enabled: false
 
 server:
   # Consul holds all of Vault's data. It used to sit on a local-path volume on a single node (no replicas, no
