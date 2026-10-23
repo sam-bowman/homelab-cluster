@@ -1,6 +1,0 @@
-apiVersion: kro.run/v1alpha1
-kind: RGDTest
-metadata:
-  name: rgd-test-instance
-spec:
-  name: rgd-test
