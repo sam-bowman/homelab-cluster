@@ -58,7 +58,7 @@ credential (the secret half stays in the cluster). Rotate it later if you want i
 8. **Later, optional follow-ups**, each as its own change:
    - Move the three Secrets into Vault with External Secrets. The values are in Vault at `secret/CHAT` (`CH_JWTACCESSSECRET`, `CH_JWTREFRESHSECRET`, `PG_PASSWORD`, `VO_APISECRET`). Done in two steps so a typo in Vault can never overwrite a working secret:
      1. `argocd/utility/chat/secrets/vault-check.yaml` reads Vault into a scratch Secret, `chat-vault-check`. After syncing, run `bash scripts/chat-verify-vault-secrets.sh`. It prints OK or MISMATCH per value, never the value.
-     2. Only when all four are OK, replace that file with ExternalSecrets that merge into the real Secrets (`creationPolicy: Merge`, same names), and delete `chat-vault-check`.
+     2. Done: all four matched, so `secrets/chat-secrets.yaml` now merges them into the real Secrets (`creationPolicy: Merge`, same names). The scratch Secret `chat-vault-check` is no longer needed.
    - Add resource requests to the server, client, redis, postgres and livekit.
    - Turn on automated sync (without prune) once you trust it.
 
