@@ -21,6 +21,7 @@
 # volumes:
 #   - name: ts3data
 #     mountPath: "/teamspeak/save/"
+# strategy: Recreate   # default is RollingUpdate; use Recreate when two pods must not share the volume
 service:
   enabled: true
   # annotations:

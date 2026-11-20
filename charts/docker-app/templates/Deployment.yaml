@@ -8,6 +8,10 @@ metadata:
     app.kubernetes.io/name: {{ $.Values.name }}
 spec:
   revisionHistoryLimit: 2
+  {{- if $.Values.strategy }}
+  strategy:
+    type: {{ $.Values.strategy }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ $.Values.name }}
