@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: audiobookrequest
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: audiobookrequest
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: audiobookrequest
+          strategy: Recreate
+          resources:
+            requests:
+              cpu: 50m
+              memory: 200Mi
+          containers:
+            - name: audiobookrequest
+              image: markbeep/audiobookrequest:2.0.3
+              ports:
+                - name: main
+                  port: 8000
+              env:
+                - name: TZ
+                  value: "Europe/London"
+                # Trust Traefik's X-Forwarded-* headers so links and redirects use https.
+                - name: ABR_APP__FORWARDED_ALLOW_IPS
+                  value: "*"
+          ingress:
+            enabled: true
+            annotations:
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/name: AudioBookRequest
+              gethomepage.dev/description: Audiobook requests
+              gethomepage.dev/group: Media
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/audiobookrequest.png"
+              gethomepage.dev/href: "https://audiobookrequest.bowmans.site/"
+              gethomepage.dev/app: audiobookrequest
+              gethomepage.dev/pod-selector: "app=audiobookrequest"
+          volumes:
+            - name: config
+              mountPath: "/config"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

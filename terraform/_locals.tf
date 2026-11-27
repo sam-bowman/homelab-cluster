@@ -148,6 +148,14 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "audiobookrequest" = {
+      # Public so the family can request books: CNAME to the DDNS home name, like audiobookshelf.
+      hostname          = "audiobookrequest"
+      cf_enabled        = true
+      cf_proxy_enabled  = true
+      cf_content        = "home.bowmans.site"
+      alias_of          = "traefik"
+    }
     "audiobookshelf" = {
       # Public, like chat: CNAME to the DDNS name OPNsense keeps pointed at the home IP.
       hostname          = "audiobookshelf"
