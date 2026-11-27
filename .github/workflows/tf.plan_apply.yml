@@ -1,14 +1,27 @@
 name: 'TF - Plan & Apply'
 
+# Pull requests only plan; pushes to main plan and apply.
 on:
   push:
+    branches: [ "main" ]
     paths:
     - terraform/**
     - .github/workflows/tf.plan_apply.yml
   pull_request:
     branches: [ "main" ]
+    paths:
+    - terraform/**
+    - .github/workflows/tf.plan_apply.yml
   workflow_dispatch:
+
+# One run at a time, so two pushes never plan against the same state at once. Queued runs are not cancelled.
+concurrency:
+  group: terraform
+  cancel-in-progress: false
+
 env:
+  TF_IN_AUTOMATION: "true"
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
   OPNSENSE_API_KEY:                     ${{ secrets.OPNSENSE_API_KEY }}
   OPNSENSE_API_SECRET:                  ${{ secrets.OPNSENSE_API_SECRET }}
   OPNSENSE_URI:                         ${{ secrets.OPNSENSE_URI }}
@@ -34,21 +47,32 @@ jobs:
         working-directory: terraform
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
-    - name: Install Node.JS
-      uses: actions/setup-node@v4.0.2
-      with:
-        node-version: 20
-
+    # The wrapper is what needed Node on the runner; without it there is no Node install step.
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+      uses: hashicorp/setup-terraform@v4
+      with:
+        terraform_version: 1.17.2
+        terraform_wrapper: false
+
+    - name: Cache providers
+      uses: actions/cache@v6
+      with:
+        path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+        key: terraform-providers-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('terraform/.terraform.lock.hcl') }}
 
     - name: Terraform Init
-      run: terraform init
+      run: |
+        mkdir -p "$TF_PLUGIN_CACHE_DIR"
+        terraform init -input=false -lockfile=readonly
 
     - name: Terraform Plan
-      run: terraform plan -input=false -out="tfplan"
+      run: |
+        terraform plan -input=false -lock-timeout=5m -out=tfplan | tee plan.txt
+        echo "### Terraform plan" >> "$GITHUB_STEP_SUMMARY"
+        grep -E '^(Plan:|No changes\.)' plan.txt | sed 's/\x1b\[[0-9;]*m//g' >> "$GITHUB_STEP_SUMMARY" || true
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false "tfplan"
+      if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve -input=false -lock-timeout=5m tfplan

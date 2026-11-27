@@ -9,3 +9,8 @@ fw-config/.terraform/terraform.tfstate
 scripts/helm_check_for_updates/__pycache__/
 # helm_check_for_updates output
 scripts/helm_check_for_updates/last-diff-*.txt
+
+# Terraform working files (the lock file is committed)
+terraform/.terraform/
+terraform/tfplan
+terraform/plan.txt
