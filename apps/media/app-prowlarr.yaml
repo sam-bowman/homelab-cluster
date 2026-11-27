@@ -39,6 +39,9 @@ spec:
               gethomepage.dev/href: "https://prowlarr.bowmans.site/"
               gethomepage.dev/app: prowlarr
               gethomepage.dev/pod-selector: "app=prowlarr"
+              gethomepage.dev/widget.type: "prowlarr"
+              gethomepage.dev/widget.url: "https://prowlarr.bowmans.site/"
+              gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}"
           volumes:
             - name: config
               mountPath: "/config"
