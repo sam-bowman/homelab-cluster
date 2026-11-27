@@ -9,6 +9,15 @@ spec:
     deployment:
       enabled: true
       replicas: 3
+    ports:
+      web:
+        # Send plain http to https. The *arr apps build their login redirect as http://.
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+              permanent: true
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
