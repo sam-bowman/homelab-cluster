@@ -34,6 +34,12 @@ services:
     port: 30046
     title: Bazarr
     group: Media Automation
+  - name: chaptarr
+    port: 30465
+    title: Chaptarr
+    description: Audiobook downloads
+    group: Media Automation
+    widget: false
   - name: foundry
     port: 30000
     title: Foundry VTT

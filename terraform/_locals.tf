@@ -156,6 +156,12 @@ locals {
       cf_content        = "home.bowmans.site"
       alias_of          = "traefik"
     }
+    "chaptarr" = {
+      # Local only, like prowlarr.
+      hostname          = "chaptarr"
+      cf_enabled        = false
+      alias_of          = "traefik"
+    }
     "longhorn" = {
       hostname          = "longhorn"
       cf_enabled        = true
