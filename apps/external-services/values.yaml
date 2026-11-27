@@ -25,6 +25,11 @@ homepage:
   iconBase: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png
 
 services:
+  - name: audiobookshelf
+    port: 30067
+    title: Audiobookshelf
+    description: Audiobooks
+    widget: false
   - name: bazarr
     port: 30046
     title: Bazarr
