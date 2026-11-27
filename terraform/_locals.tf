@@ -200,6 +200,12 @@ locals {
       cf_enabled        = false
       alias_of          = "traefik"
     }
+    "qbittorrent" = {
+      # Local only.
+      hostname          = "qbittorrent"
+      cf_enabled        = false
+      alias_of          = "traefik"
+    }
     "radarr" = {
       hostname          = "radarr"
       cf_enabled        = true

@@ -1,0 +1,59 @@
+# qBittorrent behind a Gluetun VPN, for TrueNAS: Apps > Discover > ⋮ > Install via YAML.
+# Not deployed by ArgoCD; kept here so the setup can be rebuilt.
+#
+# qBittorrent shares Gluetun's network, so all torrent traffic leaves through the VPN and stops if the
+# VPN goes down (Gluetun's firewall is the kill switch). The web UI is published by Gluetun on :30024.
+#
+# Before installing:
+#   - create the config folders below and chown them to 568:568
+#   - replace every <...> with your VPN provider's details (never commit real keys)
+#   - provider names and variables: https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers
+
+services:
+  gluetun:
+    # From ghcr.io rather than Docker Hub, which rate-limits anonymous pulls.
+    image: ghcr.io/qdm12/gluetun:v3.41.3
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      TZ: Europe/London
+      VPN_SERVICE_PROVIDER: nordvpn
+      VPN_TYPE: wireguard                      # NordLynx
+      WIREGUARD_PRIVATE_KEY: <NordLynx private key>   # the PrivateKey from a NordVPN WireGuard .conf
+      SERVER_COUNTRIES: <country>              # e.g. United Kingdom, Netherlands
+      # NordVPN has no port forwarding, so the client is not connectable (fine to download; slower to
+      # seed on private trackers). With a provider that supports it, enable:
+      # VPN_PORT_FORWARDING: "on"
+      # Let qBittorrent reach LAN services (and the LAN reach the web UI through the published port).
+      FIREWALL_OUTBOUND_SUBNETS: 10.10.0.0/16
+    ports:
+      - 30024:30024        # qBittorrent web UI
+    volumes:
+      - /mnt/app-pool/qbittorrent/gluetun:/gluetun
+    healthcheck:
+      test: ["CMD", "/gluetun-entrypoint", "healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:5.3.1_v2.1.3-ls490
+    container_name: qbittorrent
+    network_mode: service:gluetun
+    depends_on:
+      gluetun:
+        condition: service_healthy
+    environment:
+      PUID: "568"
+      PGID: "568"
+      TZ: Europe/London
+      WEBUI_PORT: "30024"
+    volumes:
+      - /mnt/app-pool/qbittorrent/config:/config
+      # Same /media mapping as SABnzbd and Chaptarr, so download paths match and imports are moves.
+      - /mnt/pool/media:/media
+    restart: unless-stopped

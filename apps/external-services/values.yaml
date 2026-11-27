@@ -56,6 +56,12 @@ services:
     port: 32400
     title: Plex
     href: https://app.plex.tv/
+  - name: qbittorrent
+    port: 30024
+    title: qBittorrent
+    description: Torrents (via NordVPN)
+    group: Media Automation
+    widget: false
   - name: radarr
     port: 30025
     title: Radarr
