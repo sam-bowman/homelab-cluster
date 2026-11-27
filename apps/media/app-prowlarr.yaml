@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prowlarr
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: prowlarr
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - helm:
+        values: |
+          name: prowlarr
+          strategy: Recreate
+          resources:
+            requests:
+              cpu: 50m
+              memory: 300Mi
+          containers:
+            - name: prowlarr
+              image: lscr.io/linuxserver/prowlarr:3.1.0.5799-ls170
+              ports:
+                - name: main
+                  port: 9696
+              env:
+                - name: TZ
+                  value: "Europe/London"
+          ingress:
+            enabled: true
+            annotations:
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/name: Prowlarr
+              gethomepage.dev/description: Indexer manager
+              gethomepage.dev/group: Media Automation
+              gethomepage.dev/icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/prowlarr.png"
+              gethomepage.dev/href: "https://prowlarr.bowmans.site/"
+              gethomepage.dev/app: prowlarr
+              gethomepage.dev/pod-selector: "app=prowlarr"
+          volumes:
+            - name: config
+              mountPath: "/config"
+      repoURL: https://github.com/sam-bowman/homelab-cluster.git
+      path: charts/docker-app
+      targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  revisionHistoryLimit: 2

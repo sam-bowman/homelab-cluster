@@ -172,6 +172,12 @@ locals {
       cf_proxy_enabled  = true
       alias_of          = "traefik"
     }
+    "prowlarr" = {
+      # Local only: it holds the indexer API keys, so no Cloudflare record.
+      hostname          = "prowlarr"
+      cf_enabled        = false
+      alias_of          = "traefik"
+    }
     "radarr" = {
       hostname          = "radarr"
       cf_enabled        = true
